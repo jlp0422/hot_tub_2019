@@ -15,3 +15,7 @@ rd.on('line', (line) => {
   teamObj.selections = teamArr.slice(1)
   Entry.create(teamObj)
 })
+
+rd.on('close', () => {
+  process.exit(0);
+})
