@@ -8,9 +8,10 @@ class Standings extends React.Component {
     this.state = {
       entries: [],
       teamWinMap: {},
-      sortOrder: 'name'
+      isNameSorted: true
     }
     this.makeSentenceCase = this.makeSentenceCase.bind(this)
+    this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
   }
 
   componentDidMount() {
@@ -33,17 +34,21 @@ class Standings extends React.Component {
     return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   }
 
+  onChangeSortOrder() {
+    this.setState({ isNameSorted: !this.state.isNameSorted})
+  }
+
   onSortEntries(a, b) {
-    if (a.entryScore < b.entryScore)
-      return -1;
     if (a.entryScore > b.entryScore)
+      return -1;
+    if (a.entryScore < b.entryScore)
       return 1;
     return 0;
   }
 
   render() {
-    const { entries, teamWinMap } = this.state
-    const { makeSentenceCase } = this
+    const { entries, teamWinMap, isNameSorted } = this.state
+    const { makeSentenceCase, onChangeSortOrder } = this
     const entriesAndScore = entries.reduce((memoOne, entry) => {
       const { selections, teamName } = entry
       const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
@@ -51,11 +56,12 @@ class Standings extends React.Component {
       return memoOne
     }, [])
     entriesAndScore.sort(this.onSortEntries)
-    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
-        <h4>Sort by: <span>Team Name</span> | <span>Score</span></h4>
+        <h4>Sort by:&nbsp;
+          <button disabled={isNameSorted} onClick={ onChangeSortOrder }>Team Name</button>&nbsp;&nbsp;
+          <button disabled={!isNameSorted} onClick={ onChangeSortOrder} >Score</button></h4>
         <div style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
           <div>
             <h2>Team Name</h2>
@@ -64,13 +70,22 @@ class Standings extends React.Component {
             <h2>Score</h2>
           </div>
         </div>
-        { entries.map(entry => (
+        { isNameSorted ? (entries.map(entry => (
             <Entry
               key={ entry.id }
               makeSentenceCase={ makeSentenceCase}
               entry={ entry }
               teamWinMap={ teamWinMap }/>
-        ))}
+        ))) : (entriesAndScore.map(entry => (
+            <Entry
+              key={entry.id}
+              makeSentenceCase={makeSentenceCase}
+              entry={entry}
+              teamWinMap={teamWinMap}
+              scoreSorted={true} />
+          ))
+
+        )}
       </div>
     )
   }
