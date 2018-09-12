@@ -26,7 +26,7 @@
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npm run webpack -- -w & nodemon server.js",
-    "seed": "node db/hottub.js team-selections.csv"
+    "seed": "node db/hottub.js team-selections-v2.csv"
   },
   "author": "",
   "license": "ISC"

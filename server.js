@@ -25,17 +25,26 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 
 app.get('/api/weekly-games', (req, res, next) => {
   Promise.all([
-    msfTwo.getData('nfl', '2016-regular', 'weekly_games', 'json', { week: '12' })
+    msfTwo.getData('nfl', '2018-regular', 'weekly_games', 'json', { week: '12' })
   ])
   .then(resp => res.send(resp))
   .catch(next)
 })
 
+app.get('/api/standings', (req, res, next) => {
+  Promise.all([
+    msfTwo.getData('nfl', '2018-regular', 'seasonal_standings', 'json', { stats: 'Wins', force: true })
+  ])
+    .then(resp => res.send(resp))
+    .catch(next)
+})
+
+
 app.get('/api/standings/:team', (req, res, next) => {
   const { team } = req.params
   console.log('*******TEAM REQUEST: ', team)
   Promise.all([
-    msfTwo.getData('nfl', '2016-regular', 'seasonal_standings', 'json', { team: `${team}`, stats: 'Wins', force: true })
+    msfTwo.getData('nfl', '2018-regular', 'seasonal_standings', 'json', { team: `${team}`, stats: 'Wins', force: true })
   ])
     .then(resp => res.send(resp))
     .catch(next)

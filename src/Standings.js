@@ -6,7 +6,8 @@ class Standings extends React.Component {
   constructor() {
     super()
     this.state = {
-      entries: []
+      entries: [],
+      teamWinMap: {},
     }
   }
 
@@ -14,12 +15,22 @@ class Standings extends React.Component {
     axios.get('/api/entries')
       .then(res => res.data)
       .then(entries => this.setState({ entries }))
+    axios.get('/api/standings')
+      .then(res => res.data)
+      .then(fullStats => fullStats[0].teams)
+      .then(teamsAndStats => {
+        return teamsAndStats.reduce((memo, team) => {
+          memo[team.team.abbreviation] = team.stats.standings.wins
+          return memo
+        }, {})
+      })
+      .then(teamWinMap => this.setState({ teamWinMap }))
   }
 
   render() {
-    const { entries } = this.state
+    const { entries, teamWinMap, isLoading } = this.state
     const { makeSentenceCase } = this
-    if (!entries.length) return null;
+    if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
         <div style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
@@ -30,26 +41,18 @@ class Standings extends React.Component {
             <h2>Score</h2>
           </div>
         </div>
-        {/*
+        {
           entries.map(entry => (
             <div key={entry.id} style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
               <div>
                 <h3>{entry.teamName}</h3>
               </div>
               <div>
-                <EntryScore teams={entry.selections} />
+                <EntryScore teamWinMap={ teamWinMap } entry={ entry } />
               </div>
             </div>
           ))
-        */}
-        <div key={entries[3].id} style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
-          <div>
-            <h3>{entries[3].teamName}</h3>
-          </div>
-          <div>
-            <EntryScore teams={entries[3].selections} />
-          </div>
-        </div>
+        }
       </div>
     )
   }
