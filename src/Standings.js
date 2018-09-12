@@ -9,6 +9,7 @@ class Standings extends React.Component {
       entries: [],
       teamWinMap: {},
     }
+    this.makeSentenceCase = this.makeSentenceCase.bind(this)
   }
 
   componentDidMount() {
@@ -27,12 +28,17 @@ class Standings extends React.Component {
       .then(teamWinMap => this.setState({ teamWinMap }))
   }
 
+  makeSentenceCase(str) {
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  }
+
   render() {
-    const { entries, teamWinMap, isLoading } = this.state
+    const { entries, teamWinMap } = this.state
     const { makeSentenceCase } = this
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
+        {/*<h4>Last updated: {Date(lastUpdated)}</h4>*/}
         <div style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
           <div>
             <h2>Team Name</h2>
@@ -45,7 +51,7 @@ class Standings extends React.Component {
           entries.map(entry => (
             <div key={entry.id} style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
               <div>
-                <h3>{entry.teamName}</h3>
+                <h3>{makeSentenceCase(entry.teamName)}</h3>
               </div>
               <div>
                 <EntryScore teamWinMap={ teamWinMap } entry={ entry } />
