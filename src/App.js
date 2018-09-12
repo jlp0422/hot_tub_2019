@@ -8,9 +8,9 @@ const App = () => {
       <h1>Hot Tub 2018 Standings</h1>
       <Router>
         <Switch>
-          <Route exact path='/' component={Home} />
+          {/*<Route exact path='/' component={Home} />*/}
           <Route exact path='/standings' component={Standings} />
-          <Route exact path='/teams' component={Standings} />
+          {/*<Route exact path='/teams' component={Standings} />*/}
         </Switch>
       </Router>
     </div>
