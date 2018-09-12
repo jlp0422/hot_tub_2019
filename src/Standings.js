@@ -8,6 +8,7 @@ class Standings extends React.Component {
     this.state = {
       entries: [],
       teamWinMap: {},
+      sortOrder: 'name'
     }
     this.makeSentenceCase = this.makeSentenceCase.bind(this)
   }
@@ -32,13 +33,29 @@ class Standings extends React.Component {
     return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   }
 
+  onSortEntries(a, b) {
+    if (a.entryScore < b.entryScore)
+      return -1;
+    if (a.entryScore > b.entryScore)
+      return 1;
+    return 0;
+  }
+
   render() {
     const { entries, teamWinMap } = this.state
     const { makeSentenceCase } = this
+    const entriesAndScore = entries.reduce((memoOne, entry) => {
+      const { selections, teamName } = entry
+      const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
+      memoOne.push({ teamName, entryScore })
+      return memoOne
+    }, [])
+    entriesAndScore.sort(this.onSortEntries)
+    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
-        {/*<h4>Last updated: {Date(lastUpdated)}</h4>*/}
+        <h4>Sort by: <span>Team Name</span> | <span>Score</span></h4>
         <div style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
           <div>
             <h2>Team Name</h2>
