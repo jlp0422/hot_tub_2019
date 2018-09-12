@@ -16,6 +16,7 @@ rd.on('line', (line) => {
   Entry.create(teamObj)
 })
 
-rd.on('close', () => {
-  process.exit(0);
-})
+// rd.on('close', () => {
+//   console.log('ALL DONE')
+//   process.exit(0);
+// })

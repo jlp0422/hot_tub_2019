@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
-const { sync, seed } = db;
+const { sync } = db;
 const MySportsFeeds  = require('mysportsfeeds-node');
-const axios = require('axios');
-const btoa = require('btoa');
 const path = require('path');
 
 var msfOne = new MySportsFeeds("1.2", true);
