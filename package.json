@@ -23,10 +23,12 @@
     "babel-preset-react": "^6.24.1"
   },
   "scripts": {
+    "postinstall": "npm run webpack",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npm run webpack -- -w & nodemon server.js",
-    "seed": "node db/hottub.js team-selections-v2.csv"
+    "seed": "node db/hottub.js team-selections-v2.csv",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC"
