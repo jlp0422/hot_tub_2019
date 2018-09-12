@@ -1,12 +1,18 @@
 import React from 'react';
-import { Switch, HashRouter as Router, Link } from 'react-router-dom';
+import { Switch, HashRouter as Router, Link, Route } from 'react-router-dom';
 import Standings from './Standings';
 
 const App = () => {
   return (
     <div className="container">
       <h1>Hot Tub 2018 Standings</h1>
-      <Standings />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/standings' component={Standings} />
+          <Route exact path='/teams' component={Standings} />
+        </Switch>
+      </Router>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import EntryScore from './EntryScore';
+import Entry from './Entry';
 
 class Standings extends React.Component {
   constructor() {
@@ -47,18 +47,13 @@ class Standings extends React.Component {
             <h2>Score</h2>
           </div>
         </div>
-        {
-          entries.map(entry => (
-            <div key={entry.id} style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
-              <div>
-                <h3>{makeSentenceCase(entry.teamName)}</h3>
-              </div>
-              <div>
-                <EntryScore teamWinMap={ teamWinMap } entry={ entry } />
-              </div>
-            </div>
-          ))
-        }
+        { entries.map(entry => (
+            <Entry
+              key={ entry.id }
+              makeSentenceCase={ makeSentenceCase}
+              entry={ entry }
+              teamWinMap={ teamWinMap }/>
+        ))}
       </div>
     )
   }
