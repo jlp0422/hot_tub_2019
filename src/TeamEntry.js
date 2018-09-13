@@ -3,7 +3,6 @@ import axios from 'axios';
 import { makeSentenceCase } from './utils';
 
 const TeamEntry = ({ id, entries, teamWinMap, teamCityName }) => {
-  console.log(teamCityName)
   const entry = entries.find(entry => entry.id === id * 1)
   const totalScore = entry.selections.reduce((memo, team) => memo += teamWinMap[team], 0)
   if (!entry.id) return null;
@@ -14,7 +13,9 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName }) => {
       <h3>Teams:</h3>
       <ul>
         { entry.selections.map(team => (
-          <li key={team}>{teamCityName[team]}</li>
+          <li key={team}>{teamCityName[team]} (
+            {`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}
+          )</li>
         ))}
       </ul>
     </div>

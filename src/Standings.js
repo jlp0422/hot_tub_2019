@@ -42,7 +42,7 @@ class Standings extends React.Component {
         <h4>Sort by:&nbsp;
           <button disabled={isNameSorted} onClick={ onChangeSortOrder }>Team Name</button>&nbsp;&nbsp;
           <button disabled={!isNameSorted} onClick={ onChangeSortOrder} >Score</button></h4>
-        <div style={{ display: 'grid', gridTemplateColumns: '60% 30%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
           <div>
             <h2>Team Name</h2>
           </div>
@@ -51,12 +51,14 @@ class Standings extends React.Component {
           </div>
         </div>
         { isNameSorted ? (
-            entries.map(entry => (
+            entries.map((entry, idx) => (
               <Entry
                 key={ entry.id }
                 makeSentenceCase={ makeSentenceCase}
                 entry={ entry }
-                teamWinMap={ teamWinMap }/>
+                teamWinMap={ teamWinMap }
+                rank={ idx }
+              />
             ))
           ) : (
             entriesAndScore.map((entry, idx) => (

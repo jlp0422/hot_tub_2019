@@ -39,14 +39,14 @@ class App extends React.Component {
     const { entries, teamWinMap, teamCityName } = this.state
     if (!entries.length || !Object.keys(teamWinMap).length) {
       return (
-        <div className="container">
+        <div className="container" style={{ marginBottom: '60px', marginTop: '20px' }}>
           <h1>Hot Tub 2018 Standings</h1>
           <h2>Loading...</h2>
         </div>
       );
     }
     return (
-      <div className="container">
+      <div className="container" style={{ marginBottom: '60px', marginTop: '20px' }}>
         <h1>Hot Tub 2018 Standings</h1>
         <Router>
           <div>
