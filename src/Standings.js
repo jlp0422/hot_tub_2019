@@ -1,37 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 import Entry from './Entry';
+import { makeSentenceCase } from './utils';
 
 class Standings extends React.Component {
   constructor() {
     super()
-    this.state = {
-      entries: [],
-      teamWinMap: {},
-      isNameSorted: true
-    }
-    this.makeSentenceCase = this.makeSentenceCase.bind(this)
+    this.state = { isNameSorted: true }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
   }
 
   componentDidMount() {
-    axios.get('/api/entries')
-      .then(res => res.data)
-      .then(entries => this.setState({ entries }))
-    axios.get('/api/standings')
-      .then(res => res.data)
-      .then(fullStats => fullStats[0].teams)
-      .then(teamsAndStats => {
-        return teamsAndStats.reduce((memo, team) => {
-          memo[team.team.abbreviation] = team.stats.standings.wins
-          return memo
-        }, {})
-      })
-      .then(teamWinMap => this.setState({ teamWinMap }))
-  }
-
-  makeSentenceCase(str) {
-    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+    const { entries, teamWinMap } = this.props
+    this.setState({ entries, teamWinMap })
   }
 
   onChangeSortOrder() {
@@ -39,20 +20,19 @@ class Standings extends React.Component {
   }
 
   onSortEntries(a, b) {
-    if (a.entryScore > b.entryScore)
-      return -1;
-    if (a.entryScore < b.entryScore)
-      return 1;
+    if (a.entryScore > b.entryScore) return -1;
+    if (a.entryScore < b.entryScore) return 1;
     return 0;
   }
 
   render() {
-    const { entries, teamWinMap, isNameSorted } = this.state
-    const { makeSentenceCase, onChangeSortOrder } = this
+    const { entries, teamWinMap } = this.props
+    const {isNameSorted } = this.state
+    const { onChangeSortOrder } = this
     const entriesAndScore = entries.reduce((memoOne, entry) => {
-      const { selections, teamName } = entry
+      const { selections, teamName, id } = entry
       const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
-      memoOne.push({ teamName, entryScore })
+      memoOne.push({ id,teamName, entryScore })
       return memoOne
     }, [])
     entriesAndScore.sort(this.onSortEntries)
