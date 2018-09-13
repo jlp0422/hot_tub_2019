@@ -70,23 +70,26 @@ class Standings extends React.Component {
             <h2>Score</h2>
           </div>
         </div>
-        { isNameSorted ? (entries.map(entry => (
-            <Entry
-              key={ entry.id }
-              makeSentenceCase={ makeSentenceCase}
-              entry={ entry }
-              teamWinMap={ teamWinMap }/>
-        ))) : (entriesAndScore.map((entry, idx) => (
-            <Entry
-              key={ entry.teamName }
-              makeSentenceCase={ makeSentenceCase }
-              entry={ entry }
-              teamWinMap={ teamWinMap }
-              scoreSorted={ true }
-              rank={ idx } />
-          ))
-
-        )}
+        { isNameSorted ? (
+            entries.map(entry => (
+              <Entry
+                key={ entry.id }
+                makeSentenceCase={ makeSentenceCase}
+                entry={ entry }
+                teamWinMap={ teamWinMap }/>
+            ))
+          ) : (
+            entriesAndScore.map((entry, idx) => (
+              <Entry
+                key={ entry.teamName }
+                makeSentenceCase={ makeSentenceCase }
+                entry={ entry }
+                teamWinMap={ teamWinMap }
+                scoreSorted={ true }
+                rank={ idx } />
+            ))
+          )
+        }
       </div>
     )
   }
