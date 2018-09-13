@@ -76,13 +76,14 @@ class Standings extends React.Component {
               makeSentenceCase={ makeSentenceCase}
               entry={ entry }
               teamWinMap={ teamWinMap }/>
-        ))) : (entriesAndScore.map(entry => (
+        ))) : (entriesAndScore.map((entry, idx) => (
             <Entry
-              key={entry.id}
-              makeSentenceCase={makeSentenceCase}
-              entry={entry}
-              teamWinMap={teamWinMap}
-              scoreSorted={true} />
+              key={ entry.teamName }
+              makeSentenceCase={ makeSentenceCase }
+              entry={ entry }
+              teamWinMap={ teamWinMap }
+              scoreSorted={ true }
+              rank={ idx } />
           ))
 
         )}
