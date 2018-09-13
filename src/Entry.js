@@ -8,11 +8,11 @@ const Entry = ({ entry, teamWinMap, makeSentenceCase, scoreSorted, rank }) => {
     <div key={entry.id} style={{ display: 'grid', gridTemplateColumns: '75% 20%', backgroundColor: `${rank % 2 ? '#d8d8d8' : '#eee' }` }}>
       <div>
         <Link to={`/entry/${entry.id}`}>
-          <h3>{/* scoreSorted ? `${rank+1})` : null */} {makeSentenceCase(entry.teamName)}</h3>
+          <h4>{/* scoreSorted ? `${rank+1})` : null */} {makeSentenceCase(entry.teamName)}</h4>
         </Link>
       </div>
       <div>
-        <h3>{scoreSorted ? entry.entryScore : entryScore}</h3>
+        <h4>{scoreSorted ? entry.entryScore : entryScore}</h4>
       </div>
     </div>
     )
