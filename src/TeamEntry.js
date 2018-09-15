@@ -14,8 +14,10 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName }) => {
       <ul>
         { entry.selections.map(team => (
           <li key={team}>
-            <Link to={`/teams/${team}`}>{teamCityName[team]}</Link>&nbsp;
-            ({`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`})
+            <Link to={`/teams/${team}`}>
+              {teamCityName[team]}
+            </Link>
+            &nbsp;({`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`})
           </li>
         ))}
       </ul>

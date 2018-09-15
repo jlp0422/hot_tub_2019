@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import Entry from './Entry';
-import { makeSentenceCase } from './utils';
+import { makeSentenceCase, sortEntries } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -19,12 +18,6 @@ class Standings extends React.Component {
     this.setState({ isNameSorted: !this.state.isNameSorted})
   }
 
-  onSortEntries(a, b) {
-    if (a.entryScore > b.entryScore) return -1;
-    if (a.entryScore < b.entryScore) return 1;
-    return 0;
-  }
-
   render() {
     const { entries, teamWinMap } = this.props
     const {isNameSorted } = this.state
@@ -35,7 +28,7 @@ class Standings extends React.Component {
       memoOne.push({ id,teamName, entryScore })
       return memoOne
     }, [])
-    entriesAndScore.sort(this.onSortEntries)
+    entriesAndScore.sort(sortEntries)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>

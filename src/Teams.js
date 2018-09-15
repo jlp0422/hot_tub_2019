@@ -8,9 +8,11 @@ const Teams = ({ teamCityName }) => {
       <ul>
         {
           Object.keys(teamCityName).map(team => (
-            <Link key={team} to={`/teams/${team}`}>
-              <li>{teamCityName[team]}</li>
-            </Link>
+            <li key={team}>
+              <Link to={`/teams/${team}`}>
+                {teamCityName[team]}
+              </Link>
+            </li>
           ))
         }
       </ul>

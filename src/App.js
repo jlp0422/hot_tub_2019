@@ -6,6 +6,7 @@ import Standings from './Standings';
 import TeamEntry from './TeamEntry';
 import Teams from './Teams';
 import Team from './Team';
+import NFLStandings from './NFLStandings';
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +14,8 @@ class App extends React.Component {
     this.state = {
       entries: [],
       teamWinMap: {},
-      teamCityName: {}
+      teamCityName: {},
+      teamStandings: {}
     }
   }
 
@@ -33,27 +35,43 @@ class App extends React.Component {
           memo[team.team.abbreviation] = team.stats.standings.wins
           return memo
         }, {})
-        return { teamCityName, teamWinMap }
+        const teamStandings = teamsAndStats.reduce((memo, team) => {
+          if (memo[team.divisionRank.divisionName]) {
+            memo[team.divisionRank.divisionName].push({ teamAbbrev: team.team.abbreviation, gamesBack: team.divisionRank.gamesBack, wins: team.stats.standings.wins, rank: team.divisionRank.rank })
+          }
+          else {
+            memo[team.divisionRank.divisionName] = [{ teamAbbrev: team.team.abbreviation, gamesBack: team.divisionRank.gamesBack, wins: team.stats.standings.wins, rank: team.divisionRank.rank }]
+          }
+          return memo
+        }, {})
+        return { teamCityName, teamWinMap, teamStandings }
       })
-      .then(({ teamWinMap, teamCityName }) => this.setState({ teamWinMap, teamCityName }))
+      .then(({ teamWinMap, teamCityName, teamStandings }) => this.setState({ teamWinMap, teamCityName, teamStandings }))
   }
 
   render() {
-    const { entries, teamWinMap, teamCityName } = this.state
+    const { entries, teamWinMap, teamCityName, teamStandings } = this.state
     if (!entries.length || !Object.keys(teamWinMap).length) return <Loading />
     return (
       <div className="container" style={{ marginBottom: '60px', marginTop: '20px' }}>
         <h1>Hot Tub 2018 Standings</h1>
         <Router>
           <div>
-            <Link to='/standings'><h4>Standings</h4></Link>
-            <Link to='/teams'><h4>Teams</h4></Link>
+            <Link to='/standings/hot-tub'><h4>Hot Tub Standings</h4></Link>
+            <Link to='/teams'><h4>NFL Teams</h4></Link>
+            <Link to='/standings/nfl'><h4>NFL Standings</h4></Link>
             <Switch>
-              <Route exact path='/' render={() => <Redirect to='/standings' />} />
-              <Route exact path='/standings' render={() => (
+              <Route exact path='/' render={() => <Redirect to='/standings/hot-tub' />} />
+              <Route exact path='/standings/hot-tub' render={() => (
                 <Standings
                   entries={ entries }
                   teamWinMap={ teamWinMap }
+                />
+              )} />
+              <Route exact path='/standings/nfl' render={() => (
+                <NFLStandings
+                  teamCityName={teamCityName}
+                  standings={teamStandings}
                 />
               )} />
               <Route exact path='/entry/:id' render={({ match }) => (
@@ -72,6 +90,7 @@ class App extends React.Component {
                   abbrev={ match.params.abbrev }
                   entries={ entries }
                   teamCityName={ teamCityName }
+                  teamWinMap={ teamWinMap }
                 />
               )} />
             </Switch>
