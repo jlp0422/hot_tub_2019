@@ -32,15 +32,16 @@ class Standings extends React.Component {
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
+        <h2>Hot Tub Standings</h2>
         <h4>Sort by:&nbsp;
           <button disabled={isNameSorted} onClick={ onChangeSortOrder }>Team Name</button>&nbsp;&nbsp;
           <button disabled={!isNameSorted} onClick={ onChangeSortOrder} >Score</button></h4>
         <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
           <div>
-            <h2>Team Name</h2>
+            <h3>Team Name</h3>
           </div>
           <div>
-            <h2>Score</h2>
+            <h3>Score</h3>
           </div>
         </div>
         { isNameSorted ? (

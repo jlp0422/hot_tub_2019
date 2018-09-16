@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, HashRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import Nav from './Nav';
 import Loading from './Loading';
 import Standings from './Standings';
 import TeamEntry from './TeamEntry';
@@ -54,12 +55,10 @@ class App extends React.Component {
     if (!entries.length || !Object.keys(teamWinMap).length) return <Loading />
     return (
       <div className="container" style={{ marginBottom: '60px', marginTop: '20px' }}>
-        <h1>Hot Tub 2018 Standings</h1>
+        <h1>Hot Tub 2018</h1>
         <Router>
           <div>
-            <Link to='/standings/hot-tub'><h4>Hot Tub Standings</h4></Link>
-            <Link to='/teams'><h4>NFL Teams</h4></Link>
-            <Link to='/standings/nfl'><h4>NFL Standings</h4></Link>
+            <Route path ='/' render={({ history }) => <Nav history={ history }/> } />
             <Switch>
               <Route exact path='/' render={() => <Redirect to='/standings/hot-tub' />} />
               <Route exact path='/standings/hot-tub' render={() => (
