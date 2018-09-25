@@ -5,9 +5,9 @@ const Nav = ({ history }) => {
   const { pathname } = history.location
   return (
     <div>
-      <Link to='/standings/hot-tub'><h4>Hot Tub Standings</h4></Link>
-      <Link to='/teams'><h4>NFL Teams</h4></Link>
-      <Link to='/standings/nfl'><h4>NFL Standings</h4></Link>
+      <h4><Link to='/standings/hot-tub'>Hot Tub Standings</Link></h4>
+      <h4><Link to='/standings/nfl'>NFL Standings</Link></h4>
+      <h4><Link to='/standings/weekly'>Wins Per Week</Link></h4>
     </div>
   )
 }

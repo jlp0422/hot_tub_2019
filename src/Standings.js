@@ -1,6 +1,6 @@
 import React from 'react';
 import Entry from './Entry';
-import { makeSentenceCase, sortEntries } from './utils';
+import { makeSentenceCase, sortByScore } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -28,7 +28,8 @@ class Standings extends React.Component {
       memoOne.push({ id,teamName, entryScore })
       return memoOne
     }, [])
-    entriesAndScore.sort(sortEntries)
+    entriesAndScore.sort(sortByScore)
+    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
@@ -52,6 +53,7 @@ class Standings extends React.Component {
                 entry={ entry }
                 teamWinMap={ teamWinMap }
                 rank={ idx }
+                page={'seasonStandings'}
               />
             ))
           ) : (
@@ -62,7 +64,9 @@ class Standings extends React.Component {
                 entry={ entry }
                 teamWinMap={ teamWinMap }
                 scoreSorted={ true }
-                rank={ idx } />
+                rank={ idx }
+                page={'seasonStandings'}
+              />
             ))
           )
         }

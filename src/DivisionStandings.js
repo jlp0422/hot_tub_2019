@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { sortDivision } from './utils';
 
 const DivisionStandings = ({ division, teamCityName }) => {
@@ -16,7 +17,7 @@ const DivisionStandings = ({ division, teamCityName }) => {
         division.map(team => (
           <div key={team.teamAbbrev} style={{ display: 'grid', gridTemplateColumns: '10% 40% 20% 20%' }}>
             <p>{team.rank}</p>
-            <p>{teamCityName[team.teamAbbrev]}</p>
+            <p><Link to={`/teams/${team.teamAbbrev}`}>{teamCityName[team.teamAbbrev]}</Link></p>
             <p>{team.wins}</p>
             <p>{team.gamesBack}</p>
           </div>

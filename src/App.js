@@ -8,6 +8,7 @@ import TeamEntry from './TeamEntry';
 import Teams from './Teams';
 import Team from './Team';
 import NFLStandings from './NFLStandings';
+import WeeklyStandings from './WeeklyStandings';
 
 class App extends React.Component {
   constructor() {
@@ -73,6 +74,12 @@ class App extends React.Component {
                   standings={teamStandings}
                 />
               )} />
+              <Route exact path='/standings/weekly' render={({ history }) => (
+                <WeeklyStandings
+                  history={ history }
+                  entries={ entries }
+                />
+              )} />
               <Route exact path='/entry/:id' render={({ match }) => (
                 <TeamEntry
                   id={match.params.id}
@@ -80,9 +87,6 @@ class App extends React.Component {
                   teamWinMap={ teamWinMap }
                   teamCityName={ teamCityName }
                 />
-              )} />
-              <Route exact path='/teams' render={() => (
-                <Teams teamCityName={ teamCityName } />
               )} />
               <Route exact path='/teams/:abbrev' render={({ match }) => (
                 <Team
