@@ -7,16 +7,12 @@ app.use('/:id', (req, res, next) => {
     .catch(next)
 })
 
-
 app.use('/', (req, res, next) => {
   Entry.findAll({
-    order: [
-      ['teamName', 'ASC']
-    ]
+    order: [ ['teamName', 'ASC'] ]
   })
     .then(entries => res.send(entries))
     .catch(next)
 })
-
 
 module.exports = app;

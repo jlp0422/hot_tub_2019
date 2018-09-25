@@ -5,7 +5,7 @@ import { makeSentenceCase, sortEntries } from './utils';
 class Standings extends React.Component {
   constructor() {
     super()
-    this.state = { isNameSorted: true }
+    this.state = { isNameSorted: false }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
   }
 
