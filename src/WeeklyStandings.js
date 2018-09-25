@@ -45,7 +45,7 @@ class WeeklyStandings extends React.Component {
         }, [])
         this.setState({ winsPerEntry })
       })
-      .catch(err => console.error(err))
+      .catch(err => console.log(err))
   }
 
   onSelectWeek(week) {
@@ -61,6 +61,18 @@ class WeeklyStandings extends React.Component {
   render() {
     const { isNameSorted, activeWeek, winsPerEntry } = this.state
     const { onChangeSortOrder } = this
+    const weeks = [
+      { number: 1, text: 'Week 1' },
+      { number: 2, text: 'Week 2' },
+      { number: 3, text: 'Week 3' },
+      // { number: 4, text: 'Week 4' },
+      // { number: 5, text: 'Week 5' },
+      // { number: 6, text: 'Week 6' },
+      // { number: 7, text: 'Week 7' },
+      // { number: 8, text: 'Week 8' },
+      // { number: 9, text: 'Week 9' },
+      // { number: 10, text: 'Week 10' },
+    ]
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
@@ -68,16 +80,15 @@ class WeeklyStandings extends React.Component {
         <button disabled={isNameSorted} onClick={ onChangeSortOrder }>Team Name</button>&nbsp;&nbsp;
         <button disabled={!isNameSorted} onClick={ onChangeSortOrder }>Score</button></h4>
         <ul className="nav nav-tabs" style={{ marginBottom: '15px' }}>
-          <li className="nav-item">
-            <span onClick={() => this.onSelectWeek(1)} className={`nav-link ${activeWeek === 1 && 'active'}`}>
-              Week 1
-            </span>
-          </li>
-          <li className="nav-item">
-            <span onClick={() => this.onSelectWeek(2)} className={`nav-link ${activeWeek === 2 && 'active'}`}>
-              Week 2
-            </span>
-          </li>
+        {
+          weeks.map(week => (
+            <li key={week.number} className="nav-item">
+              <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active'}`}>
+                {week.text}
+              </span>
+            </li>
+          ))
+        }
         </ul>
         {
           !winsPerEntry.length ? (<h2>Loading...</h2>) : (

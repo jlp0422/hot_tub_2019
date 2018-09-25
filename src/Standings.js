@@ -29,7 +29,6 @@ class Standings extends React.Component {
       return memoOne
     }, [])
     entriesAndScore.sort(sortByScore)
-    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
