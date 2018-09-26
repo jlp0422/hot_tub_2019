@@ -77,7 +77,7 @@ class WeeklyStandings extends React.Component {
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
-        <h4>Sort by:&nbsp;
+        <h4>Sort by&nbsp;&nbsp;
         <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>&nbsp;&nbsp;
         <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button></h4>
         <ul className="nav nav-tabs" style={{ marginBottom: '15px' }}>

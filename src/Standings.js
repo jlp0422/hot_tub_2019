@@ -33,7 +33,7 @@ class Standings extends React.Component {
     return (
       <div>
         <h2>Hot Tub Standings</h2>
-        <h4>Sort by:&nbsp;
+        <h4>Sort by&nbsp;&nbsp;
           <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={isNameSorted} onClick={onChangeSortOrder}>
             Team Name
           </button>&nbsp;&nbsp;
