@@ -11,7 +11,8 @@ class WeeklyStandings extends React.Component {
     this.state = {
       isNameSorted: false,
       activeWeek: Number(this.props.history.location.search.split('=')[1]) || 1,
-      winsPerEntry: []
+      winsPerEntry: [],
+      error: ''
     }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
   }
@@ -40,12 +41,12 @@ class WeeklyStandings extends React.Component {
             if (weeklyWinners.includes(team)) winMemo++
             return winMemo
           }, 0)
-          memo.push({ id: entry.id, teamName: entry.teamName, entryScore: totalWins})
+          memo.push({ id: entry.id, teamName: entry.teamName, entryScore: totalWins })
           return memo
         }, [])
         this.setState({ winsPerEntry })
       })
-      .catch(err => console.log(err))
+      .catch(error => this.setState({ error }))
   }
 
   onSelectWeek(week) {
@@ -59,7 +60,7 @@ class WeeklyStandings extends React.Component {
   }
 
   render() {
-    const { isNameSorted, activeWeek, winsPerEntry } = this.state
+    const { isNameSorted, activeWeek, winsPerEntry, error } = this.state
     const { onChangeSortOrder } = this
     const weeks = [
       { number: 1, text: 'Week 1' },
@@ -77,58 +78,57 @@ class WeeklyStandings extends React.Component {
       <div>
         <h2>Week {activeWeek} Standings</h2>
         <h4>Sort by:&nbsp;
-        <button disabled={isNameSorted} onClick={ onChangeSortOrder }>Team Name</button>&nbsp;&nbsp;
-        <button disabled={!isNameSorted} onClick={ onChangeSortOrder }>Score</button></h4>
+        <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>&nbsp;&nbsp;
+        <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button></h4>
         <ul className="nav nav-tabs" style={{ marginBottom: '15px' }}>
-        {
-          weeks.map(week => (
-            <li key={week.number} className="nav-item">
-              <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active'}`}>
-                {week.text}
-              </span>
-            </li>
-          ))
-        }
+          {
+            weeks.map(week => (
+              <li key={week.number} className="nav-item">
+                <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active'}`}>
+                  {week.text}
+                </span>
+              </li>
+            ))
+          }
         </ul>
-        {
+        {error ? <h4>Network error. Please refresh.</h4> : (
           !winsPerEntry.length ? (<h2>Loading...</h2>) : (
             <div>
-        <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
-          <div>
-            <h3>Team Name</h3>
-          </div>
-          <div>
-            <h3>Score</h3>
-          </div>
-        </div>
-        {isNameSorted ? (
-          winsPerEntry.sort(sortByName).map((entry, idx) => (
-            <Entry
-              key={entry.teamName}
-              makeSentenceCase={makeSentenceCase}
-              entry={entry}
-              rank={idx}
-              page={'weeklyStandings'}
-            />
-          ))
-        ) : (
-            winsPerEntry.sort(sortByScore).map((entry, idx) => (
-              <Entry
-                key={entry.teamName}
-                makeSentenceCase={makeSentenceCase}
-                entry={entry}
-                scoreSorted={true}
-                rank={idx}
-                page={'weeklyStandings'}
-              />
-            ))
+              <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
+                <div>
+                  <h3>Team Name</h3>
+                </div>
+                <div>
+                  <h3>Score</h3>
+                </div>
+              </div>
+              {isNameSorted ? (
+                winsPerEntry.sort(sortByName).map((entry, idx) => (
+                  <Entry
+                    key={entry.teamName}
+                    makeSentenceCase={makeSentenceCase}
+                    entry={entry}
+                    rank={idx}
+                    page={'weeklyStandings'}
+                  />
+                ))
+              ) : (
+                  winsPerEntry.sort(sortByScore).map((entry, idx) => (
+                    <Entry
+                      key={entry.teamName}
+                      makeSentenceCase={makeSentenceCase}
+                      entry={entry}
+                      scoreSorted={true}
+                      rank={idx}
+                      page={'weeklyStandings'}
+                    />
+                  ))
+                )
+              }
+            </div>
           )
-        }
+        )}
       </div>
-
-      )
-    }
-    </div>
     )
   }
 }

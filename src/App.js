@@ -30,7 +30,7 @@ class App extends React.Component {
       .then(fullStats => fullStats[0].teams)
       .then(teamsAndStats => {
         const teamCityName = teamsAndStats.reduce((memo, team) => {
-          memo[team.team.abbreviation ] = `${team.team.city} ${team.team.name}`
+          memo[team.team.abbreviation] = `${team.team.city} ${team.team.name}`
           return memo
         }, {})
         const teamWinMap = teamsAndStats.reduce((memo, team) => {
@@ -59,13 +59,13 @@ class App extends React.Component {
         <h1>Hot Tub 2018</h1>
         <Router>
           <div>
-            <Route path ='/' render={({ history }) => <Nav history={ history }/> } />
+            <Route path='/' render={({ history }) => <Nav history={history} />} />
             <Switch>
               <Route exact path='/' render={() => <Redirect to='/standings/hot-tub' />} />
               <Route exact path='/standings/hot-tub' render={() => (
                 <Standings
-                  entries={ entries }
-                  teamWinMap={ teamWinMap }
+                  entries={entries}
+                  teamWinMap={teamWinMap}
                 />
               )} />
               <Route exact path='/standings/nfl' render={() => (
@@ -76,24 +76,24 @@ class App extends React.Component {
               )} />
               <Route exact path='/standings/weekly' render={({ history }) => (
                 <WeeklyStandings
-                  history={ history }
-                  entries={ entries }
+                  history={history}
+                  entries={entries}
                 />
               )} />
               <Route exact path='/entry/:id' render={({ match }) => (
                 <TeamEntry
                   id={match.params.id}
-                  entries={ entries }
-                  teamWinMap={ teamWinMap }
-                  teamCityName={ teamCityName }
+                  entries={entries}
+                  teamWinMap={teamWinMap}
+                  teamCityName={teamCityName}
                 />
               )} />
               <Route exact path='/teams/:abbrev' render={({ match }) => (
                 <Team
-                  abbrev={ match.params.abbrev }
-                  entries={ entries }
-                  teamCityName={ teamCityName }
-                  teamWinMap={ teamWinMap }
+                  abbrev={match.params.abbrev}
+                  entries={entries}
+                  teamCityName={teamCityName}
+                  teamWinMap={teamWinMap}
                 />
               )} />
             </Switch>

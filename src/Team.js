@@ -18,13 +18,13 @@ const Team = ({ abbrev, entries, teamCityName, teamWinMap }) => {
       <h3>Total Wins: {teamWinMap[abbrev]}</h3>
       <h3>Total Selections: {totalSelections}</h3>
       <ul>
-        { entriesWithTeam.map(entry => (
-          <li key= { entry.id }>
+        {entriesWithTeam.map(entry => (
+          <li key={entry.id}>
             <Link to={`/entry/${entry.id}`}>
               {makeSentenceCase(entry.teamName)}
             </Link>
           </li>
-        )) }
+        ))}
       </ul>
     </div>
   )

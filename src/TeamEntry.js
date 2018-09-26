@@ -9,10 +9,10 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName }) => {
   return (
     <div>
       <h2>Team Name: {makeSentenceCase(entry.teamName)}</h2>
-      <h3>Total wins: { totalScore }</h3>
+      <h3>Total wins: {totalScore}</h3>
       <h3>Teams:</h3>
       <ul>
-        { entry.selections.map(team => (
+        {entry.selections.map(team => (
           <li key={team}>
             <Link to={`/teams/${team}`}>
               {teamCityName[team]}
