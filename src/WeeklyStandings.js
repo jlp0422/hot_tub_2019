@@ -66,7 +66,7 @@ class WeeklyStandings extends React.Component {
       { number: 1, text: 'Week 1' },
       { number: 2, text: 'Week 2' },
       { number: 3, text: 'Week 3' },
-      // { number: 4, text: 'Week 4' },
+      { number: 4, text: 'Week 4' },
       // { number: 5, text: 'Week 5' },
       // { number: 6, text: 'Week 6' },
       // { number: 7, text: 'Week 7' },
