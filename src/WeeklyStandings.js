@@ -1,9 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Entry from './Entry';
 import Loading from './Loading';
-import { makeSentenceCase, sortByScore, sortByName } from './utils';
+import { makeSentenceCase, sortByScore, sortByName, weeks } from './utils';
 
 class WeeklyStandings extends React.Component {
   constructor(props) {
@@ -60,20 +59,9 @@ class WeeklyStandings extends React.Component {
   }
 
   render() {
+    const currentDate = new Date()
     const { isNameSorted, activeWeek, winsPerEntry, error } = this.state
     const { onChangeSortOrder } = this
-    const weeks = [
-      { number: 1, text: 'Week 1' },
-      { number: 2, text: 'Week 2' },
-      { number: 3, text: 'Week 3' },
-      { number: 4, text: 'Week 4' },
-      // { number: 5, text: 'Week 5' },
-      // { number: 6, text: 'Week 6' },
-      // { number: 7, text: 'Week 7' },
-      // { number: 8, text: 'Week 8' },
-      // { number: 9, text: 'Week 9' },
-      // { number: 10, text: 'Week 10' },
-    ]
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
@@ -83,11 +71,12 @@ class WeeklyStandings extends React.Component {
         <ul className="nav nav-tabs" style={{ marginBottom: '15px' }}>
           {
             weeks.map(week => (
+              currentDate >= week.firstGame ? (
               <li key={week.number} className="nav-item">
-                <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active'}`}>
+                <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active font-weight-bold'}`}>
                   {week.text}
                 </span>
-              </li>
+              </li> ) : null
             ))
           }
         </ul>
