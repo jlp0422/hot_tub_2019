@@ -23,10 +23,10 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 app.get('/api/games/weekly/regular/2018/:week', (req, res, next) => {
   const { week } = req.params
   Promise.all([
-    msfTwo.getData('nfl', '2018-regular', 'weekly_games', 'json', { week: week, force: true })
+    msfTwo.getData('nfl', '2018-regular', 'weekly_games', 'json', { week, force: true })
   ])
   .then(resp => res.send(resp))
-  .catch(next)
+  .catch(err => res.send(err))
 })
 
 app.get('/api/standings', (req, res, next) => {
@@ -34,7 +34,8 @@ app.get('/api/standings', (req, res, next) => {
     msfTwo.getData('nfl', '2018-regular', 'seasonal_standings', 'json', { stats: 'Wins', force: true })
   ])
     .then(resp => res.send(resp))
-    .catch(next)
+    .catch(err => res.send(err))
+    // .catch(next)
 })
 
 sync()

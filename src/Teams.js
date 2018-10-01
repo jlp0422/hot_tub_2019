@@ -7,10 +7,10 @@ const Teams = ({ teamCityName }) => {
   return (
     <div>
       <h2>NFL Teams</h2>
-      <ul>
+      <ul className="list-group">
         {
           Object.keys(teamCityName).map(team => (
-            <li key={team}>
+            <li className="list-group-item" key={team}>
               <Link to={`/teams/${team}`}>
                 {teamCityName[team]}
               </Link>

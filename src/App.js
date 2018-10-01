@@ -39,10 +39,20 @@ class App extends React.Component {
         }, {})
         const teamStandings = teamsAndStats.reduce((memo, team) => {
           if (memo[team.divisionRank.divisionName]) {
-            memo[team.divisionRank.divisionName].push({ teamAbbrev: team.team.abbreviation, gamesBack: team.divisionRank.gamesBack, wins: team.stats.standings.wins, rank: team.divisionRank.rank })
+            memo[team.divisionRank.divisionName].push({
+              teamAbbrev: team.team.abbreviation,
+              gamesBack: team.divisionRank.gamesBack,
+              wins: team.stats.standings.wins,
+              rank: team.divisionRank.rank
+            })
           }
           else {
-            memo[team.divisionRank.divisionName] = [{ teamAbbrev: team.team.abbreviation, gamesBack: team.divisionRank.gamesBack, wins: team.stats.standings.wins, rank: team.divisionRank.rank }]
+            memo[team.divisionRank.divisionName] = [{
+              teamAbbrev: team.team.abbreviation,
+              gamesBack: team.divisionRank.gamesBack,
+              wins: team.stats.standings.wins,
+              rank: team.divisionRank.rank
+            }]
           }
           return memo
         }, {})
