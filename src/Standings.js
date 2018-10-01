@@ -5,8 +5,12 @@ import { makeSentenceCase, sortByScore } from './utils';
 class Standings extends React.Component {
   constructor() {
     super()
-    this.state = { isNameSorted: false }
+    this.state = {
+      isNameSorted: false,
+      compareTeams: []
+    }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
+    this.onSelectToCompare = this.onSelectToCompare.bind(this)
   }
 
   componentDidMount() {
@@ -18,10 +22,22 @@ class Standings extends React.Component {
     this.setState({ isNameSorted: !this.state.isNameSorted })
   }
 
+  onSelectToCompare(teamID) {
+    const { compareTeams } = this.state
+    const index = compareTeams.indexOf(teamID)
+    let newTeams;
+    if (index > -1) {
+      const first = compareTeams.slice(0, index)
+      newTeams = first.concat(compareTeams.slice(index + 1))
+    }
+    else newTeams = compareTeams.concat(teamID)
+    this.setState({ compareTeams: newTeams })
+  }
+
   render() {
     const { entries, teamWinMap } = this.props
-    const { isNameSorted } = this.state
-    const { onChangeSortOrder } = this
+    const { isNameSorted, compareTeams } = this.state
+    const { onChangeSortOrder, onSelectToCompare } = this
     const entriesAndScore = entries.reduce((memoOne, entry) => {
       const { selections, teamName, id } = entry
       const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
@@ -30,6 +46,7 @@ class Standings extends React.Component {
     }, [])
     entriesAndScore.sort(sortByScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
+    console.log('state: ', compareTeams)
     return (
       <div>
         <h2>Hot Tub Standings</h2>
@@ -39,12 +56,16 @@ class Standings extends React.Component {
           </button>&nbsp;&nbsp;
           <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={!isNameSorted} onClick={onChangeSortOrder}>
             Score
-          </button></h4>
-        <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
-          <div>
+          </button>&nbsp;&nbsp;
+          <button style={{ fontSize: '14px' }} className="btn btn-success" disabled={compareTeams.length < 2} >
+            Compare
+          </button>
+          </h4>
+        <div style={{ display: 'grid', gridTemplateColumns: '5% 70% 20%' }}>
+          <div style={{ gridColumnStart: 2 }}>
             <h3>Team Name</h3>
           </div>
-          <div>
+          <div style={{ gridColumnStart: 3 }}>
             <h3>Score</h3>
           </div>
         </div>
@@ -57,6 +78,8 @@ class Standings extends React.Component {
               teamWinMap={teamWinMap}
               rank={idx}
               page={'seasonStandings'}
+              select={onSelectToCompare}
+              compareTeams={ compareTeams }
             />
           ))
         ) : (
@@ -69,6 +92,8 @@ class Standings extends React.Component {
                 scoreSorted={true}
                 rank={idx}
                 page={'seasonStandings'}
+                select={onSelectToCompare}
+                compareTeams={ compareTeams }
               />
             ))
           )
