@@ -1,5 +1,6 @@
 import React from 'react';
 import Entry from './Entry';
+import CompareModal from './CompareModal'
 import { makeSentenceCase, sortByScore } from './utils';
 
 class Standings extends React.Component {
@@ -7,10 +8,12 @@ class Standings extends React.Component {
     super()
     this.state = {
       isNameSorted: false,
-      compareTeams: []
+      compareTeams: [],
+      isModalOpen: false
     }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
     this.onSelectToCompare = this.onSelectToCompare.bind(this)
+    this.onOpenCloseModal = this.onOpenCloseModal.bind(this)
   }
 
   componentDidMount() {
@@ -20,6 +23,10 @@ class Standings extends React.Component {
 
   onChangeSortOrder() {
     this.setState({ isNameSorted: !this.state.isNameSorted })
+  }
+
+  onOpenCloseModal() {
+    this.setState({ isModalOpen: !this.state.isModalOpen })
   }
 
   onSelectToCompare(teamID) {
@@ -35,9 +42,9 @@ class Standings extends React.Component {
   }
 
   render() {
-    const { entries, teamWinMap } = this.props
-    const { isNameSorted, compareTeams } = this.state
-    const { onChangeSortOrder, onSelectToCompare } = this
+    const { entries, teamWinMap, teamCityName } = this.props
+    const { isNameSorted, compareTeams, isModalOpen } = this.state
+    const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal } = this
     const entriesAndScore = entries.reduce((memoOne, entry) => {
       const { selections, teamName, id } = entry
       const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
@@ -46,9 +53,20 @@ class Standings extends React.Component {
     }, [])
     entriesAndScore.sort(sortByScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
-    console.log('state: ', compareTeams)
     return (
       <div>
+      { isModalOpen ? (
+          <CompareModal
+            showModal={isModalOpen}
+            closeModal={onOpenCloseModal}
+            compareTeams={ compareTeams }
+            entries={ entries }
+            teamCityName={ teamCityName }
+            teamWinMap={ teamWinMap }
+            entriesAndScore={ entriesAndScore}
+          />
+        ) : null
+      }
         <h2>Hot Tub Standings</h2>
         <h4>Sort by&nbsp;&nbsp;
           <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={isNameSorted} onClick={onChangeSortOrder}>
@@ -57,15 +75,15 @@ class Standings extends React.Component {
           <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={!isNameSorted} onClick={onChangeSortOrder}>
             Score
           </button>&nbsp;&nbsp;
-          <button style={{ fontSize: '14px' }} className="btn btn-success" disabled={compareTeams.length < 2} >
-            Compare
+          <button style={{ fontSize: '14px' }} className="btn btn-success" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
+            Compare (Max 3)
           </button>
           </h4>
-        <div style={{ display: 'grid', gridTemplateColumns: '5% 70% 20%' }}>
-          <div style={{ gridColumnStart: 2 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
+          <div>
             <h3>Team Name</h3>
           </div>
-          <div style={{ gridColumnStart: 3 }}>
+          <div>
             <h3>Score</h3>
           </div>
         </div>

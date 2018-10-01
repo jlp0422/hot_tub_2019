@@ -76,6 +76,7 @@ class App extends React.Component {
                 <Standings
                   entries={entries}
                   teamWinMap={teamWinMap}
+                  teamCityName={teamCityName}
                 />
               )} />
               <Route exact path='/standings/nfl' render={() => (
