@@ -14,6 +14,7 @@ class Standings extends React.Component {
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
     this.onSelectToCompare = this.onSelectToCompare.bind(this)
     this.onOpenCloseModal = this.onOpenCloseModal.bind(this)
+    this.onClearCompare = this.onClearCompare.bind(this)
   }
 
   componentDidMount() {
@@ -39,6 +40,10 @@ class Standings extends React.Component {
     }
     else newTeams = compareTeams.concat(teamID)
     this.setState({ compareTeams: newTeams })
+  }
+
+  onClearCompare() {
+    this.setState({ compareTeams: [] })
   }
 
   render() {
@@ -77,6 +82,9 @@ class Standings extends React.Component {
           </button>&nbsp;&nbsp;
           <button style={{ fontSize: '14px' }} className="btn btn-success" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
             Compare (Max 3)
+          </button>&nbsp;&nbsp;
+          <button style={{ fontSize: '14px' }} className="btn btn-danger" disabled={!compareTeams.length} onClick={this.onClearCompare}>
+            Clear Comparison
           </button>
           </h4>
         <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>

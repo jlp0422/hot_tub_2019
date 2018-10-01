@@ -17,7 +17,7 @@ const CompareModal = ({ showModal, closeModal, compareTeams, entries, teamCityNa
             <h5>Team Name: { makeSentenceCase(team.teamName)}</h5>
             <h6>Wins: {team.selections.reduce((memo, team) => memo += teamWinMap[team], 0)}</h6>
             <ul>
-              { team.selections.map(selection => (
+              { team.selections.sort().map(selection => (
                 <li key={selection}>{teamCityName[selection]} ({teamWinMap[selection]})</li>
               ))}
             </ul>
@@ -25,7 +25,7 @@ const CompareModal = ({ showModal, closeModal, compareTeams, entries, teamCityNa
         ))
       }
       </div>
-      <button onClick={closeModal}>Close</button>
+      <button className="btn btn-outline-secondary" onClick={closeModal}>Close</button>
     </ReactModal>
   )
 }
