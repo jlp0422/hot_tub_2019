@@ -11,6 +11,7 @@ msfTwo.authenticate('b57b9597-7a4b-4b7b-b6b7-10fd58', 'MYSPORTSFEEDS');
 
 app.use('/dist', express.static(path.join(__dirname, './dist')));
 app.use('/vendor', express.static(path.join(__dirname, './node_modules')));
+app.use('/public', express.static(path.join(__dirname, './public')));
 app.use('/api/entries', require('./routes/entries'));
 // app.use('/api', require('./routes/api'));
 
@@ -18,7 +19,7 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`port of call: ${port}`))
 
-app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'public/index.html')));
 
 app.get('/api/games/weekly/regular/2018/:week', (req, res, next) => {
   const { week } = req.params

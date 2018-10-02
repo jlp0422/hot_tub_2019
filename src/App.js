@@ -1,11 +1,10 @@
 import React from 'react';
-import { Switch, HashRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { Switch, HashRouter as Router, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Nav';
 import Loading from './Loading';
 import Standings from './Standings';
 import TeamEntry from './TeamEntry';
-import Teams from './Teams';
 import Team from './Team';
 import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
@@ -65,7 +64,7 @@ class App extends React.Component {
     const { entries, teamWinMap, teamCityName, teamStandings } = this.state
     if (!entries.length || !Object.keys(teamWinMap).length) return <Loading />
     return (
-      <div className="container" style={{ marginBottom: '60px', marginTop: '20px' }}>
+      <div className="container container-margin">
         <h1>Hot Tub 2018</h1>
         <Router>
           <div>

@@ -66,9 +66,9 @@ class WeeklyStandings extends React.Component {
       <div>
         <h2>Week {activeWeek} Standings</h2>
         <h4>Sort by&nbsp;&nbsp;
-        <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>&nbsp;&nbsp;
-        <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button></h4>
-        <ul className="nav nav-tabs" style={{ marginBottom: '15px' }}>
+        <button className="btn btn-warning font-14" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>&nbsp;&nbsp;
+        <button className="btn btn-warning font-14" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button></h4>
+        <ul className="nav nav-tabs margin-b-15">
           {
             weeks.map(week => (
               currentDate >= week.firstGame ? (
@@ -83,7 +83,7 @@ class WeeklyStandings extends React.Component {
         {error ? <h4>Network error. Please refresh.</h4> : (
           !winsPerEntry.length ? (<h2>Loading...</h2>) : (
             <div>
-              <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
+              <div className="grid grid-75-20">
                 <div>
                   <h3>Team Name</h3>
                 </div>

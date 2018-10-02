@@ -1,0 +1,31 @@
+.container-margin {
+  margin: 20px auto 60px;
+}
+
+.margin-b-15 {
+  margin-bottom: 15px;
+}
+
+.grid {
+  display: grid;
+}
+
+.entry-padding {
+  padding: 5px 5px 0px 10px;
+}
+
+.division-grid {
+  grid-template-columns: 10% 40% 20% 20%
+}
+
+.grid-5-70-20 {
+  grid-template-columns: 5% 70% 20%
+}
+
+.grid-75-20 {
+  grid-template-columns: 75% 20%
+}
+
+.font-14 {
+  font-size: 14px;
+}

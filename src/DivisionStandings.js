@@ -7,15 +7,15 @@ const DivisionStandings = ({ division, teamCityName }) => {
   if (!division.length) return null;
   return (
     <div>
-      <div style={{ display: 'grid', gridTemplateColumns: '10% 40% 20% 20%' }}>
-        <p style={{ fontWeight: 'bold' }}>Place</p>
-        <p style={{ fontWeight: 'bold' }}>Team</p>
-        <p style={{ fontWeight: 'bold' }}>Wins</p>
-        <p style={{ fontWeight: 'bold' }}>Games Back</p>
+      <div className="grid division-grid">
+        <p className="font-weight-bold">Place</p>
+        <p className="font-weight-bold">Team</p>
+        <p className="font-weight-bold">Wins</p>
+        <p className="font-weight-bold">Games Back</p>
       </div>
       {
         division.map(team => (
-          <div key={team.teamAbbrev} style={{ display: 'grid', gridTemplateColumns: '10% 40% 20% 20%' }}>
+          <div key={team.teamAbbrev} className="grid division-grid">
             <p>{team.rank}</p>
             <p><Link to={`/teams/${team.teamAbbrev}`}>{teamCityName[team.teamAbbrev]}</Link></p>
             <p>{team.wins}</p>

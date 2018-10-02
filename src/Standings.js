@@ -74,20 +74,20 @@ class Standings extends React.Component {
       }
         <h2>Hot Tub Standings</h2>
         <h4>Sort by&nbsp;&nbsp;
-          <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={isNameSorted} onClick={onChangeSortOrder}>
+          <button className="btn btn-warning font-14" disabled={isNameSorted} onClick={onChangeSortOrder}>
             Team Name
           </button>&nbsp;&nbsp;
-          <button style={{ fontSize: '14px' }} className="btn btn-warning" disabled={!isNameSorted} onClick={onChangeSortOrder}>
+          <button className="btn btn-warning font-14" disabled={!isNameSorted} onClick={onChangeSortOrder}>
             Score
           </button>&nbsp;&nbsp;
-          <button style={{ fontSize: '14px' }} className="btn btn-success" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
+          <button className="btn btn-success font-14" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
             Compare (Max 3)
           </button>&nbsp;&nbsp;
-          <button style={{ fontSize: '14px' }} className="btn btn-danger" disabled={!compareTeams.length} onClick={this.onClearCompare}>
+          <button className="btn btn-danger font-14" disabled={!compareTeams.length} onClick={this.onClearCompare}>
             Clear Comparison
           </button>
           </h4>
-        <div style={{ display: 'grid', gridTemplateColumns: '75% 20%' }}>
+        <div className="grid grid-75-20">
           <div>
             <h3>Team Name</h3>
           </div>
