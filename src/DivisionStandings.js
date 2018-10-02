@@ -13,10 +13,10 @@ const DivisionStandings = ({ division, teamCityName }) => {
         <p className="division-font font-weight-bold">Team</p>
         <p className="division-font font-weight-bold">Wins</p>
         <p className="division-font font-weight-bold">
-          <MediaQuery minDeviceWidth={371}>
+          <MediaQuery minWidth={371}>
             Games Back
           </MediaQuery>
-          <MediaQuery maxDeviceWidth={370}>
+          <MediaQuery maxWidth={370}>
             GB
           </MediaQuery>
         </p>
@@ -27,10 +27,10 @@ const DivisionStandings = ({ division, teamCityName }) => {
             <p className="division-font">{team.rank}</p>
             <p className="division-font">
               <Link to={`/teams/${team.teamAbbrev}`}>
-                <MediaQuery minDeviceWidth={371}>
+                <MediaQuery minWidth={371}>
                   {teamCityName[team.teamAbbrev]}
                 </MediaQuery>
-                <MediaQuery maxDeviceWidth={370}>
+                <MediaQuery maxWidth={370}>
                   {team.teamAbbrev}
                 </MediaQuery>
 

@@ -21,10 +21,10 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
             <ul>
                 {team.selections.sort().map(selection => (
                   <li key={selection}>
-                    <MediaQuery minDeviceWidth={401}>
+                    <MediaQuery minWidth={401}>
                       {teamCityName[selection]}&nbsp;&nbsp;
                     </MediaQuery>
-                    <MediaQuery maxDeviceWidth={400}>
+                    <MediaQuery maxWidth={400}>
                       {selection}&nbsp;&nbsp;
                     </MediaQuery>
                     <span className="badge badge-secondary badge-pill">
