@@ -18,7 +18,7 @@ const CompareModal = ({ showModal, closeModal, compareTeams, entries, teamCityNa
             <h6>Wins: {team.selections.reduce((memo, team) => memo += teamWinMap[team], 0)}</h6>
             <ul>
               { team.selections.sort().map(selection => (
-                <li key={selection}>{teamCityName[selection]} ({teamWinMap[selection]})</li>
+                  <li key={selection}>{teamCityName[selection]}&nbsp;&nbsp;<span className="badge badge-secondary badge-pill">{`${teamWinMap[selection]} ${teamWinMap[selection] === 1 ? 'win' : 'wins'}`}</span></li>
               ))}
             </ul>
           </div>

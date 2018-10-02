@@ -17,7 +17,7 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName }) => {
             <Link to={`/teams/${team}`}>
               {teamCityName[team]}
             </Link>
-            &nbsp;({`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`})
+            &nbsp;&nbsp;<span className="badge badge-secondary badge-pill">{`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}</span>
           </li>
         ))}
       </ul>
