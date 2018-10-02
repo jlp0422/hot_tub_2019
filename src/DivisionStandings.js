@@ -30,7 +30,7 @@ const DivisionStandings = ({ division, teamCityName }) => {
                 <MediaQuery minDeviceWidth={371}>
                   {teamCityName[team.teamAbbrev]}
                 </MediaQuery>
-                <MediaQuery minDeviceWidth={370}>
+                <MediaQuery maxDeviceWidth={370}>
                   {team.teamAbbrev}
                 </MediaQuery>
 

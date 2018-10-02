@@ -8,7 +8,7 @@ class Standings extends React.Component {
     super()
     this.state = {
       isNameSorted: false,
-      compareTeams: [33, 45 ],
+      compareTeams: [],
       isModalOpen: false
     }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
