@@ -1,7 +1,7 @@
 import React from 'react';
 import Entry from './Entry';
 import CompareModal from './CompareModal'
-import { makeSentenceCase, sortByScore } from './utils';
+import { makeSentenceCase, sortByScore, sortByName } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -57,6 +57,7 @@ class Standings extends React.Component {
       return memoOne
     }, [])
     entriesAndScore.sort(sortByScore)
+    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>

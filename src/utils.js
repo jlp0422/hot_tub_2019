@@ -11,7 +11,7 @@ export const sortDivision = (a, b, other) => {
 export const sortByScore = (a, b) => {
   if (a.entryScore > b.entryScore) return -1;
   if (a.entryScore < b.entryScore) return 1;
-  return 0;
+  if (a.entryScore === b.entryScore) return sortByName(a, b)
 }
 
 export const sortByName = (a, b) => {
