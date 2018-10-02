@@ -33,6 +33,10 @@
   font-weight: 16px;
 }
 
+.grid-compare {
+  grid-column-gap: 10px;
+}
+
 .button-font {
   font-size: 16px;
 }
@@ -84,6 +88,10 @@
     grid-template-columns: 15% 35% 20% 25%
   }
 
+  .grid-compare {
+    grid-template-rows: 2;
+  }
+
   .grid-compare-btns, .grid-sort-btns {
     grid-template-columns: auto;
     grid-template-rows: 2;
@@ -105,7 +113,11 @@
 }
 
 @media screen and (max-width: 320px) {
-  .division-font, .button-font {
+  .division-grid {
+    grid-template-columns: 20% 30% 25% 25%
+  }
+
+  .button-font {
     font-size: 12px;
   }
 }
