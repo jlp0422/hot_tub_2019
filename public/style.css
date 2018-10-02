@@ -15,7 +15,8 @@
 }
 
 .division-grid {
-  grid-template-columns: 10% 40% 20% 20%
+  grid-template-columns: 10% 40% 20% 20%;
+  grid-column-gap: 5px;
 }
 
 .grid-5-70-20 {
