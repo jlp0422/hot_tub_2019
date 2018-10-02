@@ -1,7 +1,7 @@
 import React from 'react';
 import Entry from './Entry';
 import CompareModal from './CompareModal'
-import { makeSentenceCase, sortByScore } from './utils';
+import { makeSentenceCase, sortByScore, sortByName } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -73,20 +73,27 @@ class Standings extends React.Component {
         ) : null
       }
         <h2>Hot Tub Standings</h2>
-        <h4>Sort by&nbsp;&nbsp;
-          <button className="btn btn-warning font-14" disabled={isNameSorted} onClick={onChangeSortOrder}>
+
+        <div className="grid grid-sort-btns">
+          <h4>Sort by</h4>
+          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={onChangeSortOrder}>
             Team Name
-          </button>&nbsp;&nbsp;
-          <button className="btn btn-warning font-14" disabled={!isNameSorted} onClick={onChangeSortOrder}>
-            Score
-          </button>&nbsp;&nbsp;
-          <button className="btn btn-success font-14" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
-            Compare (Max 3)
-          </button>&nbsp;&nbsp;
-          <button className="btn btn-danger font-14" disabled={!compareTeams.length} onClick={this.onClearCompare}>
-            Clear Comparison
           </button>
-          </h4>
+          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={onChangeSortOrder}>
+            Score
+          </button>
+        </div>
+
+        <div className="grid grid-compare-btns">
+          <h4>Compare Teams</h4>
+          <button className="btn btn-success button-font" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
+            Compare (Max 3)
+          </button>
+          <button className="btn btn-danger button-font" disabled={!compareTeams.length} onClick={this.onClearCompare}>
+            Clear
+          </button>
+        </div>
+
         <div className="grid grid-75-20">
           <div>
             <h3>Team Name</h3>

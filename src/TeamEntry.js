@@ -10,14 +10,14 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName }) => {
     <div>
       <h2>Team Name: {makeSentenceCase(entry.teamName)}</h2>
       <h3>Total wins: {totalScore}</h3>
-      <h3>Teams</h3>
+      {/*<h3>Teams</h3>*/}
       <ul className="list-group">
         {entry.selections.map(team => (
           <li className="list-group-item" key={team}>
             <Link to={`/teams/${team}`}>
               {teamCityName[team]}
             </Link>
-            &nbsp;({`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`})
+            &nbsp;&nbsp;<span className="badge badge-secondary badge-pill">{`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}</span>
           </li>
         ))}
       </ul>

@@ -11,7 +11,7 @@
 }
 
 .entry-padding {
-  padding: 5px 5px 0px 10px;
+  padding: 5px 5px 0px 15px;
 }
 
 .division-grid {
@@ -19,13 +19,92 @@
 }
 
 .grid-5-70-20 {
-  grid-template-columns: 5% 70% 20%
+  grid-template-columns: 3% 70% 20%;
+  grid-column-gap: 10px;
 }
 
 .grid-75-20 {
-  grid-template-columns: 75% 20%
+  grid-template-columns: 75% 20%;
+  grid-column-gap: 10px;
 }
 
-.font-14 {
-  font-size: 14px;
+.division-font {
+  font-weight: 16px;
+}
+
+.button-font {
+  font-size: 16px;
+}
+
+.grid-compare-btns {
+  grid-template-columns: 180px 170px 170px;
+  grid-column-gap: 10px;
+  padding: 10px 0px;
+}
+
+.grid-sort-btns {
+  grid-template-columns: 100px 170px 170px;
+  grid-column-gap: 10px;
+  padding: 10px 0px;
+}
+
+.compare {
+  justify-self: start
+}
+
+@media screen and (max-width: 770px) {
+  .grid-compare-btns {
+    grid-template-columns: 180px 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .division-font, .button-font {
+    font-size: 14px;
+  }
+
+  .division-grid {
+    grid-template-columns: 15% 35% 20% 25%
+  }
+
+  .grid-compare-btns, .grid-sort-btns {
+    grid-template-columns: auto;
+    grid-template-rows: 2;
+  }
+
+  .grid-compare-btns .btn, .grid-sort-btns .btn {
+    grid-row-start: 2;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .entry-padding {
+    padding-left: 8px;
+  }
+
+  .grid-5-70-20 {
+    grid-template-columns: 5% 65% 20%
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .division-font, .button-font {
+    font-size: 12px;
+  }
 }

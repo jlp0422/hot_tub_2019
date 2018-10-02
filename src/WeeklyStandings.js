@@ -65,10 +65,12 @@ class WeeklyStandings extends React.Component {
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
-        <h4>Sort by&nbsp;&nbsp;
-        <button className="btn btn-warning font-14" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>&nbsp;&nbsp;
-        <button className="btn btn-warning font-14" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button></h4>
-        <ul className="nav nav-tabs margin-b-15">
+        <div className="grid grid-sort-btns">
+          <h4>Sort by</h4>
+          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>
+          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button>
+        </div>
+        <ul className="nav nav-tabs nav-fill margin-b-15">
           {
             weeks.map(week => (
               currentDate >= week.firstGame ? (
