@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import MediaQuery from 'react-responsive';
 import { makeSentenceCase } from './utils';
 
-const CompareModal = ({ showModal, closeModal, compareTeams, entries, teamCityName, teamWinMap }) => {
+const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCityName, teamWinMap }) => {
   const numberOfTeams = compareTeams.length
   const teams = entries.reduce((memo, entry) => {
     compareTeams.includes(entry.id) && memo.push(entry)
@@ -15,16 +15,16 @@ const CompareModal = ({ showModal, closeModal, compareTeams, entries, teamCityNa
       <div className="grid grid-compare margin-b-15" style={{ gridTemplateColumns: 'auto '.repeat(numberOfTeams)}}>
       {
         teams.map((team, index) => (
-          <div style={{ /*gridRowStart: index+1 */}} key={team.id}>
+          <div key={team.id}>
             <h5>Team Name: { makeSentenceCase(team.teamName)}</h5>
             <h6>Wins: {team.selections.reduce((memo, team) => memo += teamWinMap[team], 0)}</h6>
             <ul>
                 {team.selections.sort().map(selection => (
                   <li key={selection}>
-                    <MediaQuery query="(min-width: 661px)">
+                    <MediaQuery query={`(min-width: ${numberOfTeams === 2 ? '661px' : '926px'})`}>
                       {teamCityName[selection]}&nbsp;&nbsp;
                     </MediaQuery>
-                    <MediaQuery query="(max-width: 660px)">
+                    <MediaQuery query={`(max-width: ${numberOfTeams === 2 ? '660px' : '925px'})`}>
                       {selection}&nbsp;&nbsp;
                     </MediaQuery>
                     <span className="badge badge-secondary badge-pill">
@@ -42,4 +42,4 @@ const CompareModal = ({ showModal, closeModal, compareTeams, entries, teamCityNa
   )
 }
 
-export default CompareModal;
+export default CompareModalWeb;

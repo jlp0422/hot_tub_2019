@@ -34,7 +34,7 @@
 }
 
 .grid-compare {
-  grid-column-gap: 10px;
+  grid-column-gap: 15px;
 }
 
 .button-font {
@@ -63,6 +63,10 @@
   }
 }
 
+@media screen and (max-width: 570px) {
+
+}
+
 @media screen and (max-width: 510px) {
   h1 {
     font-size: 32px;
@@ -86,10 +90,6 @@
 
   .division-grid {
     grid-template-columns: 15% 35% 20% 25%
-  }
-
-  .grid-compare {
-    grid-template-rows: 2;
   }
 
   .grid-compare-btns, .grid-sort-btns {

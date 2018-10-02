@@ -1,6 +1,6 @@
 import React from 'react';
 import Entry from './Entry';
-import CompareModal from './CompareModal'
+import CompareModealHOC from './CompareModalHOC';
 import { makeSentenceCase, sortByScore, sortByName } from './utils';
 
 class Standings extends React.Component {
@@ -61,7 +61,7 @@ class Standings extends React.Component {
     return (
       <div>
       { isModalOpen ? (
-          <CompareModal
+          <CompareModealHOC
             showModal={isModalOpen}
             closeModal={onOpenCloseModal}
             compareTeams={ compareTeams }
