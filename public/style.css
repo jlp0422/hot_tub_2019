@@ -11,7 +11,7 @@
 }
 
 .entry-padding {
-  padding: 5px 5px 0px 10px;
+  padding: 5px 5px 0px 15px;
 }
 
 .division-grid {
@@ -19,11 +19,13 @@
 }
 
 .grid-5-70-20 {
-  grid-template-columns: 5% 70% 20%
+  grid-template-columns: 3% 70% 20%;
+  grid-column-gap: 10px;
 }
 
 .grid-75-20 {
-  grid-template-columns: 75% 20%
+  grid-template-columns: 75% 20%;
+  grid-column-gap: 10px;
 }
 
 .division-font {
@@ -92,8 +94,12 @@
 }
 
 @media screen and (max-width: 400px) {
+  .entry-padding {
+    padding-left: 8px;
+  }
+
   .grid-5-70-20 {
-    grid-template-columns: 10% 65% 20%
+    grid-template-columns: 5% 65% 20%
   }
 }
 
