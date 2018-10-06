@@ -7,9 +7,12 @@ import { makeSentenceCase, sortByScore, sortByName, weeks } from './utils';
 class WeeklyStandings extends React.Component {
   constructor(props) {
     super(props)
+    const latestWeek =
+      weeks.filter(week => new Date() >= week.firstGame)
+        .reduce((memo, week) => memo.firstGame >= week.firstGame ? memo : week).number
     this.state = {
       isNameSorted: false,
-      activeWeek: Number(this.props.history.location.search.split('=')[1]) || 1,
+      activeWeek: Number(this.props.history.location.search.split('=')[1]) || latestWeek,
       winsPerEntry: [],
       error: ''
     }
@@ -17,7 +20,7 @@ class WeeklyStandings extends React.Component {
   }
 
   componentDidMount() {
-    this.makeGamesCall(this.state.activeWeek)
+    this.onSelectWeek(this.state.activeWeek)
   }
 
   makeGamesCall(gamesWeek) {

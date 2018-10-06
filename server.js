@@ -32,7 +32,7 @@ app.get('/api/games/weekly/regular/2018/:week', (req, res, next) => {
 
 app.get('/api/standings', (req, res, next) => {
   Promise.all([
-    msfTwo.getData('nfl', '2018-regular', 'seasonal_standings', 'json', { stats: 'Wins', force: true })
+    msfTwo.getData('nfl', '2018-regular', 'seasonal_standings', 'json', { stats: 'W', force: true })
   ])
     .then(resp => res.send(resp))
     .catch(err => res.send(err))
