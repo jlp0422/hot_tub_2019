@@ -30,6 +30,15 @@ app.get('/api/games/weekly/regular/2018/:week', (req, res, next) => {
   .catch(err => res.send(err))
 })
 
+app.get('/api/games/seasonal/regular/2018/:teams', (req, res, next) => {
+  const { teams } = req.params
+  Promise.all([
+    msfTwo.getData('nfl', '2018-regular', 'seasonal_games', 'json', { stats: 'games', status: 'final', team: `${teams}`, force: true })
+  ])
+    .then(resp => res.send(resp))
+    .catch(err => res.send(err))
+})
+
 app.get('/api/standings', (req, res, next) => {
   Promise.all([
     msfTwo.getData('nfl', '2018-regular', 'seasonal_standings', 'json', { stats: 'W', force: true })

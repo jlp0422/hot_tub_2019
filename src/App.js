@@ -90,12 +90,13 @@ class App extends React.Component {
                   entries={entries}
                 />
               )} />
-              <Route exact path='/entry/:id' render={({ match }) => (
+              <Route exact path='/entry/:id' render={({ match, history }) => (
                 <TeamEntry
                   id={match.params.id}
                   entries={entries}
                   teamWinMap={teamWinMap}
                   teamCityName={teamCityName}
+                  history={ history }
                 />
               )} />
               <Route exact path='/teams/:abbrev' render={({ match }) => (

@@ -24,4 +24,4 @@ const Entry = ({ entry, teamWinMap, makeSentenceCase, scoreSorted, rank, page, s
   )
 }
 
-export default Entry
+export default Entry;
