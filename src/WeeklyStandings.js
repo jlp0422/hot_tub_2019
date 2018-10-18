@@ -13,8 +13,8 @@ class WeeklyStandings extends React.Component {
     this.state = {
       isNameSorted: false,
       activeWeek: Number(this.props.history.location.search.split('=')[1]) || latestWeek,
-      winsPerEntry: [],
-      error: ''
+      weeklyWins: {},
+      error: '',
     }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
   }
@@ -24,31 +24,35 @@ class WeeklyStandings extends React.Component {
   }
 
   makeGamesCall(gamesWeek) {
-    this.setState({ winsPerEntry: [] })
-    axios.get(`/api/games/weekly/regular/2018/${gamesWeek}`)
-      .then(resp => resp.data)
-      .then(schedule => schedule[0].games)
-      .then(games => {
-        const weeklyWinners = games.reduce((memo, game) => {
-          if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
-            memo.push(game.schedule.awayTeam.abbreviation)
-          }
-          else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
-            memo.push(game.schedule.homeTeam.abbreviation)
-          }
-          return memo
-        }, [])
-        const winsPerEntry = this.props.entries.reduce((memo, entry) => {
-          const totalWins = entry.selections.reduce((winMemo, team) => {
-            if (weeklyWinners.includes(team)) winMemo++
-            return winMemo
-          }, 0)
-          memo.push({ id: entry.id, teamName: entry.teamName, entryScore: totalWins })
-          return memo
-        }, [])
-        this.setState({ winsPerEntry })
-      })
-      .catch(error => this.setState({ error }))
+    this.setState({ error: '' })
+    if (!this.state.weeklyWins[gamesWeek]) {
+      axios.get(`/api/games/weekly/regular/2018/${gamesWeek}`)
+        .then(resp => resp.data)
+        .then(schedule => schedule[0].games)
+        .then(games => {
+          const weeklyWinners = games.reduce((memo, game) => {
+            if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
+              memo.push(game.schedule.awayTeam.abbreviation)
+            }
+            else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
+              memo.push(game.schedule.homeTeam.abbreviation)
+            }
+            return memo
+          }, [])
+          const winsPerEntry = this.props.entries.reduce((memo, entry) => {
+            const totalWins = entry.selections.reduce((winMemo, team) => {
+              if (weeklyWinners.includes(team)) winMemo++
+              return winMemo
+            }, 0)
+            memo.push({ id: entry.id, teamName: entry.teamName, entryScore: totalWins })
+            return memo
+          }, [])
+          const newWeeklyWins = this.state.weeklyWins
+          newWeeklyWins[gamesWeek] = winsPerEntry
+          this.setState({ weeklyWins: newWeeklyWins })
+        })
+        .catch(error => this.setState({ error }))
+      }
   }
 
   onSelectWeek(week) {
@@ -63,7 +67,7 @@ class WeeklyStandings extends React.Component {
 
   render() {
     const currentDate = new Date()
-    const { isNameSorted, activeWeek, winsPerEntry, error } = this.state
+    const { isNameSorted, activeWeek, weeklyWins, error } = this.state
     const { onChangeSortOrder } = this
     return (
       <div>
@@ -86,7 +90,7 @@ class WeeklyStandings extends React.Component {
           }
         </ul>
         {error ? <h4>Network error. Please refresh.</h4> : (
-          !winsPerEntry.length ? (<h2>Loading...</h2>) : (
+          !weeklyWins[activeWeek] ? (<h2>Loading...</h2>) : (
             <div>
               <div className="grid grid-75-20">
                 <div>
@@ -97,7 +101,7 @@ class WeeklyStandings extends React.Component {
                 </div>
               </div>
               {isNameSorted ? (
-                winsPerEntry.sort(sortByName).map((entry, idx) => (
+                weeklyWins[activeWeek].sort(sortByName).map((entry, idx) => (
                   <Entry
                     key={entry.teamName}
                     makeSentenceCase={makeSentenceCase}
@@ -107,7 +111,7 @@ class WeeklyStandings extends React.Component {
                   />
                 ))
               ) : (
-                  winsPerEntry.sort(sortByScore).map((entry, idx) => (
+                  weeklyWins[activeWeek].sort(sortByScore).map((entry, idx) => (
                     <Entry
                       key={entry.teamName}
                       makeSentenceCase={makeSentenceCase}
