@@ -20,6 +20,43 @@ export const sortByName = (a, b) => {
   return 0;
 }
 
+export const allGamesToWeeksObject = (gamesArray) => {
+  return gamesArray.reduce((memo, game) => {
+    if (!memo[game.schedule.week]) memo[game.schedule.week] = [
+      {
+        week: game.schedule.week,
+        awayTeam: game.schedule.awayTeam.abbreviation,
+        homeTeam: game.schedule.homeTeam.abbreviation,
+        awayScore: game.score.awayScoreTotal,
+        homeScore: game.score.homeScoreTotal
+      }
+    ]
+    else memo[game.schedule.week].push({
+      week: game.schedule.week,
+      awayTeam: game.schedule.awayTeam.abbreviation,
+      homeTeam: game.schedule.homeTeam.abbreviation,
+      awayScore: game.score.awayScoreTotal,
+      homeScore: game.score.homeScoreTotal
+    })
+    return memo
+  }, {})
+}
+
+export const totalWinsForWeek = (weeklyGamesObject, teams) => {
+  let gameWinner
+  const weeksArray = Object.keys(weeklyGamesObject).map(key => weeklyGamesObject[key])
+  return weeksArray.reduce((memo1, week) => {
+    const singleWeek = week.reduce((memo2, game) => {
+      if (game.homeScore > game.awayScore) gameWinner = game.homeTeam
+      else if (game.awayScore > game.homeScore) gameWinner = game.awayTeam
+      if (teams.includes(gameWinner)) memo2++
+      return memo2
+    }, 0)
+    memo1[`Week ${week[0].week}`] = singleWeek
+    return memo1
+  }, {})
+}
+
 export const weeks = [
   { number: 1, text: 'Week 1', firstGame: new Date('2018/09/06 08:00:00') },
   { number: 2, text: 'Week 2', firstGame: new Date('2018/09/13 08:00:00') },
