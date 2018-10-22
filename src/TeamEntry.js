@@ -7,7 +7,7 @@ class TeamEntry extends React.Component {
   constructor() {
     super()
     this.state = {
-      winsPerWeekObject: {}
+      winsPerWeekObject: {},
     }
     this.onSetState = this.onSetState.bind(this)
   }
@@ -21,7 +21,7 @@ class TeamEntry extends React.Component {
   }
 
   render() {
-    const { winsPerWeekObject } = this.state
+    const { winsPerWeekObject, error } = this.state
     return (
       <_TeamEntry {...this.props} winsPerWeekObject={winsPerWeekObject} changeState={ this.onSetState } />
     )
@@ -35,7 +35,7 @@ const _TeamEntry = ({
   teamCityName,
   history,
   changeState,
-  winsPerWeekObject
+  winsPerWeekObject,
 }) => {
   let tab = history.location.hash.slice(1)
   const entry = entries.find(entry => entry.id === id * 1)
@@ -48,7 +48,7 @@ const _TeamEntry = ({
       .then(gamesPerWeek => totalWinsForWeek(gamesPerWeek, entry.selections))
       .then(weeklyWins => changeState(weeklyWins))
       .catch(err => {
-        throw new Error('Network error. Please try again')
+        throw Error('Network error.')
       })
   }
   if (!tab) tab = 'teams'
@@ -69,6 +69,7 @@ const _TeamEntry = ({
           </span>
         </li>
       </ul>
+      { tab === 'week' && !Object.keys(winsPerWeekObject).length && <div>Network error. Please refresh.</div> }
       {
         tab === 'teams' ? (
           <ul className="list-group">
@@ -84,12 +85,17 @@ const _TeamEntry = ({
         ) : (
           <div>
             {
-              Object.keys(winsPerWeekObject).map(weekName => (
-                <div key={weekName} className="grid" style={{ gridTemplateColumns: '70% 25%', gridColumnGap: '5%' }}>
-                  <h4>{weekName}</h4>
-                  <h4>{winsPerWeekObject[weekName]}</h4>
-                </div>
-              ))
+              Object.keys(winsPerWeekObject).map(weekName => {
+                const weekNumber = Number(weekName.split(' ')[1])
+                return (
+                  <div key={weekName} className="grid entry-padding" style={{ gridTemplateColumns: '45% 45%', gridColumnGap: '5%', backgroundColor: `${weekNumber % 2 ? '#eee' : '#d8d8d8'}` }}>
+                    <Link to={`/standings/weekly?week=${weekNumber}`}>
+                      <h4>{weekName}</h4>
+                    </Link>
+                    <h4>{winsPerWeekObject[weekName]}{' '}wins</h4>
+                  </div>
+                )
+              })
             }
           </div>
         )
