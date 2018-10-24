@@ -90,7 +90,7 @@ class WeeklyStandings extends React.Component {
           }
         </ul>
         {error ? <h4>Network error. Please refresh.</h4> : (
-          !weeklyWins[activeWeek] ? (<h2>Loading...</h2>) : (
+          !weeklyWins[activeWeek] ? (<Loading />) : (
             <div>
               <div className="grid grid-75-20">
                 <div>

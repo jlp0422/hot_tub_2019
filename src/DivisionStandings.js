@@ -26,7 +26,7 @@ const DivisionStandings = ({ division, teamCityName }) => {
           <div key={team.teamAbbrev} className="grid division-grid">
             <p className="division-font">{team.rank}</p>
             <p className="division-font">
-              <Link to={`/teams/${team.teamAbbrev}`}>
+              <Link className="link" to={`/teams/${team.teamAbbrev}`}>
                 <MediaQuery minWidth={371}>
                   {teamCityName[team.teamAbbrev]}
                 </MediaQuery>

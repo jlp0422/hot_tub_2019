@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:400,600');
+
+* {
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+.nav-tabs .nav-link.active {
+  color: #1f375b
+}
+
+.link, .nav-link {
+  color: #1493ff;
+  /* text-decoration: underline; */
+}
+
+.link:hover, .nav-link:hover {
+  text-decoration: none;
+  color: #1f375b
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1f375b;
+}
+
 .container-margin {
   margin: 20px auto 60px;
 }

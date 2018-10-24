@@ -20,7 +20,7 @@ const Team = ({ abbrev, entries, teamCityName, teamWinMap }) => {
       <ul>
         {entriesWithTeam.map(entry => (
           <li key={entry.id}>
-            <Link to={`/entry/${entry.id}`}>
+            <Link className="link" to={`/entry/${entry.id}`}>
               {makeSentenceCase(entry.teamName)}
             </Link>
           </li>

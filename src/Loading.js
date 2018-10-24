@@ -1,11 +1,15 @@
 import React from 'react';
 
-const Loading = () => {
+const Loading = ({ home }) => {
   return (
-    <div className="container container-margin">
-      <h1>Hot Tub 2018 Standings</h1>
-      <h2>Loading...</h2>
-    </div>
+    home ? (
+      <div className="container container-margin">
+        <h1>Hot Tub 2018</h1>
+        <h2>Loading...</h2>
+      </div>
+    ) : (
+      <h4>Loading...</h4>
+    )
   )
 }
 

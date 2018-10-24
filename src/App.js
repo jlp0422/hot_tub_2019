@@ -62,7 +62,7 @@ class App extends React.Component {
 
   render() {
     const { entries, teamWinMap, teamCityName, teamStandings } = this.state
-    if (!entries.length || !Object.keys(teamWinMap).length) return <Loading />
+    if (!entries.length || !Object.keys(teamWinMap).length) return <Loading home={true}/>
     return (
       <div className="container container-margin">
         <h1>Hot Tub 2018</h1>
