@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeSentenceCase } from './utils'
+import ReactGA from 'react-ga';
+import { makeSentenceCase } from './utils';
 
 const Team = ({ abbrev, entries, teamCityName, teamWinMap }) => {
+  ReactGA.pageview('/teams/abbrev');
   const totalSelections = entries.reduce((memo, entry) => {
     if (entry.selections.includes(abbrev)) memo++
     return memo

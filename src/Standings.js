@@ -1,8 +1,9 @@
 import React from 'react';
 import Entry from './Entry';
-import CompareModealHOC from './CompareModalHOC';
-import { makeSentenceCase, sortByScore } from './utils';
 import ReactGA from 'react-ga';
+import CompareModealHOC from './CompareModalHOC';
+import TableHeader from './TableHeader';
+import { makeSentenceCase, sortByScore } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -24,8 +25,12 @@ class Standings extends React.Component {
     this.setState({ entries, teamWinMap })
   }
 
-  onChangeSortOrder() {
+  onChangeSortOrder(type) {
     this.setState({ isNameSorted: !this.state.isNameSorted })
+    ReactGA.event({
+      category: 'Change sort',
+      action: type
+    })
   }
 
   onOpenCloseModal() {
@@ -51,7 +56,7 @@ class Standings extends React.Component {
   render() {
     const { entries, teamWinMap, teamCityName } = this.props
     const { isNameSorted, compareTeams, isModalOpen } = this.state
-    const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal } = this
+    const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare } = this
     const entriesAndScore = entries.reduce((memoOne, entry) => {
       const { selections, teamName, id } = entry
       const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
@@ -78,10 +83,10 @@ class Standings extends React.Component {
 
         <div className="grid grid-sort-btns">
           <h4>Sort by</h4>
-          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={onChangeSortOrder}>
+          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={() => onChangeSortOrder('team')}>
             Team Name
           </button>
-          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={onChangeSortOrder}>
+          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={() => onChangeSortOrder('score')}>
             Score
           </button>
         </div>
@@ -91,19 +96,12 @@ class Standings extends React.Component {
           <button className="btn btn-success button-font" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
             Compare (Max 3)
           </button>
-          <button className="btn btn-danger button-font" disabled={!compareTeams.length} onClick={this.onClearCompare}>
+          <button className="btn btn-danger button-font" disabled={!compareTeams.length} onClick={onClearCompare}>
             Clear
           </button>
         </div>
 
-        <div className="grid grid-75-20">
-          <div>
-            <h3>Team Name</h3>
-          </div>
-          <div>
-            <h3>Score</h3>
-          </div>
-        </div>
+        <TableHeader />
         {isNameSorted ? (
           entries.map((entry, idx) => (
             <Entry

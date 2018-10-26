@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import ReactGA from 'react-ga';
 import { allGamesToWeeksObject, totalWinsForWeek } from './utils';
 import Loading from './Loading'
 
@@ -14,6 +15,10 @@ class WeeklyWinsTab extends React.Component {
   }
 
   componentDidMount() {
+    ReactGA.event({
+      category: 'change tab',
+      action: 'Weekly Wins Tab'
+    })
     const { entry } = this.props
     const apiTeams = entry.selections.join(',')
     axios.get(`/api/games/seasonal/regular/2018/${apiTeams}`)

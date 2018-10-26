@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import MediaQuery from 'react-responsive';
+import ReactGA from 'react-ga';
 import { makeSentenceCase } from './utils';
 
 const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCityName, teamWinMap }) => {
+  ReactGA.event({
+    category: 'Compare',
+    action: 'mobile compare'
+  })
   const numberOfTeams = compareTeams.length
   const teams = entries.reduce((memo, entry) => {
     compareTeams.includes(entry.id) && memo.push(entry)

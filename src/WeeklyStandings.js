@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import ReactGA from 'react-ga';
 import Entry from './Entry';
 import Loading from './Loading';
+import TableHeader from './TableHeader';
 import { makeSentenceCase, sortByScore, sortByName, weeks } from './utils';
 
 class WeeklyStandings extends React.Component {
@@ -20,10 +22,15 @@ class WeeklyStandings extends React.Component {
   }
 
   componentDidMount() {
+    ReactGA.pageview('/standings/weekly');
     this.onSelectWeek(this.state.activeWeek)
   }
 
   makeGamesCall(gamesWeek) {
+    ReactGA.event({
+      category: 'Change week',
+      action: `Week ${gamesWeek}`
+    })
     this.setState({ error: '' })
     if (!this.state.weeklyWins[gamesWeek]) {
       axios.get(`/api/games/weekly/regular/2018/${gamesWeek}`)
@@ -61,8 +68,12 @@ class WeeklyStandings extends React.Component {
     this.makeGamesCall(week)
   }
 
-  onChangeSortOrder() {
+  onChangeSortOrder(type) {
     this.setState({ isNameSorted: !this.state.isNameSorted })
+    ReactGA.event({
+      category: 'Change sort',
+      action: type
+    })
   }
 
   render() {
@@ -74,8 +85,12 @@ class WeeklyStandings extends React.Component {
         <h2>Week {activeWeek} Standings</h2>
         <div className="grid grid-sort-btns">
           <h4>Sort by</h4>
-          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={onChangeSortOrder}>Team Name</button>
-          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={onChangeSortOrder}>Score</button>
+          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={() => onChangeSortOrder('team')}>
+            Team Name
+          </button>
+          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={() => onChangeSortOrder('score')}>
+            Score
+          </button>
         </div>
         <ul className="nav nav-tabs nav-fill margin-b-15">
           {
@@ -92,14 +107,7 @@ class WeeklyStandings extends React.Component {
         {error ? <h4>Network error. Please refresh.</h4> : (
           !weeklyWins[activeWeek] ? (<Loading />) : (
             <div>
-              <div className="grid grid-75-20">
-                <div>
-                  <h3>Team Name</h3>
-                </div>
-                <div>
-                  <h3>Score</h3>
-                </div>
-              </div>
+              <TableHeader />
               {isNameSorted ? (
                 weeklyWins[activeWeek].sort(sortByName).map((entry, idx) => (
                   <Entry

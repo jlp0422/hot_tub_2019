@@ -1,7 +1,9 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import DivisionStandings from './DivisionStandings';
 
 const NFLStandings = ({ teamCityName, standings }) => {
+  ReactGA.pageview('/standings/nfl');
   const divisions = Object.keys(standings).sort()
   return (
     <div>
