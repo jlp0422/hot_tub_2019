@@ -1,7 +1,12 @@
 import React from 'react';
 import Entry from './Entry';
 import CompareModealHOC from './CompareModalHOC';
-import { makeSentenceCase, sortByScore, sortByName } from './utils';
+import { makeSentenceCase, sortByScore } from './utils';
+import ReactGA from 'react-ga';
+
+console.log(ReactGA)
+
+ReactGA.pageview('/standings/hot-tub', null, 'Hot Tub Standings');
 
 class Standings extends React.Component {
   constructor() {
