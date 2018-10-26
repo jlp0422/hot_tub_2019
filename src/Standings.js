@@ -4,10 +4,6 @@ import CompareModealHOC from './CompareModalHOC';
 import { makeSentenceCase, sortByScore } from './utils';
 import ReactGA from 'react-ga';
 
-console.log(ReactGA)
-
-ReactGA.pageview('/standings/hot-tub', null, 'Hot Tub Standings');
-
 class Standings extends React.Component {
   constructor() {
     super()
@@ -23,6 +19,7 @@ class Standings extends React.Component {
   }
 
   componentDidMount() {
+    ReactGA.pageview('/standings/hot-tub');
     const { entries, teamWinMap } = this.props
     this.setState({ entries, teamWinMap })
   }

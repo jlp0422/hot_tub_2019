@@ -4,8 +4,9 @@ import ReactModal from 'react-modal';
 import App from './App';
 import ReactGA from 'react-ga';
 
+ReactGA.initialize('UA-128159832-1')
+
 ReactModal.setAppElement('#root');
-ReactGA.initialize('UA-128159832-1');
 
 const root = document.getElementById('root');
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, HashRouter as Router, Route, Redirect } from 'react-router-dom';
+// import ReactGA from 'react-ga';
 import axios from 'axios';
 import Nav from './Nav';
 import Loading from './Loading';
@@ -10,6 +11,10 @@ import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
 import FourOhFour from './FourOhFour';
 
+// function initializeReactGA() {
+//   ReactGA.initialize('UA-128159832-1')
+//   ReactGA.pageview('/app')
+// }
 
 class App extends React.Component {
   constructor() {
