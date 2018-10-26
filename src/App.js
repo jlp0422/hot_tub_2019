@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch, HashRouter as Router, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Nav';
-import Loading from './Loading';
+import Loading from './reusable/Loading';
 import Standings from './Standings';
 import TeamEntry from './TeamEntry';
 import Team from './Team';
 import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
-import FourOhFour from './FourOhFour';
+import FourOhFour from './reusable/FourOhFour';
 
 class App extends React.Component {
   constructor() {

@@ -1,8 +1,9 @@
 import React from 'react';
 import Entry from './Entry';
 import ReactGA from 'react-ga';
-import CompareModealHOC from './CompareModalHOC';
-import TableHeader from './TableHeader';
+import CompareModealHOC from './reusable/CompareModalHOC';
+import TableHeader from './reusable/TableHeader';
+import SortButtons from './reusable/SortButtons';
 import { makeSentenceCase, sortByScore } from './utils';
 
 class Standings extends React.Component {
@@ -45,7 +46,9 @@ class Standings extends React.Component {
       const first = compareTeams.slice(0, index)
       newTeams = first.concat(compareTeams.slice(index + 1))
     }
-    else newTeams = compareTeams.concat(teamID)
+    else {
+      newTeams = compareTeams.concat(teamID)
+    }
     this.setState({ compareTeams: newTeams })
   }
 
@@ -67,7 +70,7 @@ class Standings extends React.Component {
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
-      { isModalOpen ? (
+      { isModalOpen &&
           <CompareModealHOC
             showModal={isModalOpen}
             closeModal={onOpenCloseModal}
@@ -77,29 +80,28 @@ class Standings extends React.Component {
             teamWinMap={ teamWinMap }
             entriesAndScore={ entriesAndScore}
           />
-        ) : null
       }
         <h2>Hot Tub Standings</h2>
-
-        <div className="grid grid-sort-btns">
-          <h4>Sort by</h4>
-          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={() => onChangeSortOrder('team')}>
-            Team Name
-          </button>
-          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={() => onChangeSortOrder('score')}>
-            Score
-          </button>
-        </div>
-
-        <div className="grid grid-compare-btns">
-          <h4>Compare Teams</h4>
-          <button className="btn btn-success button-font" disabled={compareTeams.length < 2 || compareTeams.length > 3} onClick={onOpenCloseModal}>
-            Compare (Max 3)
-          </button>
-          <button className="btn btn-danger button-font" disabled={!compareTeams.length} onClick={onClearCompare}>
-            Clear
-          </button>
-        </div>
+        <SortButtons
+          buttonAction={'Sort by'}
+          isSort={true}
+          copyLeft={'Team Name'}
+          disabledLeft={isNameSorted}
+          sortLeft={() => onChangeSortOrder('team')}
+          copyRight={'Score'}
+          disabledRight={!isNameSorted}
+          sortRight={() => onChangeSortOrder('score')}
+        />
+        <SortButtons
+          buttonAction={'Compare Teams'}
+          isSort={false}
+          copyLeft={'Compare (Max 3)'}
+          disabledLeft={compareTeams.length < 2 || compareTeams.length > 3}
+          sortLeft={onOpenCloseModal}
+          copyRight={'Clear'}
+          disabledRight={!compareTeams.length}
+          sortRight={onClearCompare}
+        />
 
         <TableHeader />
         {isNameSorted ? (

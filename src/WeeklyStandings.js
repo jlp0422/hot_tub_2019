@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 import Entry from './Entry';
-import Loading from './Loading';
-import TableHeader from './TableHeader';
+import Loading from './reusable/Loading';
+import TableHeader from './reusable/TableHeader';
+import SortButtons from './reusable/SortButtons';
 import { makeSentenceCase, sortByScore, sortByName, weeks } from './utils';
 
 class WeeklyStandings extends React.Component {
@@ -83,32 +84,31 @@ class WeeklyStandings extends React.Component {
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
-        <div className="grid grid-sort-btns">
-          <h4>Sort by</h4>
-          <button className="btn btn-warning button-font" disabled={isNameSorted} onClick={() => onChangeSortOrder('team')}>
-            Team Name
-          </button>
-          <button className="btn btn-warning button-font" disabled={!isNameSorted} onClick={() => onChangeSortOrder('score')}>
-            Score
-          </button>
-        </div>
+        <SortButtons
+          buttonAction={'Sort by'}
+          isSort={true}
+          copyLeft={'Team Name'}
+          disabledLeft={isNameSorted}
+          sortLeft={() => onChangeSortOrder('team')}
+          copyRight={'Score'}
+          disabledRight={!isNameSorted}
+          sortRight={() => onChangeSortOrder('score')}
+        />
         <ul className="nav nav-tabs nav-fill margin-b-15">
-          {
-            weeks.map(week => (
-              currentDate >= week.firstGame ? (
-              <li key={week.number} className="nav-item">
-                <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active font-weight-bold'}`}>
-                  {week.text}
-                </span>
-              </li> ) : null
-            ))
-          }
+          { weeks.map(week => (
+            currentDate >= week.firstGame && (
+            <li key={week.number} className="nav-item">
+              <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active font-weight-bold'}`}>
+                {week.text}
+              </span>
+            </li> )
+          ))}
         </ul>
-        {error ? <h4>Network error. Please refresh.</h4> : (
+        { error ? <h4>Network error. Please refresh.</h4> : (
           !weeklyWins[activeWeek] ? (<Loading />) : (
             <div>
               <TableHeader />
-              {isNameSorted ? (
+              { isNameSorted ? (
                 weeklyWins[activeWeek].sort(sortByName).map((entry, idx) => (
                   <Entry
                     key={entry.teamName}

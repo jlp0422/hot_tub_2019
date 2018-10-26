@@ -33,7 +33,6 @@ const DivisionStandings = ({ division, teamCityName }) => {
                 <MediaQuery maxWidth={370}>
                   {team.teamAbbrev}
                 </MediaQuery>
-
               </Link>
             </p>
             <p className="division-font">{team.wins}</p>

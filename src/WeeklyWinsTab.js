@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import ReactGA from 'react-ga';
+import Loading from './reusable/Loading'
 import { allGamesToWeeksObject, totalWinsForWeek } from './utils';
-import Loading from './Loading'
 
 class WeeklyWinsTab extends React.Component {
   constructor(props) {

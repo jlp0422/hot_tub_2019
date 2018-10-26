@@ -2,7 +2,7 @@ export const makeSentenceCase = (str) => {
   return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 }
 
-export const sortDivision = (a, b, other) => {
+export const sortDivision = (a, b) => {
   if (a.rank < b.rank) return -1;
   if (a.rank > b.rank) return 1;
   return 0

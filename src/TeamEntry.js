@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import { makeSentenceCase } from './utils';
 import WeeklyWinsTab from './WeeklyWinsTab';
 import EntryTeamsTab from './EntryTeamsTab';
+import { makeSentenceCase } from './utils';
 
 const TeamEntry = ({ id, entries, teamWinMap, teamCityName, history }) => {
   ReactGA.pageview('/entry/id');

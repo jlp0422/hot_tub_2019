@@ -14,7 +14,8 @@ const EntryTeamsTab = ({ entry, teamCityName, teamWinMap }) => {
           <Link className="link" to={`/teams/${team}`}>
             {teamCityName[team]}
           </Link>
-          &nbsp;&nbsp;<span className="badge badge-secondary badge-pill">{`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}</span>
+          {'  '}
+          <span className="badge badge-secondary badge-pill">{`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}</span>
         </li>
       ))}
     </ul>
