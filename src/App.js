@@ -8,6 +8,7 @@ import TeamEntry from './TeamEntry';
 import Team from './Team';
 import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
+import FourOhFour from './FourOhFour';
 
 class App extends React.Component {
   constructor() {
@@ -68,7 +69,7 @@ class App extends React.Component {
         <h1>Hot Tub 2018</h1>
         <Router>
           <div>
-            <Route path='/' render={({ history }) => <Nav history={history} />} />
+            <Route path='/' component={Nav} />
             <Switch>
               <Route exact path='/' render={() => <Redirect to='/standings/hot-tub' />} />
               <Route exact path='/standings/hot-tub' render={() => (
@@ -107,6 +108,7 @@ class App extends React.Component {
                   teamWinMap={teamWinMap}
                 />
               )} />
+              <Route component={FourOhFour} />
             </Switch>
           </div>
         </Router>
