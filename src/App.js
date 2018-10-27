@@ -27,7 +27,7 @@ class App extends React.Component {
       .then(entries => this.setState({ entries }))
     axios.get('/api/standings')
       .then(res => res.data)
-      .then(fullStats => fullStats[0].teams)
+      .then(fullStats => fullStats.teams)
       .then(teamsAndStats => {
         const teamCityName = teamsAndStats.reduce((memo, team) => {
           memo[team.team.abbreviation] = `${team.team.city} ${team.team.name}`

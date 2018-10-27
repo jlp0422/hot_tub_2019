@@ -22,7 +22,7 @@ class WeeklyWinsTab extends React.Component {
     const { entry } = this.props
     const apiTeams = entry.selections.join(',')
     axios.get(`/api/games/seasonal/regular/2018/${apiTeams}`)
-      .then(resp => resp.data[0].games)
+      .then(resp => resp.data.games)
       .then(allGames => allGamesToWeeksObject(allGames))
       .then(gamesPerWeek => totalWinsForWeek(gamesPerWeek, entry.selections))
       .then(winsPerWeekObject => this.setState({ winsPerWeekObject }))
