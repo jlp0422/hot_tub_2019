@@ -34,7 +34,6 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName, history }) => {
           <WeeklyWinsTab entry={ entry }/>
         )
       }
-
     </div>
   )
 }

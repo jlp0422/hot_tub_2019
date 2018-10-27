@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SortButtons = ({
+const ButtonGroup = ({
   buttonAction,
   isSort,
   copyLeft,
@@ -23,4 +23,4 @@ const SortButtons = ({
   )
 }
 
-export default SortButtons;
+export default ButtonGroup;

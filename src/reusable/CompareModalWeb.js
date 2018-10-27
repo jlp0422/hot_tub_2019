@@ -24,7 +24,8 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
             <h5>Team Name: { makeSentenceCase(team.teamName)}</h5>
             <h6>Wins: {team.selections.reduce((memo, team) => memo += teamWinMap[team], 0)}</h6>
             <ul>
-                {team.selections.sort().map(selection => (
+              {
+                team.selections.sort().map(selection => (
                   <li key={selection}>
                     <MediaQuery query={`(min-width: ${numberOfTeams === 2 ? '661px' : '926px'})`}>
                       {teamCityName[selection]}{'  '}
@@ -36,7 +37,8 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
                       {`${teamWinMap[selection]} ${teamWinMap[selection] === 1 ? 'win' : 'wins'}`}
                     </span>
                   </li>
-              ))}
+                ))
+              }
             </ul>
           </div>
         ))

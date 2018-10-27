@@ -8,13 +8,15 @@ const Teams = ({ teamCityName }) => {
     <div>
       <h2>NFL Teams</h2>
       <ul className="list-group">
-        { Object.keys(teamCityName).map(team => (
-          <li className="list-group-item" key={team}>
-            <Link className="link" to={`/teams/${team}`}>
-              {teamCityName[team]}
-            </Link>
-          </li>
-        ))}
+        {
+          Object.keys(teamCityName).map(team => (
+            <li className="list-group-item" key={team}>
+              <Link className="link" to={`/teams/${team}`}>
+                {teamCityName[team]}
+              </Link>
+            </li>
+          ))
+        }
       </ul>
     </div>
   )

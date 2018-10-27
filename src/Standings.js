@@ -3,7 +3,7 @@ import Entry from './Entry';
 import ReactGA from 'react-ga';
 import CompareModealHOC from './reusable/CompareModalHOC';
 import TableHeader from './reusable/TableHeader';
-import SortButtons from './reusable/SortButtons';
+import ButtonGroup from './reusable/ButtonGroup';
 import { makeSentenceCase, sortByScore } from './utils';
 
 class Standings extends React.Component {
@@ -82,7 +82,7 @@ class Standings extends React.Component {
           />
       }
         <h2>Hot Tub Standings</h2>
-        <SortButtons
+        <ButtonGroup
           buttonAction={'Sort by'}
           isSort={true}
           copyLeft={'Team Name'}
@@ -92,7 +92,7 @@ class Standings extends React.Component {
           disabledRight={!isNameSorted}
           sortRight={() => onChangeSortOrder('score')}
         />
-        <SortButtons
+        <ButtonGroup
           buttonAction={'Compare Teams'}
           isSort={false}
           copyLeft={'Compare (Max 3)'}
@@ -102,22 +102,21 @@ class Standings extends React.Component {
           disabledRight={!compareTeams.length}
           sortRight={onClearCompare}
         />
-
         <TableHeader />
-        {isNameSorted ? (
-          entries.map((entry, idx) => (
-            <Entry
-              key={entry.id}
-              makeSentenceCase={makeSentenceCase}
-              entry={entry}
-              teamWinMap={teamWinMap}
-              rank={idx}
-              page={'seasonStandings'}
-              select={onSelectToCompare}
-              compareTeams={ compareTeams }
-            />
-          ))
-        ) : (
+        { isNameSorted ? (
+            entries.map((entry, idx) => (
+              <Entry
+                key={entry.id}
+                makeSentenceCase={makeSentenceCase}
+                entry={entry}
+                teamWinMap={teamWinMap}
+                rank={idx}
+                page={'seasonStandings'}
+                select={onSelectToCompare}
+                compareTeams={ compareTeams }
+              />
+            ))
+          ) : (
             entriesAndScore.map((entry, idx) => (
               <Entry
                 key={entry.teamName}

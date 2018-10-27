@@ -7,10 +7,12 @@ const Entry = ({ entry, teamWinMap, makeSentenceCase, scoreSorted, rank, page, s
   const gridColumns = page === 'seasonStandings' ? 'grid-5-70-20' : 'grid-75-20'
   return (
     <div key={entry.id} className={`grid entry-padding ${gridColumns}`} style={{ backgroundColor: `${rank % 2 ? '#d8d8d8' : '#eee'}` }}>
-      { page === 'seasonStandings' && (
-        <div className="form-check">
-          <input checked={compareTeams.includes(entry.id)} onChange={() => select(entry.id) } className="form-check-input" type="checkbox" />
-        </div>)
+      {
+        page === 'seasonStandings' && (
+          <div className="form-check">
+            <input checked={compareTeams.includes(entry.id)} onChange={() => select(entry.id) } className="form-check-input" type="checkbox" />
+          </div>
+        )
       }
       <div>
         <Link className="link" to={`/entry/${entry.id}`}>

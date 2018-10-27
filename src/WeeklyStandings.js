@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 import Entry from './Entry';
 import Loading from './reusable/Loading';
 import TableHeader from './reusable/TableHeader';
-import SortButtons from './reusable/SortButtons';
+import ButtonGroup from './reusable/ButtonGroup';
 import { makeSentenceCase, sortByScore, sortByName, weeks } from './utils';
 
 class WeeklyStandings extends React.Component {
@@ -84,7 +84,7 @@ class WeeklyStandings extends React.Component {
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
-        <SortButtons
+        <ButtonGroup
           buttonAction={'Sort by'}
           isSort={true}
           copyLeft={'Team Name'}
@@ -95,30 +95,36 @@ class WeeklyStandings extends React.Component {
           sortRight={() => onChangeSortOrder('score')}
         />
         <ul className="nav nav-tabs nav-fill margin-b-15">
-          { weeks.map(week => (
-            currentDate >= week.firstGame && (
-            <li key={week.number} className="nav-item">
-              <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active font-weight-bold'}`}>
-                {week.text}
-              </span>
-            </li> )
-          ))}
+          {
+            weeks.map(week => (
+              currentDate >= week.firstGame && (
+                <li key={week.number} className="nav-item">
+                  <span onClick={() => this.onSelectWeek(week.number)} className={`nav-link ${activeWeek === week.number && 'active font-weight-bold'}`}>
+                    {week.text}
+                  </span>
+                </li>
+              )
+            ))
+          }
         </ul>
         { error ? <h4>Network error. Please refresh.</h4> : (
-          !weeklyWins[activeWeek] ? (<Loading />) : (
+          !weeklyWins[activeWeek] ? (
+            <Loading />
+          ) : (
             <div>
               <TableHeader />
-              { isNameSorted ? (
-                weeklyWins[activeWeek].sort(sortByName).map((entry, idx) => (
-                  <Entry
-                    key={entry.teamName}
-                    makeSentenceCase={makeSentenceCase}
-                    entry={entry}
-                    rank={idx}
-                    page={'weeklyStandings'}
-                  />
-                ))
-              ) : (
+              {
+                isNameSorted ? (
+                  weeklyWins[activeWeek].sort(sortByName).map((entry, idx) => (
+                    <Entry
+                      key={entry.teamName}
+                      makeSentenceCase={makeSentenceCase}
+                      entry={entry}
+                      rank={idx}
+                      page={'weeklyStandings'}
+                    />
+                  ))
+                ) : (
                   weeklyWins[activeWeek].sort(sortByScore).map((entry, idx) => (
                     <Entry
                       key={entry.teamName}

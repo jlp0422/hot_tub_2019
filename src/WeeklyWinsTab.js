@@ -41,8 +41,9 @@ class WeeklyWinsTab extends React.Component {
     return (
       <div>
       { error && <h4>Network error. Please refresh.</h4> }
-      { !error && !Object.keys(winsPerWeekObject).length ? <Loading /> :
-        (
+      { !error && !Object.keys(winsPerWeekObject).length ? (
+        <Loading />
+        ) : (
           Object.keys(winsPerWeekObject).map(weekName => {
             const weekNumber = Number(weekName.split(' ')[1])
             return (
