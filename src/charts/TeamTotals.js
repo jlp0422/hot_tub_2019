@@ -12,10 +12,17 @@ const data = [
 
 const options = {
   chart: { title: 'Total Selections Per Team' },
-  hAxis: { title: 'Team Abbreviation' },
-  vAxis: {
-    title: 'Total Selections',
-    minValue: 0,
+  series: {
+    0: { axis: 'selections' }, // Bind series 0 to an axis named 'distance'.
+    1: { axis: 'team' } // Bind series 1 to an axis named 'brightness'.
+  },
+  axes: {
+    x: {
+      team: { label: 'Team Abbreviation' },
+    },
+    y: {
+      selections: { label: 'Number of Selections' }
+    }
   },
   // colors: ['red'],
   legend: { position: 'none' },
@@ -32,7 +39,7 @@ const TeamTotalsBarChart = ({ entries, colors }) => {
     memo.push([team, allSelectionsMap[team], `color: ${colors[team]}`])
     return memo
   }, [])
-  const chartData = ["Team", "Selections", { role: "style" }]
+  const chartData = ["Team Abbreviation", "Selections", { role: "style" }]
   const finalData = [chartData].concat(teamData)
   return (
     <Chart
