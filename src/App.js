@@ -9,6 +9,7 @@ import Team from './Team';
 import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
 import FourOhFour from './reusable/FourOhFour';
+import ChartsMain from './charts/ChartsMain';
 
 class App extends React.Component {
   constructor() {
@@ -106,6 +107,11 @@ class App extends React.Component {
                   entries={entries}
                   teamCityName={teamCityName}
                   teamWinMap={teamWinMap}
+                />
+              )} />
+              <Route path='/charts' render={() => (
+                <ChartsMain
+                  entries={ entries }
                 />
               )} />
               <Route component={FourOhFour} />
