@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 import CompareModealHOC from './reusable/CompareModalHOC';
 import TableHeader from './reusable/TableHeader';
 import ButtonGroup from './reusable/ButtonGroup';
-import { makeSentenceCase, sortByScore } from './utils';
+import { makeSentenceCase, sortByScore, entriesWithScore } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -60,12 +60,7 @@ class Standings extends React.Component {
     const { entries, teamWinMap, teamCityName } = this.props
     const { isNameSorted, compareTeams, isModalOpen } = this.state
     const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare } = this
-    const entriesAndScore = entries.reduce((memoOne, entry) => {
-      const { selections, teamName, id } = entry
-      const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
-      memoOne.push({ id, teamName, entryScore })
-      return memoOne
-    }, [])
+    const entriesAndScore = entriesWithScore(entries, teamWinMap)
     entriesAndScore.sort(sortByScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (

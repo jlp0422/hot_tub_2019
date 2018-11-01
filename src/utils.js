@@ -57,6 +57,15 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
   }, {})
 }
 
+export const entriesWithScore = (entries, teamWinMap) => {
+  return entries.reduce((memoOne, entry) => {
+    const { selections, teamName, id } = entry
+    const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
+    memoOne.push({ id, teamName, entryScore, totalTeams: selections.length })
+    return memoOne
+  }, [])
+}
+
 export const weeks = [
   { number: 1, text: 'Week 1', firstGame: new Date('2018/09/06 08:00:00') },
   { number: 2, text: 'Week 2', firstGame: new Date('2018/09/13 08:00:00') },

@@ -112,6 +112,7 @@ class App extends React.Component {
               <Route path='/charts' render={() => (
                 <ChartsMain
                   entries={ entries }
+                  teamWinMap={ teamWinMap }
                 />
               )} />
               <Route component={FourOhFour} />
