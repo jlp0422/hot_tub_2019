@@ -37,13 +37,13 @@ const teamColors = {
   WAS: '#773141',
 }
 
-const ChartsMain = ({ entries, teamWinMap }) => {
+const ChartsMain = ({entries, teamWinMap }) => {
   return (
     <div>
       <h2 style={{ paddingBottom: '10px' }}>Charts</h2>
-      <TeamTotalsBarChart entries={ entries } colors={ teamColors }/>
-      <div style={{padding: '20px 0'}}></div>
-      <TotalWinsAndTeams entries={ entries } teamWinMap={ teamWinMap } />
+      <TeamTotalsBarChart entries={entries} colors={teamColors} />
+      <div style={{ padding: '20px 0' }}></div>
+      <TotalWinsAndTeams entries={entries} teamWinMap={teamWinMap} />
     </div>
   )
 }

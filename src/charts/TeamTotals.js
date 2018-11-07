@@ -2,20 +2,15 @@ import React from 'react';
 import { Chart } from 'react-google-charts';
 
 const options = {
-  chart: { title: 'Total Selections Per Team' },
-  series: {
-    0: { axis: 'selections' }, // Bind series 0 to an axis named 'distance'.
-    1: { axis: 'team' } // Bind series 1 to an axis named 'brightness'.
+  title: 'Total Selections Per Team',
+  chartArea: { width: '90%' },
+  hAxis: {
+    title: 'Teams',
   },
-  axes: {
-    x: {
-      team: { label: 'Team Abbreviation' },
-    },
-    y: {
-      selections: { label: 'Number of Selections' }
-    }
+  vAxis: {
+    title: 'Total Selections',
+    // maxValue: '30'
   },
-  // colors: ['red'],
   legend: { position: 'none' },
 }
 
@@ -34,9 +29,9 @@ const TeamTotalsBarChart = ({ entries, colors }) => {
   const finalData = [chartData].concat(teamData)
   return (
     <Chart
-      chartType="Bar"
-      width="100%"
-      height="400px"
+      chartType={"ColumnChart"}
+      width={"100%"}
+      height={"400px"}
       data={finalData}
       loader={<h4>Loading chart...</h4>}
       options={options}
