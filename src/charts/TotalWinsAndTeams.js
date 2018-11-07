@@ -14,17 +14,17 @@ const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial }) => {
   const maxWins = entriesAndScore.reduce((min, next) => min.entryScore < next.entryScore ? next : min)
   const options = {
     /* material options */
-    // chart: { title: "Total Score vs Number of Teams" },
-    // axes: {
-    //   x: { 0: { label: 'Total Score' }, },
-    //   y: { 0: { label: 'Number of Teams'} }
-    // },
-    // legend: { position: 'none' },
+    chart: { title: "Total Score vs Number of Teams" },
+    axes: {
+      x: { 0: { label: 'Total Score' }, },
+      y: { 0: { label: 'Number of Teams'} }
+    },
+    legend: { position: 'none' },
     /* classic options */
-    title: 'Total Score vs Number of Teams',
-    hAxis: { title: 'Total Score', minValue: minWins.entryScore, maxValue: maxWins.entryScore },
-    vAxis: { title: 'Number of Teams', minValue: 4, maxValue: 15 },
-    legend: 'none'
+    // title: 'Total Score vs Number of Teams',
+    // hAxis: { title: 'Total Score', minValue: minWins.entryScore, maxValue: maxWins.entryScore },
+    // vAxis: { title: 'Number of Teams', minValue: 4, maxValue: 15 },
+    // legend: 'none'
   }
 
   console.log(minWins.entryScore, maxWins.entryScore)
@@ -32,7 +32,7 @@ const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial }) => {
     <Chart
       width="100%"
       height="400px"
-      chartType="ScatterChart"
+      chartType="Scatter"
       loader={<div>Loading Chart</div>}
       data={finalData}
       options={options}
