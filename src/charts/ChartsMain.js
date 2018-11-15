@@ -6,7 +6,6 @@ import { teamColors } from '../utils'
 
 const ChartsMain = ({entries, teamWinMap }) => {
   ReactGA.pageview('/charts');
-
   return (
     <div>
       <h2 style={{ paddingBottom: '10px' }}>Charts</h2>
