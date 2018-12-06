@@ -36,6 +36,9 @@
     "seed": "node server/db/hottub.js server/team-selections-v2.csv",
     "start": "node server"
   },
+  "engines": {
+    "node": "11.3.0"
+  },
   "author": "",
   "license": "ISC"
 }
