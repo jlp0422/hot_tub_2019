@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import { sortDivision } from './utils';
 
 const DivisionStandings = ({ division, teamCityName }) => {
+  console.log(division)
   division.sort(sortDivision)
   if (!division.length) return null;
   return (

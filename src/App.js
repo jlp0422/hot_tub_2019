@@ -64,6 +64,10 @@ class App extends React.Component {
 
   render() {
     const { entries, teamWinMap, teamCityName, teamStandings } = this.state
+    const divisionLeaders = []
+    for (let key in teamStandings) {
+      divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
+    }
     if (!entries.length || !Object.keys(teamWinMap).length) return <Loading home={true}/>
     return (
       <div className="container container-margin">
@@ -78,6 +82,7 @@ class App extends React.Component {
                   entries={entries}
                   teamWinMap={teamWinMap}
                   teamCityName={teamCityName}
+                  divisionLeaders={divisionLeaders}
                 />
               )} />
               <Route exact path='/standings/nfl' render={() => (
@@ -99,6 +104,7 @@ class App extends React.Component {
                   teamWinMap={teamWinMap}
                   teamCityName={teamCityName}
                   history={ history }
+                  divisionLeaders={divisionLeaders}
                 />
               )} />
               <Route exact path='/teams/:abbrev' render={({ match }) => (

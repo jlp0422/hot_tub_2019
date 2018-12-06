@@ -90,7 +90,7 @@ class WeeklyStandings extends React.Component {
           copyLeft={'Team Name'}
           disabledLeft={isNameSorted}
           sortLeft={() => onChangeSortOrder('team')}
-          copyRight={'Score'}
+          copyRight={'Wins'}
           disabledRight={!isNameSorted}
           sortRight={() => onChangeSortOrder('score')}
         />

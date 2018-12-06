@@ -9,12 +9,12 @@ const CompareModalHOC = (props) => {
   return (
     <div>
       {/* for larger screens */}
-      <MediaQuery minWidth={700}>
+      <MediaQuery minWidth={750}>
         <CompareModalWeb {...props} />
       </MediaQuery>
 
       {/* for smaller screens */}
-      <MediaQuery maxWidth={699}>
+      <MediaQuery maxWidth={749}>
         <CompareModalMobile {...props} />
       </MediaQuery>
     </div>

@@ -57,7 +57,7 @@ class Standings extends React.Component {
   }
 
   render() {
-    const { entries, teamWinMap, teamCityName } = this.props
+    const { entries, teamWinMap, teamCityName, divisionLeaders } = this.props;
     const { isNameSorted, compareTeams, isModalOpen } = this.state
     const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare } = this
     const entriesAndScore = entriesWithScore(entries, teamWinMap)
@@ -74,6 +74,7 @@ class Standings extends React.Component {
             teamCityName={ teamCityName }
             teamWinMap={ teamWinMap }
             entriesAndScore={ entriesAndScore}
+            divisionLeaders={divisionLeaders}
           />
       }
         <h2>Hot Tub Standings</h2>
@@ -83,7 +84,7 @@ class Standings extends React.Component {
           copyLeft={'Team Name'}
           disabledLeft={isNameSorted}
           sortLeft={() => onChangeSortOrder('team')}
-          copyRight={'Score'}
+          copyRight={'Wins'}
           disabledRight={!isNameSorted}
           sortRight={() => onChangeSortOrder('score')}
         />

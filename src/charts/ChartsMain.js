@@ -11,7 +11,8 @@ const ChartsMain = ({entries, teamWinMap }) => {
       <h2 style={{ paddingBottom: '10px' }}>Charts</h2>
       <TeamTotalsBarChart entries={entries} colors={teamColors} />
       <div style={{ padding: '20px 0' }}></div>
-      <TotalWinsAndTeams entries={entries} teamWinMap={teamWinMap} />
+      <h4 style={{ paddingBottom: '10px' }}>More charts coming soon</h4>
+      {/*<TotalWinsAndTeams entries={entries} teamWinMap={teamWinMap} />*/}
     </div>
   )
 }

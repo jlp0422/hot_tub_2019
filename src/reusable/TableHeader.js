@@ -7,7 +7,7 @@ const TableHeader = () => {
         <h3>Team Name</h3>
       </div>
       <div>
-        <h3>Score</h3>
+        <h3>Wins</h3>
       </div>
     </div>
   )

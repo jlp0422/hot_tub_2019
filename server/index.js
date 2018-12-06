@@ -13,7 +13,6 @@ app.use('/api', require('./routes/api'));
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '../public/index.html')));
 
 app.use((err, req, res, next) => {
-  console.log('error: ', err)
   res.status(err.status || 500).send(err)
 })
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Chart } from 'react-google-charts';
-import { entriesWithScore, makeSentenceCase } from '../utils'
+import { entriesWithScore } from '../utils'
 
 const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial }) => {
   const entriesAndScore = entriesWithScore(entries, teamWinMap)
@@ -8,15 +8,15 @@ const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial }) => {
     memo.push([entry.entryScore, entry.totalTeams, `Teams: ${entry.totalTeams}, Wins: ${entry.entryScore}` ])
     return memo
   }, [])
-  const chartData = ["Total Score", "Number of Teams", { role: 'tooltip' }]
+  const chartData = ["Total Score", "NFL Teams", { role: 'tooltip' }]
   const finalData = [chartData].concat(entryData)
   const minWins = entriesAndScore.reduce((min, next) => min.entryScore > next.entryScore ? next : min)
   const maxWins = entriesAndScore.reduce((min, next) => min.entryScore < next.entryScore ? next : min)
   const options = {
     /* material options */
-    chart: { title: "Total Score vs Number of Teams" },
+    chart: { title: "Wins by number of NFL teams selected" },
     axes: {
-      x: { 0: { label: 'Total Score' }, },
+      x: { 0: { label: 'Number of Wins' }, },
       y: { 0: { label: 'Number of Teams'} }
     },
     legend: { position: 'none' },
@@ -27,7 +27,6 @@ const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial }) => {
     // legend: 'none'
   }
 
-  console.log(minWins.entryScore, maxWins.entryScore)
   return (
     <Chart
       width="100%"
