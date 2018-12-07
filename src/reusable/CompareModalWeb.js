@@ -30,17 +30,22 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
                   const isDivisionLeader = divisionLeaders.find(leader => leader.teamAbbrev === selection)
                   return (
                     <li key={selection}>
-                      <MediaQuery query={`(min-width: ${numberOfTeams === 2 ? '661px' : '926px'})`}>
+                      <MediaQuery query={`(min-width: ${numberOfTeams === 2 ? '661px' : '1103px'})`}>
                         {teamCityName[selection]}{fourSpaces}
                       </MediaQuery>
-                      <MediaQuery query={`(max-width: ${numberOfTeams === 2 ? '660px' : '925px'})`}>
+                      <MediaQuery query={`(max-width: ${numberOfTeams === 2 ? '660px' : '1102px'})`}>
                         {selection}{fourSpaces}
                       </MediaQuery>
                       <span className="badge badge-success badge-pill">
                         {`${teamWinMap[selection]} ${teamWinMap[selection] === 1 ? 'win' : 'wins'}`}
                       </span>
                       {fourSpaces}
-                      {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
+                      <MediaQuery query={`(min-width: ${numberOfTeams === 2 ? '661px' : '1103px'})`}>
+                        {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
+                      </MediaQuery>
+                      <MediaQuery query={`(max-width: ${numberOfTeams === 2 ? '660px' : '1102px'})`}>
+                        {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Div. Ldr&nbsp;</span>}
+                      </MediaQuery>
                     </li>
                   )
                 })

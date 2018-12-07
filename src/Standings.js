@@ -98,7 +98,7 @@ class Standings extends React.Component {
           disabledRight={!compareTeams.length}
           sortRight={onClearCompare}
         />
-        <TableHeader />
+        <TableHeader overallStandings />
         { isNameSorted ? (
             entries.map((entry, idx) => (
               <Entry

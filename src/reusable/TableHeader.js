@@ -1,8 +1,9 @@
 import React from 'react';
 
-const TableHeader = () => {
+const TableHeader = ({ overallStandings }) => {
   return (
-    <div className="grid grid-75-20">
+    <div className={`grid ${overallStandings ? 'grid-5-70-20' : 'grid-75-20'} entry-padding`}>
+      {overallStandings && <div></div>}
       <div>
         <h3>Team Name</h3>
       </div>
