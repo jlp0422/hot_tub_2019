@@ -57,11 +57,13 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
   }, {})
 }
 
-export const entriesWithScore = (entries, teamWinMap) => {
+export const entriesWithScore = (entries, teamWinMap, leaders) => {
+  const divisionLeaderTeams = leaders.reduce((memo, team) => memo.concat(team.teamAbbrev), [])
   return entries.reduce((memoOne, entry) => {
     const { selections, teamName, id } = entry
     const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
-    memoOne.push({ id, teamName, entryScore, totalTeams: selections.length })
+    const divisonScore = selections.reduce((memoTwo, team) => memoTwo += divisionLeaderTeams.includes(team) ? 5 : 0, 0)
+    memoOne.push({ id, teamName, entryScore, totalTeams: selections.length, divisonScore })
     return memoOne
   }, [])
 }
