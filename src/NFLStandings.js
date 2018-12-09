@@ -2,7 +2,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import DivisionStandings from './DivisionStandings';
 
-const NFLStandings = ({ teamCityName, standings }) => {
+const NFLStandings = ({ teamCityName, standings, width }) => {
   ReactGA.pageview('/standings/nfl');
   const divisions = Object.keys(standings).sort()
   return (
@@ -12,7 +12,7 @@ const NFLStandings = ({ teamCityName, standings }) => {
         divisions.map(division => (
           <div key={division}>
             <h4>{division}</h4>
-            <DivisionStandings teamCityName={teamCityName} division={standings[division]} />
+            <DivisionStandings width={ width } teamCityName={teamCityName} division={standings[division]} />
           </div>
         ))
       }

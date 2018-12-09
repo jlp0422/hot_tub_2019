@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga';
-import MediaQuery from 'react-responsive'
 
-const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders }) => {
+const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width }) => {
   ReactGA.event({
     category: 'change tab',
     action: 'Entry Teams Tab'
@@ -16,7 +15,7 @@ const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders }) => 
           const isDivisionLeader = divisionLeaders.find(leader => leader.teamAbbrev === team)
           return (
             <li className="list-group-item" key={team}>
-              <h5>
+              <h5 style={{ margin: '3px 0'}}>
                 <Link className="link" to={`/teams/${team}`}>
                   <span className="font-weight-bold">{teamCityName[team]}</span>
                 </Link>

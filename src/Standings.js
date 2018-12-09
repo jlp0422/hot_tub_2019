@@ -57,13 +57,12 @@ class Standings extends React.Component {
   }
 
   render() {
-    const { entries, teamWinMap, teamCityName, divisionLeaders } = this.props;
+    const { entries, teamWinMap, teamCityName, divisionLeaders, width } = this.props;
     const { isNameSorted, compareTeams, isModalOpen } = this.state
     const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare } = this
     const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders)
     entriesAndScore.sort(sortByScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
-    console.log(entriesAndScore)
     return (
       <div>
       { isModalOpen &&
@@ -75,7 +74,8 @@ class Standings extends React.Component {
             teamCityName={ teamCityName }
             teamWinMap={ teamWinMap }
             entriesAndScore={ entriesAndScore}
-            divisionLeaders={divisionLeaders}
+            width={ width }
+            divisionLeaders={ divisionLeaders }
           />
       }
         <h2>Hot Tub Standings</h2>
@@ -111,7 +111,6 @@ class Standings extends React.Component {
                 page={'seasonStandings'}
                 select={onSelectToCompare}
                 compareTeams={ compareTeams }
-                divisionLeaders={ divisionLeaders}
               />
             ))
           ) : (

@@ -1,24 +1,16 @@
 import React from 'react';
-import MediaQuery from 'react-responsive';
 import ReactGA from 'react-ga';
 import CompareModalWeb from './CompareModalWeb';
 import CompareModalMobile from './CompareModalMobile';
 
 const CompareModalHOC = (props) => {
+  const { width } = props
   ReactGA.pageview('/compare-modal');
   return (
     <div>
-      {/* for larger screens */}
-      <MediaQuery minWidth={750}>
-        <CompareModalWeb {...props} />
-      </MediaQuery>
-
-      {/* for smaller screens */}
-      <MediaQuery maxWidth={749}>
-        <CompareModalMobile {...props} />
-      </MediaQuery>
+      {width < 755 ? <CompareModalMobile {...props} /> : <CompareModalWeb {...props} />}
     </div>
-  )
+  );
 }
 
 export default CompareModalHOC;

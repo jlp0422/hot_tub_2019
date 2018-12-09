@@ -10,6 +10,7 @@ import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
 import FourOhFour from './reusable/FourOhFour';
 import ChartsMain from './charts/ChartsMain';
+import windowSize from "react-window-size";
 
 class App extends React.Component {
   constructor() {
@@ -65,6 +66,7 @@ class App extends React.Component {
   render() {
     const { entries, teamWinMap, teamCityName, teamStandings } = this.state
     const divisionLeaders = []
+    const { windowWidth } = this.props
     for (let key in teamStandings) {
       divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
     }
@@ -83,12 +85,14 @@ class App extends React.Component {
                   teamWinMap={teamWinMap}
                   teamCityName={teamCityName}
                   divisionLeaders={divisionLeaders}
+                  width={ windowWidth }
                 />
               )} />
               <Route exact path='/standings/nfl' render={() => (
                 <NFLStandings
                   teamCityName={teamCityName}
                   standings={teamStandings}
+                  width={ windowWidth }
                 />
               )} />
               <Route exact path='/standings/weekly' render={({ history }) => (
@@ -105,6 +109,7 @@ class App extends React.Component {
                   teamCityName={teamCityName}
                   history={ history }
                   divisionLeaders={divisionLeaders}
+                  width={ windowWidth }
                 />
               )} />
               <Route exact path='/teams/:abbrev' render={({ match }) => (
@@ -119,6 +124,7 @@ class App extends React.Component {
                 <ChartsMain
                   entries={ entries }
                   teamWinMap={ teamWinMap }
+                  divisionLeaders={ divisionLeaders }
                 />
               )} />
               <Route component={FourOhFour} />
@@ -130,4 +136,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default windowSize(App);

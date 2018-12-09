@@ -10,7 +10,6 @@ const Entry = ({
   page,
   select,
   compareTeams,
-  divisionLeaders
 }) => {
   const teams = page === 'seasonStandings' && !scoreSorted && entry.selections
   const entryScore = page === 'seasonStandings' && !scoreSorted && teams.reduce((memo, team) => memo += teamWinMap[team], 0)

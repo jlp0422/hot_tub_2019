@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MediaQuery from 'react-responsive';
 import { sortDivision } from './utils';
 
-const DivisionStandings = ({ division, teamCityName }) => {
+const DivisionStandings = ({ division, teamCityName, width }) => {
   division.sort(sortDivision)
   if (!division.length) return null;
   return (
@@ -12,14 +11,7 @@ const DivisionStandings = ({ division, teamCityName }) => {
         <p className="division-font font-weight-bold">Place</p>
         <p className="division-font font-weight-bold">Team</p>
         <p className="division-font font-weight-bold">Wins</p>
-        <p className="division-font font-weight-bold">
-          <MediaQuery minWidth={371}>
-            Games Back
-          </MediaQuery>
-          <MediaQuery maxWidth={370}>
-            GB
-          </MediaQuery>
-        </p>
+        <p className="division-font font-weight-bold">{ width < 371 ? 'GB' : 'Games Back'}</p>
       </div>
       {
         division.map(team => (
@@ -27,12 +19,7 @@ const DivisionStandings = ({ division, teamCityName }) => {
             <p className="division-font">{team.rank}</p>
             <p className="division-font">
               <Link className="link" to={`/teams/${team.teamAbbrev}`}>
-                <MediaQuery minWidth={371}>
-                  {teamCityName[team.teamAbbrev]}
-                </MediaQuery>
-                <MediaQuery maxWidth={370}>
-                  {team.teamAbbrev}
-                </MediaQuery>
+                {width < 371 ? team.teamAbbrev : teamCityName[team.teamAbbrev]}
               </Link>
             </p>
             <p className="division-font">{team.wins}</p>

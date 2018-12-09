@@ -2,8 +2,8 @@ import React from 'react'
 import { Chart } from 'react-google-charts';
 import { entriesWithScore } from '../utils'
 
-const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial }) => {
-  const entriesAndScore = entriesWithScore(entries, teamWinMap)
+const TotalWinsAndTeams = ({ entries, teamWinMap, isMaterial, divisionLeaders }) => {
+  const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders);
   const entryData = entriesAndScore.reduce((memo, entry) => {
     memo.push([entry.entryScore, entry.totalTeams, `Teams: ${entry.totalTeams}, Wins: ${entry.entryScore}` ])
     return memo

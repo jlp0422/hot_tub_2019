@@ -4,7 +4,7 @@ import WeeklyWinsTab from './WeeklyWinsTab';
 import EntryTeamsTab from './EntryTeamsTab';
 import { makeSentenceCase } from './utils';
 
-const TeamEntry = ({ id, entries, teamWinMap, teamCityName, history, divisionLeaders }) => {
+const TeamEntry = ({ id, entries, teamWinMap, teamCityName, history, divisionLeaders, width }) => {
   ReactGA.pageview('/entry/id');
   let tab = history.location.hash.slice(1)
   const entry = entries.find(entry => entry.id === id * 1)
@@ -29,7 +29,7 @@ const TeamEntry = ({ id, entries, teamWinMap, teamCityName, history, divisionLea
       </ul>
       {
         tab === 'teams' ? (
-          <EntryTeamsTab divisionLeaders={divisionLeaders} entry={entry} teamCityName={teamCityName} teamWinMap={teamWinMap} />
+          <EntryTeamsTab width={width} divisionLeaders={divisionLeaders} entry={entry} teamCityName={teamCityName} teamWinMap={teamWinMap} />
         ) : (
           <WeeklyWinsTab entry={entry} />
           )
