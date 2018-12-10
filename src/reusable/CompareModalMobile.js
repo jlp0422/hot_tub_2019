@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import MediaQuery from 'react-responsive';
 import ReactGA from 'react-ga';
 import { makeSentenceCase } from '../utils';
 
-const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCityName, teamWinMap, divisionLeaders }) => {
+const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCityName, teamWinMap, divisionLeaders, width }) => {
   ReactGA.event({
     category: 'Compare',
     action: 'mobile compare'
@@ -18,9 +17,9 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
   return (
     <ReactModal isOpen={showModal} shouldCloseOnEsc={true} shouldCloseOnOverlayClick={true} onRequestClose={closeModal}>
       <h2>Comparing {numberOfTeams} Teams</h2>
-      <MediaQuery maxWidth={449}>
+      {width < 449 &&
         <h6><span className='badge badge-warning badge-pill'>&nbsp;DL&nbsp;</span> indicates Division Leader</h6>
-      </MediaQuery>
+      }
       <div>
       {
         teams.map((team, index) => (
@@ -30,25 +29,29 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
             <ul>
               {
                 team.selections.sort().map(selection => {
+                  const teamWins = (
+                    <span className="badge badge-success badge-pill">
+                      {`${teamWinMap[selection]} ${teamWinMap[selection] === 1 ? 'win' : 'wins'}`}
+                    </span>
+                  )
                   const isDivisionLeader = divisionLeaders.find(leader => leader.teamAbbrev === selection)
+                  const narrowText = (
+                    <React.Fragment>
+                      {selection}{twoSpaces}{teamWins}{twoSpaces}
+                      {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;DL&nbsp;</span>}
+                    </React.Fragment>
+                  )
+                  const wideText = (
+                    <React.Fragment>
+                      {teamCityName[selection]}{twoSpaces}{teamWins}{twoSpaces}
+                      {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
+                    </React.Fragment>
+                  )
                   return (
                     <li key={selection}>
-                      <MediaQuery minWidth={450}>
-                        {teamCityName[selection]}{twoSpaces}
-                      </MediaQuery>
-                      <MediaQuery maxWidth={449}>
-                        {selection}{twoSpaces}
-                      </MediaQuery>
-                      <span className="badge badge-success badge-pill">
-                        {`${teamWinMap[selection]} ${teamWinMap[selection] === 1 ? 'win' : 'wins'}`}
-                      </span>
-                      {twoSpaces}
-                      <MediaQuery minWidth={450}>
-                        {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
-                      </MediaQuery>
-                      <MediaQuery maxWidth={449}>
-                        {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;DL&nbsp;</span>}
-                      </MediaQuery>
+                    {
+                      width < 449 ? narrowText : wideText
+                    }
                     </li>
                   )
                 })

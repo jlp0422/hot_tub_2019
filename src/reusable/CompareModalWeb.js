@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import MediaQuery from 'react-responsive';
 import ReactGA from 'react-ga';
 import { makeSentenceCase } from '../utils';
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga';
 
 const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width }) => {
+  // 575px
   ReactGA.event({
     category: 'change tab',
     action: 'Entry Teams Tab'
@@ -15,17 +16,17 @@ const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width
           const isDivisionLeader = divisionLeaders.find(leader => leader.teamAbbrev === team)
           return (
             <li className="list-group-item" key={team}>
-              <h5 style={{ margin: '3px 0'}}>
+              <h6 style={{ margin: '3px 0'}}>
                 <Link className="link" to={`/teams/${team}`}>
-                  <span className="font-weight-bold">{teamCityName[team]}</span>
+                  <span className="font-weight-bold">{width < 340 ? team : teamCityName[team]}</span>
                 </Link>
                 {fourSpaces}
                 <span className={`badge badge-success badge-pill`}>
                   {`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}
                 </span>
                 {fourSpaces}
-                {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
-              </h5>
+                {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;{ width < 450 ? 'Div. Ldr' : 'Division Leader' }&nbsp;</span>}
+              </h6>
             </li>
           )
         })
@@ -33,12 +34,5 @@ const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width
     </ul>
   )
 }
-
-// {
-//   /* for smaller screens */
-// }
-// <MediaQuery maxWidth={699}>
-//   <CompareModalMobile {...props} />
-// </MediaQuery>;
 
 export default EntryTeamsTab;
