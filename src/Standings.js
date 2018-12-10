@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 import CompareModealHOC from './reusable/CompareModalHOC';
 import TableHeader from './reusable/TableHeader';
 import ButtonGroup from './reusable/ButtonGroup';
-import { makeSentenceCase, sortByScore, entriesWithScore } from './utils';
+import { makeSentenceCase, sortByScore, entriesWithScore, sortByName } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -61,7 +61,6 @@ class Standings extends React.Component {
     const { isNameSorted, compareTeams, isModalOpen } = this.state
     const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare } = this
     const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders)
-    entriesAndScore.sort(sortByScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
@@ -100,35 +99,19 @@ class Standings extends React.Component {
           sortRight={onClearCompare}
         />
         <TableHeader overallStandings />
-        { isNameSorted ? (
-            entries.map((entry, idx) => (
+          {
+            entriesAndScore.sort(isNameSorted ? sortByName : sortByScore).map((entry, idx) => (
               <Entry
                 key={entry.id}
                 makeSentenceCase={makeSentenceCase}
                 entry={entry}
-                teamWinMap={teamWinMap}
                 rank={idx}
                 page={'seasonStandings'}
                 select={onSelectToCompare}
-                compareTeams={ compareTeams }
+                compareTeams={compareTeams}
               />
             ))
-          ) : (
-            entriesAndScore.map((entry, idx) => (
-              <Entry
-                key={entry.teamName}
-                makeSentenceCase={makeSentenceCase}
-                entry={entry}
-                teamWinMap={teamWinMap}
-                scoreSorted={true}
-                rank={idx}
-                page={'seasonStandings'}
-                select={onSelectToCompare}
-                compareTeams={ compareTeams }
-                divisionLeaders={ divisionLeaders}
-              />
-            ))
-          )
+          }
         }
       </div>
     )
