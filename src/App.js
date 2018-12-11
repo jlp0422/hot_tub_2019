@@ -72,7 +72,7 @@ class App extends React.Component {
     }
     if (!entries.length || !Object.keys(teamWinMap).length) return <Loading home={true}/>
     return (
-      <div className="container container-margin">
+      <div className="container">
         <h1>Hot Tub 2018</h1>
         <Router>
           <div>
