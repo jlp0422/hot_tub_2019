@@ -98,9 +98,18 @@
   text-align: center
 }
 
+.team-name {
+  font-size: 18px;
+}
+
+.team-badge {
+  font-size: 14px;
+}
+
 @media screen and (max-width: 1200px) {
   .container {
-    max-width: 98%
+    max-width: 98%;
+    padding: 0 10px
   }
 }
 
@@ -110,22 +119,28 @@
   }
 
   .grid-overall {
-    grid-template-columns: 5% 40% repeat(4, 13%);
+    grid-template-columns: 5% 37% 12% 15% 15% 12%;/*repeat(4, 13%);*/
     grid-column-gap: 5px;
   }
 
-  h4 {
+  .tk {
     font-size: 20px;
   }
 }
 
 @media screen and (max-width: 576px) {
-  h4 {
+  .tk {
     font-size: 18px;
   }
 }
 
 @media screen and (max-width: 510px) {
+  .container {
+    max-width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
   h1 {
     font-size: 32px;
   }

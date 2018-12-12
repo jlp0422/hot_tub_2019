@@ -3,8 +3,8 @@ import React from 'react';
 const TableKey = ({ isKeyOpen, toggleKey }) => {
   const tableKey = {
     'W': 'Regular Season Wins',
-    'D': 'Division Winner Points',
-    'P': 'Playoff Wins (3pts each)',
+    'D': 'Division Winner Points (projected)',
+    'P': 'Playoff Points (3pts per win)',
     'T': 'Total Score'
   }
   const open = <span>&nbsp;&raquo;</span>

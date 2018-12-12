@@ -19,14 +19,14 @@ const Entry = ({
           </div>
       )}
       <Link className="link" to={`/entry/${entry.id}`}>
-        <h4 className="font-weight-bold">{/* scoreSorted ? `${rank+1})` : null */} {makeSentenceCase(entry.teamName)}</h4>
+        <h4 className="tk font-weight-bold">{/* scoreSorted ? `${rank+1})` : null */} {makeSentenceCase(entry.teamName)}</h4>
       </Link>
-      <h4 className="table-text">{entry.entryScore}</h4>
+      <h4 className="tk table-text">{entry.entryScore}</h4>
       { isSeason && (
         <React.Fragment>
-          <h4 className="table-text">{entry.divisonScore}</h4>
-          <h4 className="table-text">0</h4>
-          <h4 className="table-text">{entry.entryScore + entry.divisonScore}</h4>
+          <h4 className="tk table-text">{entry.divisonScore}</h4>
+          <h4 className="tk table-text">0</h4>
+          <h4 className="tk table-text">{entry.entryScore + entry.divisonScore}</h4>
         </React.Fragment>
       )}
     </div>

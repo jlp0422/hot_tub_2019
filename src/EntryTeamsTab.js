@@ -18,14 +18,14 @@ const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width
             <li className="list-group-item" key={team}>
               <h6 style={{ margin: '3px 0'}}>
                 <Link className="link" to={`/teams/${team}`}>
-                  <span className="font-weight-bold">{width < 340 ? team : teamCityName[team]}</span>
+                  <span className="font-weight-bold team-name">{width < 340 ? team : teamCityName[team]}</span>
                 </Link>
                 {fourSpaces}
-                <span className={`badge badge-success badge-pill`}>
+                <span className={`badge badge-success badge-pill team-badge`}>
                   {`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}
                 </span>
                 {fourSpaces}
-                {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;{ width < 450 ? 'Div. Ldr' : 'Division Leader' }&nbsp;</span>}
+                {isDivisionLeader && <span className='badge badge-warning badge-pill team-badge'>&nbsp;{ width < 450 ? 'Div. Ldr' : 'Division Leader' }&nbsp;</span>}
               </h6>
             </li>
           )

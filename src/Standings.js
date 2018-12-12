@@ -91,7 +91,7 @@ class Standings extends React.Component {
           copyLeft={'Team Name'}
           disabledLeft={isNameSorted}
           sortLeft={() => onChangeSortOrder('team')}
-          copyRight={'Wins'}
+          copyRight={'Reg. Season Wins'}
           disabledRight={!isNameSorted}
           sortRight={() => onChangeSortOrder('score')}
         />
