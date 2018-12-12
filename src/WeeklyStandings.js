@@ -81,6 +81,7 @@ class WeeklyStandings extends React.Component {
     const currentDate = new Date()
     const { isNameSorted, activeWeek, weeklyWins, error } = this.state
     const { onChangeSortOrder } = this
+    const { width } = this.props
     return (
       <div>
         <h2>Week {activeWeek} Standings</h2>
@@ -112,7 +113,7 @@ class WeeklyStandings extends React.Component {
             <Loading />
           ) : (
             <div>
-              <TableHeader />
+              <TableHeader width={ width }/>
               {
                 isNameSorted ? (
                   weeklyWins[activeWeek].sort(sortByName).map((entry, idx) => (

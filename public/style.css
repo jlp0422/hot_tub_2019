@@ -41,7 +41,7 @@
 }
 
 .division-grid {
-  grid-template-columns: 10% 40% 20% 20%;
+  grid-template-columns: 10% 30% 20% 20%;
   grid-column-gap: 5px;
 }
 
@@ -162,7 +162,7 @@
   }
 
   .division-grid {
-    grid-template-columns: 15% 35% 20% 25%
+    grid-template-columns: 10% 35% 15% 25%
   }
 
   .grid-compare-btns, .grid-sort-btns {

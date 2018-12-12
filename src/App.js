@@ -99,6 +99,7 @@ class App extends React.Component {
                 <WeeklyStandings
                   history={history}
                   entries={entries}
+                  width={ windowWidth }
                 />
               )} />
               <Route exact path='/entry/:id' render={({ match, history }) => (

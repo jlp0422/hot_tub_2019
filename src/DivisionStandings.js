@@ -8,22 +8,22 @@ const DivisionStandings = ({ division, teamCityName, width }) => {
   return (
     <div>
       <div className="grid division-grid">
-        <p className="division-font font-weight-bold">Place</p>
-        <p className="division-font font-weight-bold">Team</p>
-        <p className="division-font font-weight-bold">Wins</p>
-        <p className="division-font font-weight-bold">{ width < 371 ? 'GB' : 'Games Back'}</p>
+        <p className={`division-font font-weight-bold ${width < 371 && 'table-text'}`}>Place</p>
+        <p className={`division-font font-weight-bold ${width < 371 && 'table-text'}`}>Team</p>
+        <p className="division-font font-weight-bold table-text">Wins</p>
+        <p className="division-font font-weight-bold table-text">{ width < 371 ? 'GB' : 'Games Back'}</p>
       </div>
       {
         division.map(team => (
           <div key={team.teamAbbrev} className="grid division-grid">
-            <p className="division-font">{team.rank}</p>
-            <p className="division-font">
+            <p className={`division-font ${width < 371 && 'table-text'}`}>{team.rank}</p>
+            <p className={`division-font ${width < 371 && 'table-text'}`}>
               <Link className="link" to={`/teams/${team.teamAbbrev}`}>
                 {width < 371 ? team.teamAbbrev : teamCityName[team.teamAbbrev]}
               </Link>
             </p>
-            <p className="division-font">{team.wins}</p>
-            <p className="division-font">{team.gamesBack}</p>
+            <p className="division-font table-text">{team.wins}</p>
+            <p className="division-font table-text">{team.gamesBack}</p>
           </div>
         ))
       }
