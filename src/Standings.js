@@ -45,7 +45,7 @@ class Standings extends React.Component {
     this.setState(prevState => ({ isKeyOpen: !prevState.isKeyOpen }))
     ReactGA.event({
       category: 'Toggle key',
-      action: !prevState.isKeyOpen
+      action: this.state.isKeyOpen ? 'close' : 'open'
     })
   }
 
