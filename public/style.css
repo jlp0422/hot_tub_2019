@@ -4,9 +4,13 @@
   font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .container {
   max-width: 1200px;
-  margin: 20px auto 60px;
+  margin: 20px auto;
 }
 
 .nav-tabs .nav-link.active {
@@ -106,6 +110,10 @@
   font-size: 14px;
 }
 
+.key-text {
+  font-size: 14px;
+}
+
 @media screen and (max-width: 1200px) {
   .container {
     max-width: 98%;
@@ -165,6 +173,11 @@
     grid-template-columns: 10% 35% 15% 25%
   }
 
+  .grid-overall {
+    grid-template-columns: 5% 48% repeat(4, 10%);
+    grid-column-gap: 5px;
+  }
+
   .grid-compare-btns, .grid-sort-btns {
     grid-template-columns: auto;
     grid-template-rows: 2;
@@ -200,6 +213,15 @@
 }
 
 @media screen and (max-width: 320px) {
+
+  .tk {
+    font-size: 14px;
+  }
+
+  .grid-overall {
+    grid-template-columns: 5% 45% repeat(4, 10%);
+  }
+
   .division-grid {
     grid-template-columns: 20% 30% 25% 25%
   }
