@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga';
 
 const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width }) => {
-  // 575px
   ReactGA.event({
     category: 'change tab',
     action: 'Entry Teams Tab'

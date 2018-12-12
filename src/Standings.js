@@ -30,7 +30,7 @@ class Standings extends React.Component {
   }
 
   onChangeSortOrder(type) {
-    this.setState({ isNameSorted: !this.state.isNameSorted })
+    this.setState(prevState => ({ isNameSorted: !prevState.isNameSorted }))
     ReactGA.event({
       category: 'Change sort',
       action: type
@@ -38,11 +38,15 @@ class Standings extends React.Component {
   }
 
   onOpenCloseModal() {
-    this.setState({ isModalOpen: !this.state.isModalOpen })
+    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
   }
 
   onShowKey() {
-    this.setState(currentState => ({ isKeyOpen: !currentState.isKeyOpen }))
+    this.setState(prevState => ({ isKeyOpen: !prevState.isKeyOpen }))
+    ReactGA.event({
+      category: 'Toggle key',
+      action: !prevState.isKeyOpen
+    })
   }
 
   onSelectToCompare(teamID) {
