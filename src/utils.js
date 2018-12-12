@@ -63,7 +63,14 @@ export const entriesWithScore = (entries, teamWinMap, leaders) => {
     const { selections, teamName, id } = entry
     const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
     const divisonScore = selections.reduce((memoTwo, team) => memoTwo += divisionLeaderTeams.includes(team) ? 5 : 0, 0)
-    memoOne.push({ id, teamName, entryScore, totalTeams: selections.length, divisonScore })
+    memoOne.push({
+      id,
+      teamName,
+      entryScore,
+      totalTeams: selections.length,
+      divisonScore,
+      totalScore: entryScore + divisonScore
+    });
     return memoOne
   }, [])
 }

@@ -12,7 +12,7 @@ const ButtonGroup = ({
 }) => {
   return (
     <div className={`grid grid-${isSort ? 'sort' : 'compare'}-btns`}>
-      <h4>{buttonAction}</h4>
+      <h4 className="bg-action-text">{buttonAction}</h4>
       <button className={`btn btn-${isSort ? 'warning' : 'success'} button-font`} disabled={disabledLeft} onClick={sortLeft}>
         {copyLeft}
       </button>

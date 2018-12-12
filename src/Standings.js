@@ -4,7 +4,8 @@ import ReactGA from 'react-ga';
 import CompareModealHOC from './reusable/CompareModalHOC';
 import TableHeader from './reusable/TableHeader';
 import ButtonGroup from './reusable/ButtonGroup';
-import { makeSentenceCase, sortByScore, entriesWithScore } from './utils';
+import TableKey from './reusable/TableKey'
+import { makeSentenceCase, sortByScore, entriesWithScore, sortByName } from './utils';
 
 class Standings extends React.Component {
   constructor() {
@@ -12,12 +13,14 @@ class Standings extends React.Component {
     this.state = {
       isNameSorted: false,
       compareTeams: [],
-      isModalOpen: false
+      isModalOpen: false,
+      isKeyOpen: false
     }
     this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
     this.onSelectToCompare = this.onSelectToCompare.bind(this)
     this.onOpenCloseModal = this.onOpenCloseModal.bind(this)
     this.onClearCompare = this.onClearCompare.bind(this)
+    this.onShowKey = this.onShowKey.bind(this)
   }
 
   componentDidMount() {
@@ -27,7 +30,7 @@ class Standings extends React.Component {
   }
 
   onChangeSortOrder(type) {
-    this.setState({ isNameSorted: !this.state.isNameSorted })
+    this.setState(prevState => ({ isNameSorted: !prevState.isNameSorted }))
     ReactGA.event({
       category: 'Change sort',
       action: type
@@ -35,7 +38,15 @@ class Standings extends React.Component {
   }
 
   onOpenCloseModal() {
-    this.setState({ isModalOpen: !this.state.isModalOpen })
+    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
+  }
+
+  onShowKey() {
+    this.setState(prevState => ({ isKeyOpen: !prevState.isKeyOpen }))
+    ReactGA.event({
+      category: 'Toggle key',
+      action: this.state.isKeyOpen ? 'close' : 'open'
+    })
   }
 
   onSelectToCompare(teamID) {
@@ -58,10 +69,9 @@ class Standings extends React.Component {
 
   render() {
     const { entries, teamWinMap, teamCityName, divisionLeaders, width } = this.props;
-    const { isNameSorted, compareTeams, isModalOpen } = this.state
-    const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare } = this
+    const { isNameSorted, compareTeams, isModalOpen, isKeyOpen } = this.state
+    const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare, onShowKey } = this;
     const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders)
-    entriesAndScore.sort(sortByScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
@@ -85,7 +95,7 @@ class Standings extends React.Component {
           copyLeft={'Team Name'}
           disabledLeft={isNameSorted}
           sortLeft={() => onChangeSortOrder('team')}
-          copyRight={'Wins'}
+          copyRight={'Reg. Season Wins'}
           disabledRight={!isNameSorted}
           sortRight={() => onChangeSortOrder('score')}
         />
@@ -99,37 +109,21 @@ class Standings extends React.Component {
           disabledRight={!compareTeams.length}
           sortRight={onClearCompare}
         />
-        <TableHeader overallStandings />
-        { isNameSorted ? (
-            entries.map((entry, idx) => (
+        { width < 511 && <TableKey isKeyOpen={ isKeyOpen } toggleKey={ onShowKey } /> }
+        <TableHeader overallStandings width={ width } />
+          {
+            entriesAndScore.sort(isNameSorted ? sortByName : sortByScore).map((entry, idx) => (
               <Entry
                 key={entry.id}
                 makeSentenceCase={makeSentenceCase}
                 entry={entry}
-                teamWinMap={teamWinMap}
                 rank={idx}
                 page={'seasonStandings'}
                 select={onSelectToCompare}
-                compareTeams={ compareTeams }
+                compareTeams={compareTeams}
               />
             ))
-          ) : (
-            entriesAndScore.map((entry, idx) => (
-              <Entry
-                key={entry.teamName}
-                makeSentenceCase={makeSentenceCase}
-                entry={entry}
-                teamWinMap={teamWinMap}
-                scoreSorted={true}
-                rank={idx}
-                page={'seasonStandings'}
-                select={onSelectToCompare}
-                compareTeams={ compareTeams }
-                divisionLeaders={ divisionLeaders}
-              />
-            ))
-          )
-        }
+          }
       </div>
     )
   }
