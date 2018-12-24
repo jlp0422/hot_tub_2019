@@ -5,7 +5,7 @@ import EntryTeamsTab from './EntryTeamsTab';
 import { makeSentenceCase } from './utils';
 
 const TeamEntry = ({ id, entries, teamWinMap, teamCityName, history, divisionLeaders, width }) => {
-  ReactGA.pageview('/entry/id');
+  ReactGA.pageview(`/entry/${id}`);
   let tab = history.location.hash.slice(1)
   const entry = entries.find(entry => entry.id === id * 1)
   const totalScore = entry.selections.reduce((memo, team) => memo += teamWinMap[team], 0)
