@@ -11,18 +11,18 @@ const TableHeader = ({ overallStandings, width }) => {
       </h4>
       {overallStandings && <React.Fragment>
           <h4 data-tip data-for="division" className="tk table-text font-weight-bold">
-            {width > 510 ? "Division*" : "D"}
+            {width > 510 ? "Division" : "D"}
           </h4>
           <h4 data-tip data-for="playoff" className="tk table-text font-weight-bold">
-            {width > 510 ? "Playoff*" : "P"}
+            {width > 510 ? "Playoff" : "P"}
           </h4>
           <h4 data-tip data-for="total" className="tk table-text font-weight-bold">
-            {width > 510 ? "Total*" : "T"}
+            {width > 510 ? "Total" : "T"}
           </h4>
         </React.Fragment>}
       {width > 510 && <React.Fragment>
           <ReactTooltip effect="solid" id="division">
-            <span>Projected points from Division winners</span>
+            <span>Division Winner Points (5pts per winner)</span>
           </ReactTooltip>
           <ReactTooltip effect="solid" id="playoff">
             <span>Playoff Points (3pts per win)</span>

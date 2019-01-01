@@ -40,7 +40,7 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
                 const wideText = (
                   <React.Fragment>
                     {teamCityName[selection]}{fourSpaces}{teamWins}{fourSpaces}
-                    {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
+                    {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Winner&nbsp;</span>}
                   </React.Fragment>
                 )
                 return (

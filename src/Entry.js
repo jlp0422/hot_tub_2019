@@ -25,7 +25,7 @@ const Entry = ({
       { isSeason && (
         <React.Fragment>
           <h4 className="tk table-text">{entry.divisonScore}</h4>
-          <h4 className="tk table-text">0</h4>
+          <h4 className="tk table-text">{entry.playoffScore}</h4>
           <h4 className="tk table-text">{entry.totalScore}</h4>
         </React.Fragment>
       )}

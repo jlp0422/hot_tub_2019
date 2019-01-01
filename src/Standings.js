@@ -68,10 +68,11 @@ class Standings extends React.Component {
   }
 
   render() {
-    const { entries, teamWinMap, teamCityName, divisionLeaders, width } = this.props;
+    const { entries, teamWinMap, playoffWinMap, teamCityName, divisionLeaders, width } = this.props;
     const { isNameSorted, compareTeams, isModalOpen, isKeyOpen } = this.state
     const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare, onShowKey } = this;
-    const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders)
+    const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders, playoffWinMap)
+    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
@@ -95,7 +96,7 @@ class Standings extends React.Component {
           copyLeft={'Team Name'}
           disabledLeft={isNameSorted}
           sortLeft={() => onChangeSortOrder('team')}
-          copyRight={'Reg. Season Wins'}
+          copyRight={'Total Score'}
           disabledRight={!isNameSorted}
           sortRight={() => onChangeSortOrder('score')}
         />

@@ -9,6 +9,12 @@ export const sortDivision = (a, b) => {
 }
 
 export const sortByScore = (a, b) => {
+  if (a.totalScore > b.totalScore) return -1;
+  if (a.totalScore < b.totalScore) return 1;
+  if (a.totalScore === b.totalScore) return sortByName(a, b)
+}
+
+export const sortByWeekScore = (a, b) => {
   if (a.entryScore > b.entryScore) return -1;
   if (a.entryScore < b.entryScore) return 1;
   if (a.entryScore === b.entryScore) return sortByName(a, b)
@@ -57,22 +63,42 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
   }, {})
 }
 
-export const entriesWithScore = (entries, teamWinMap, leaders) => {
+export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
+  console.log('playoff', playoffMap)
   const divisionLeaderTeams = leaders.reduce((memo, team) => memo.concat(team.teamAbbrev), [])
   return entries.reduce((memoOne, entry) => {
     const { selections, teamName, id } = entry
     const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
     const divisonScore = selections.reduce((memoTwo, team) => memoTwo += divisionLeaderTeams.includes(team) ? 5 : 0, 0)
+    const playoffScore = selections.reduce((memoTwo, team) => memoTwo += playoffMap[team] ? 3 : 0, 0)
     memoOne.push({
       id,
       teamName,
       entryScore,
       totalTeams: selections.length,
       divisonScore,
-      totalScore: entryScore + divisonScore
+      playoffScore,
+      totalScore: entryScore + divisonScore + playoffScore
     });
     return memoOne
   }, [])
+}
+
+export const parsePlayoffGames = (playoffGames) => {
+  const { games } = playoffGames
+  console.log(games)
+  return games.reduce((memo, game) => {
+    let winner;
+    if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
+      winner = game.schedule.awayTeam.abbreviation
+    }
+    else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
+      winner = game.schedule.homeTeam.abbreviation
+    }
+    if (!memo[winner]) memo[winner] = 0
+    memo[winner]++
+    return memo
+  }, { KC: 1, LA: 1, NE: 1, NO: 1 })
 }
 
 export const weeks = [
@@ -93,6 +119,10 @@ export const weeks = [
   { number: 15, text: 'Week 15', firstGame: new Date('2018/12/14 08:00:00') },
   { number: 16, text: 'Week 16', firstGame: new Date('2018/12/21 08:00:00') },
   { number: 17, text: 'Week 17', firstGame: new Date('2018/12/28 08:00:00') },
+  { number: 18, text: 'Wild Card Round', firstGame: new Date('2018/01/05 08:00:00') },
+  { number: 19, text: 'Divisional Round', firstGame: new Date('2019/01/12 08:00:00') },
+  { number: 20, text: 'Conference Championship', firstGame: new Date('2019/01/20 08:00:00') },
+  { number: 21, text: 'Super Bowl', firstGame: new Date('2019/02/03 08:00:00') },
 ]
 
 export const teamColors = {

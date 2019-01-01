@@ -18,7 +18,7 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
     <ReactModal isOpen={showModal} shouldCloseOnEsc={true} shouldCloseOnOverlayClick={true} onRequestClose={closeModal}>
       <h2>Comparing {numberOfTeams} Teams</h2>
       {width < 449 &&
-        <h6><span className='badge badge-warning badge-pill'>&nbsp;DL&nbsp;</span> indicates Division Leader</h6>
+        <h6><span className='badge badge-warning badge-pill'>&nbsp;DW&nbsp;</span> indicates Division Winner</h6>
       }
       <div>
       {
@@ -44,7 +44,7 @@ const CompareModalWeb = ({ showModal, closeModal, compareTeams, entries, teamCit
                   const wideText = (
                     <React.Fragment>
                       {teamCityName[selection]}{twoSpaces}{teamWins}{twoSpaces}
-                      {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Leader&nbsp;</span>}
+                      {isDivisionLeader && <span className='badge badge-warning badge-pill'>&nbsp;Division Winner&nbsp;</span>}
                     </React.Fragment>
                   )
                   return (

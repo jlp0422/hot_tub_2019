@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, HashRouter as Router, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import windowSize from 'react-window-size';
 import Nav from './Nav';
 import Loading from './reusable/Loading';
 import Standings from './Standings';
@@ -10,7 +11,7 @@ import NFLStandings from './NFLStandings';
 import WeeklyStandings from './WeeklyStandings';
 import FourOhFour from './reusable/FourOhFour';
 import ChartsMain from './charts/ChartsMain';
-import windowSize from "react-window-size";
+import { parsePlayoffGames } from './utils';
 
 class App extends React.Component {
   constructor() {
@@ -19,7 +20,8 @@ class App extends React.Component {
       entries: [],
       teamWinMap: {},
       teamCityName: {},
-      teamStandings: {}
+      teamStandings: {},
+      playoffWinMap: {}
     }
   }
 
@@ -27,18 +29,22 @@ class App extends React.Component {
     axios.get('/api/entries')
       .then(res => res.data)
       .then(entries => this.setState({ entries }))
-    axios.get('/api/standings')
+    axios
+      .get("/api/standings")
       .then(res => res.data)
-      .then(fullStats => fullStats.teams)
-      .then(teamsAndStats => {
+      .then(({ regularSeason, playoffs }) => ({
+        teamsAndStats: regularSeason.teams,
+        playoffGames: playoffs
+      }))
+      .then(({ teamsAndStats, playoffGames }) => {
         const teamCityName = teamsAndStats.reduce((memo, team) => {
-          memo[team.team.abbreviation] = `${team.team.city} ${team.team.name}`
-          return memo
-        }, {})
+          memo[team.team.abbreviation] = `${team.team.city} ${team.team.name}`;
+          return memo;
+        }, {});
         const teamWinMap = teamsAndStats.reduce((memo, team) => {
-          memo[team.team.abbreviation] = team.stats.standings.wins
-          return memo
-        }, {})
+          memo[team.team.abbreviation] = team.stats.standings.wins;
+          return memo;
+        }, {});
         const teamStandings = teamsAndStats.reduce((memo, team) => {
           if (memo[team.divisionRank.divisionName]) {
             memo[team.divisionRank.divisionName].push({
@@ -46,25 +52,27 @@ class App extends React.Component {
               gamesBack: team.divisionRank.gamesBack,
               wins: team.stats.standings.wins,
               rank: team.divisionRank.rank
-            })
+            });
+          } else {
+            memo[team.divisionRank.divisionName] = [{ teamAbbrev: team.team.abbreviation, gamesBack: team.divisionRank.gamesBack, wins: team.stats.standings.wins, rank: team.divisionRank.rank }];
           }
-          else {
-            memo[team.divisionRank.divisionName] = [{
-              teamAbbrev: team.team.abbreviation,
-              gamesBack: team.divisionRank.gamesBack,
-              wins: team.stats.standings.wins,
-              rank: team.divisionRank.rank
-            }]
-          }
-          return memo
-        }, {})
-        return { teamCityName, teamWinMap, teamStandings }
+          return memo;
+        }, {});
+        const playoffWinMap = parsePlayoffGames(playoffGames);
+        return { teamCityName, teamWinMap, teamStandings, playoffWinMap };
       })
-      .then(({ teamWinMap, teamCityName, teamStandings }) => this.setState({ teamWinMap, teamCityName, teamStandings }))
+      .then(({ teamWinMap, teamCityName, teamStandings, playoffWinMap }) =>
+        this.setState({
+          teamWinMap,
+          teamCityName,
+          teamStandings,
+          playoffWinMap
+        })
+      );
   }
 
   render() {
-    const { entries, teamWinMap, teamCityName, teamStandings } = this.state
+    const { entries, teamWinMap, teamCityName, teamStandings, playoffWinMap } = this.state;
     const divisionLeaders = []
     const { windowWidth } = this.props
     for (let key in teamStandings) {
@@ -83,9 +91,10 @@ class App extends React.Component {
                 <Standings
                   entries={entries}
                   teamWinMap={teamWinMap}
+                  playoffWinMap={playoffWinMap}
                   teamCityName={teamCityName}
                   divisionLeaders={divisionLeaders}
-                  width={ windowWidth }
+                  width={windowWidth}
                 />
               )} />
               <Route exact path='/standings/nfl' render={() => (

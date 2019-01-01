@@ -5,7 +5,7 @@ import Entry from './Entry';
 import Loading from './reusable/Loading';
 import TableHeader from './reusable/TableHeader';
 import ButtonGroup from './reusable/ButtonGroup';
-import { makeSentenceCase, sortByScore, sortByName, weeks } from './utils';
+import { makeSentenceCase, sortByWeekScore, sortByName, weeks } from './utils';
 
 class WeeklyStandings extends React.Component {
   constructor(props) {
@@ -126,7 +126,7 @@ class WeeklyStandings extends React.Component {
                     />
                   ))
                 ) : (
-                  weeklyWins[activeWeek].sort(sortByScore).map((entry, idx) => (
+                  weeklyWins[activeWeek].sort(sortByWeekScore).map((entry, idx) => (
                     <Entry
                       key={entry.teamName}
                       makeSentenceCase={makeSentenceCase}

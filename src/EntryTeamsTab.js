@@ -24,7 +24,7 @@ const EntryTeamsTab = ({ entry, teamCityName, teamWinMap, divisionLeaders, width
                   {`${teamWinMap[team]} ${teamWinMap[team] === 1 ? 'win' : 'wins'}`}
                 </span>
                 {fourSpaces}
-                {isDivisionLeader && <span className='badge badge-warning badge-pill team-badge'>&nbsp;{ width < 450 ? 'Div. Ldr' : 'Division Leader' }&nbsp;</span>}
+                {isDivisionLeader && <span className='badge badge-warning badge-pill team-badge'>&nbsp;{ width < 450 ? 'DW' : 'Division Winner' }&nbsp;</span>}
               </h6>
             </li>
           )
