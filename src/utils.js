@@ -64,7 +64,6 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 }
 
 export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
-  console.log('playoff', playoffMap)
   const divisionLeaderTeams = leaders.reduce((memo, team) => memo.concat(team.teamAbbrev), [])
   return entries.reduce((memoOne, entry) => {
     const { selections, teamName, id } = entry
@@ -86,7 +85,6 @@ export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
 
 export const parsePlayoffGames = (playoffGames) => {
   const { games } = playoffGames
-  console.log(games)
   return games.reduce((memo, game) => {
     let winner;
     if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
@@ -119,7 +117,7 @@ export const weeks = [
   { number: 15, text: 'Week 15', firstGame: new Date('2018/12/14 08:00:00') },
   { number: 16, text: 'Week 16', firstGame: new Date('2018/12/21 08:00:00') },
   { number: 17, text: 'Week 17', firstGame: new Date('2018/12/28 08:00:00') },
-  { number: 18, text: 'Wild Card Round', firstGame: new Date('2018/01/05 08:00:00') },
+  { number: 18, text: 'Wild Card Round', firstGame: new Date('2019/01/05 08:00:00') },
   { number: 19, text: 'Divisional Round', firstGame: new Date('2019/01/12 08:00:00') },
   { number: 20, text: 'Conference Championship', firstGame: new Date('2019/01/20 08:00:00') },
   { number: 21, text: 'Super Bowl', firstGame: new Date('2019/02/03 08:00:00') },

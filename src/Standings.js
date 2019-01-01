@@ -72,7 +72,6 @@ class Standings extends React.Component {
     const { isNameSorted, compareTeams, isModalOpen, isKeyOpen } = this.state
     const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare, onShowKey } = this;
     const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders, playoffWinMap)
-    console.log(entriesAndScore)
     if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
     return (
       <div>
