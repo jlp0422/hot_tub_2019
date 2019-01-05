@@ -63,13 +63,32 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
   }, {})
 }
 
+export const parsePlayoffGames = playoffGames => {
+  const { games } = playoffGames;
+  return games.reduce(
+    (memo, game) => {
+      let winner;
+      if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
+        winner = game.schedule.awayTeam.abbreviation;
+      }
+      else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
+        winner = game.schedule.homeTeam.abbreviation;
+      }
+      if (!memo[winner]) memo[winner] = 0;
+      memo[winner] += 3;
+      return memo;
+    },
+    { KC: 3, LA: 3, NE: 3, NO: 3 }
+  );
+};
+
 export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
   const divisionLeaderTeams = leaders.reduce((memo, team) => memo.concat(team.teamAbbrev), [])
   return entries.reduce((memoOne, entry) => {
     const { selections, teamName, id } = entry
     const entryScore = selections.reduce((memoTwo, team) => memoTwo += teamWinMap[team], 0)
     const divisonScore = selections.reduce((memoTwo, team) => memoTwo += divisionLeaderTeams.includes(team) ? 5 : 0, 0)
-    const playoffScore = selections.reduce((memoTwo, team) => memoTwo += playoffMap[team] ? 3 : 0, 0)
+    const playoffScore = selections.reduce((memoTwo, team) => memoTwo += playoffMap[team] ? playoffMap[team] : 0, 0)
     memoOne.push({
       id,
       teamName,
@@ -81,22 +100,6 @@ export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
     });
     return memoOne
   }, [])
-}
-
-export const parsePlayoffGames = (playoffGames) => {
-  const { games } = playoffGames
-  return games.reduce((memo, game) => {
-    let winner;
-    if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
-      winner = game.schedule.awayTeam.abbreviation
-    }
-    else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
-      winner = game.schedule.homeTeam.abbreviation
-    }
-    if (!memo[winner]) memo[winner] = 0
-    memo[winner]++
-    return memo
-  }, { KC: 1, LA: 1, NE: 1, NO: 1 })
 }
 
 export const weeks = [
