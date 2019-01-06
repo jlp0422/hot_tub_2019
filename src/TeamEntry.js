@@ -9,8 +9,6 @@ const TeamEntry = ({ id, entries, entry, teamWinMap, teamCityName, history, divi
   let tab = history.location.hash.slice(1)
   const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders, playoffWinMap)
   const entryWithScore = entriesAndScore.find(e => e.id === id * 1)
-  console.log(entry)
-  console.log(entryWithScore)
   if (!tab) tab = 'teams'
   if (!entry.id) return null;
   return (
