@@ -73,8 +73,8 @@ class App extends React.Component {
 
   render() {
     const { entries, teamWinMap, teamCityName, teamStandings, playoffWinMap } = this.state;
-    const divisionLeaders = []
     const { windowWidth } = this.props
+    const divisionLeaders = []
     for (let key in teamStandings) {
       divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
     }
@@ -117,9 +117,11 @@ class App extends React.Component {
                   entries={entries}
                   teamWinMap={teamWinMap}
                   teamCityName={teamCityName}
-                  history={ history }
+                  history={history}
                   divisionLeaders={divisionLeaders}
+                  playoffWinMap={playoffWinMap}
                   width={ windowWidth }
+                  entry={entries.find(entry => entry.id === match.params.id * 1)}
                 />
               )} />
               <Route exact path='/teams/:abbrev' render={({ match }) => (
