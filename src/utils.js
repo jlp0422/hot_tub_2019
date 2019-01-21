@@ -78,7 +78,7 @@ export const parsePlayoffGames = playoffGames => {
       memo[winner] += 3;
       return memo;
     },
-    { KC: 3, LA: 3, NE: 3, NO: 3 }
+    { KC: 3, LA: 8, NE: 8, NO: 3 }
   );
 };
 
