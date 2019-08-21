@@ -1,7 +1,7 @@
 {
   "name": "hot-tub",
   "version": "1.0.0",
-  "description": "",
+  "description": "### [Hot Tub 2018](https://hot-tub-2018.herokuapp.com/#/standings/hot-tub)",
   "main": "hottub.js",
   "dependencies": {
     "axios": "^0.18.0",
@@ -42,5 +42,14 @@
     "node": "8.14.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlp0422/hot_tub_2018.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jlp0422/hot_tub_2018/issues"
+  },
+  "homepage": "https://github.com/jlp0422/hot_tub_2018#readme"
 }
