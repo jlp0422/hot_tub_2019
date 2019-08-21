@@ -1,131 +1,156 @@
-import React from 'react';
-import Entry from './Entry';
-import ReactGA from 'react-ga';
-import CompareModealHOC from './reusable/CompareModalHOC';
-import TableHeader from './reusable/TableHeader';
-import ButtonGroup from './reusable/ButtonGroup';
-import TableKey from './reusable/TableKey'
-import { makeSentenceCase, sortByScore, entriesWithScore, sortByName } from './utils';
+import React from "react";
+import Entry from "./Entry";
+import ReactGA from "react-ga";
+import CompareModealHOC from "./reusable/CompareModalHOC";
+import TableHeader from "./reusable/TableHeader";
+import ButtonGroup from "./reusable/ButtonGroup";
+import TableKey from "./reusable/TableKey";
+import {
+  makeSentenceCase,
+  sortByScore,
+  entriesWithScore,
+  sortByName
+} from "./utils";
 
 class Standings extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       isNameSorted: false,
       compareTeams: [],
       isModalOpen: false,
       isKeyOpen: false
-    }
-    this.onChangeSortOrder = this.onChangeSortOrder.bind(this)
-    this.onSelectToCompare = this.onSelectToCompare.bind(this)
-    this.onOpenCloseModal = this.onOpenCloseModal.bind(this)
-    this.onClearCompare = this.onClearCompare.bind(this)
-    this.onShowKey = this.onShowKey.bind(this)
+    };
+    this.onChangeSortOrder = this.onChangeSortOrder.bind(this);
+    this.onSelectToCompare = this.onSelectToCompare.bind(this);
+    this.onOpenCloseModal = this.onOpenCloseModal.bind(this);
+    this.onClearCompare = this.onClearCompare.bind(this);
+    this.onShowKey = this.onShowKey.bind(this);
   }
 
   componentDidMount() {
-    ReactGA.pageview('/standings/hot-tub');
-    const { entries, teamWinMap } = this.props
-    this.setState({ entries, teamWinMap })
+    ReactGA.pageview("/standings/hot-tub");
+    const { entries, teamWinMap } = this.props;
+    this.setState({ entries, teamWinMap });
   }
 
   onChangeSortOrder(type) {
-    this.setState(prevState => ({ isNameSorted: !prevState.isNameSorted }))
+    this.setState(prevState => ({ isNameSorted: !prevState.isNameSorted }));
     ReactGA.event({
-      category: 'Change sort',
+      category: "Change sort",
       action: type
-    })
+    });
   }
 
   onOpenCloseModal() {
-    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
+    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }));
   }
 
   onShowKey() {
-    this.setState(prevState => ({ isKeyOpen: !prevState.isKeyOpen }))
+    this.setState(prevState => ({ isKeyOpen: !prevState.isKeyOpen }));
     ReactGA.event({
-      category: 'Toggle key',
-      action: this.state.isKeyOpen ? 'close' : 'open'
-    })
+      category: "Toggle key",
+      action: this.state.isKeyOpen ? "close" : "open"
+    });
   }
 
   onSelectToCompare(teamID) {
-    const { compareTeams } = this.state
-    const index = compareTeams.indexOf(teamID)
+    const { compareTeams } = this.state;
+    const index = compareTeams.indexOf(teamID);
     let newTeams;
     if (index > -1) {
-      const first = compareTeams.slice(0, index)
-      newTeams = first.concat(compareTeams.slice(index + 1))
+      const first = compareTeams.slice(0, index);
+      newTeams = first.concat(compareTeams.slice(index + 1));
+    } else {
+      newTeams = compareTeams.concat(teamID);
     }
-    else {
-      newTeams = compareTeams.concat(teamID)
-    }
-    this.setState({ compareTeams: newTeams })
+    this.setState({ compareTeams: newTeams });
   }
 
   onClearCompare() {
-    this.setState({ compareTeams: [] })
+    this.setState({ compareTeams: [] });
   }
 
   render() {
-    const { entries, teamWinMap, playoffWinMap, teamCityName, divisionLeaders, width } = this.props;
-    const { isNameSorted, compareTeams, isModalOpen, isKeyOpen } = this.state
-    const { onChangeSortOrder, onSelectToCompare, onOpenCloseModal, onClearCompare, onShowKey } = this;
-    const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders, playoffWinMap)
-    if (!entries.length || !Object.keys(teamWinMap).length) return <h2>Loading...</h2>;
+    const {
+      entries,
+      teamWinMap,
+      playoffWinMap,
+      teamCityName,
+      divisionLeaders,
+      width
+    } = this.props;
+    const { isNameSorted, compareTeams, isModalOpen, isKeyOpen } = this.state;
+    const {
+      onChangeSortOrder,
+      onSelectToCompare,
+      onOpenCloseModal,
+      onClearCompare,
+      onShowKey
+    } = this;
+    const entriesAndScore = entriesWithScore(
+      entries,
+      teamWinMap,
+      divisionLeaders,
+      playoffWinMap
+    );
+    if (!entries.length || !Object.keys(teamWinMap).length)
+      return <h2>Loading...</h2>;
     return (
       <div>
-      { isModalOpen &&
+        {isModalOpen && (
           <CompareModealHOC
             showModal={isModalOpen}
             closeModal={onOpenCloseModal}
-            compareTeams={ compareTeams }
-            entries={ entries }
-            teamCityName={ teamCityName }
-            teamWinMap={ teamWinMap }
-            entriesAndScore={ entriesAndScore}
-            width={ width }
-            divisionLeaders={ divisionLeaders }
+            compareTeams={compareTeams}
+            entries={entries}
+            teamCityName={teamCityName}
+            teamWinMap={teamWinMap}
+            entriesAndScore={entriesAndScore}
+            width={width}
+            divisionLeaders={divisionLeaders}
           />
-      }
+        )}
         <h2>Hot Tub Standings</h2>
         <ButtonGroup
-          buttonAction={'Sort by'}
+          buttonAction={"Sort by"}
           isSort={true}
-          copyLeft={'Team Name'}
+          copyLeft={"Team Name"}
           disabledLeft={isNameSorted}
-          sortLeft={() => onChangeSortOrder('team')}
-          copyRight={'Total Score'}
+          sortLeft={() => onChangeSortOrder("team")}
+          copyRight={"Total Score"}
           disabledRight={!isNameSorted}
-          sortRight={() => onChangeSortOrder('score')}
+          sortRight={() => onChangeSortOrder("score")}
         />
         <ButtonGroup
-          buttonAction={'Compare Teams'}
+          buttonAction={"Compare Teams"}
           isSort={false}
-          copyLeft={'Compare (Max 3)'}
+          copyLeft={"Compare (Max 3)"}
           disabledLeft={compareTeams.length < 2 || compareTeams.length > 3}
           sortLeft={onOpenCloseModal}
-          copyRight={'Clear'}
+          copyRight={"Clear"}
           disabledRight={!compareTeams.length}
           sortRight={onClearCompare}
         />
-        { width < 511 && <TableKey isKeyOpen={ isKeyOpen } toggleKey={ onShowKey } /> }
-        <TableHeader overallStandings width={ width } />
-          {
-            entriesAndScore.sort(isNameSorted ? sortByName : sortByScore).map((entry, idx) => (
-              <Entry
-                key={entry.id}
-                makeSentenceCase={makeSentenceCase}
-                entry={entry}
-                rank={idx}
-                page={'seasonStandings'}
-                select={onSelectToCompare}
-                compareTeams={compareTeams}
-              />
-            ))
-          }
+        {width < 511 && (
+          <TableKey isKeyOpen={isKeyOpen} toggleKey={onShowKey} />
+        )}
+        <TableHeader overallStandings width={width} />
+        {entriesAndScore
+          .sort(isNameSorted ? sortByName : sortByScore)
+          .map((entry, idx) => (
+            <Entry
+              key={entry.id}
+              makeSentenceCase={makeSentenceCase}
+              entry={entry}
+              rank={idx}
+              page={"seasonStandings"}
+              select={onSelectToCompare}
+              compareTeams={compareTeams}
+            />
+          ))}
       </div>
-    )
+    );
   }
 }
 

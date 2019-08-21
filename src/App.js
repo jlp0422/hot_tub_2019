@@ -1,34 +1,40 @@
-import React from 'react';
-import { Switch, HashRouter as Router, Route, Redirect } from 'react-router-dom';
-import axios from 'axios';
-import windowSize from 'react-window-size';
-import Nav from './Nav';
-import Loading from './reusable/Loading';
-import Standings from './Standings';
-import TeamEntry from './TeamEntry';
-import Team from './Team';
-import NFLStandings from './NFLStandings';
-import WeeklyStandings from './WeeklyStandings';
-import FourOhFour from './reusable/FourOhFour';
-import ChartsMain from './charts/ChartsMain';
-import { parsePlayoffGames } from './utils';
+import React from "react";
+import {
+  Switch,
+  HashRouter as Router,
+  Route,
+  Redirect
+} from "react-router-dom";
+import axios from "axios";
+import windowSize from "react-window-size";
+import Nav from "./Nav";
+import Loading from "./reusable/Loading";
+import Standings from "./Standings";
+import TeamEntry from "./TeamEntry";
+import Team from "./Team";
+import NFLStandings from "./NFLStandings";
+import WeeklyStandings from "./WeeklyStandings";
+import FourOhFour from "./reusable/FourOhFour";
+import ChartsMain from "./charts/ChartsMain";
+import { parsePlayoffGames } from "./utils";
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       entries: [],
       teamWinMap: {},
       teamCityName: {},
       teamStandings: {},
       playoffWinMap: {}
-    }
+    };
   }
 
   componentDidMount() {
-    axios.get('/api/entries')
+    axios
+      .get("/api/entries")
       .then(res => res.data)
-      .then(entries => this.setState({ entries }))
+      .then(entries => this.setState({ entries }));
     axios
       .get("/api/standings")
       .then(res => res.data)
@@ -54,7 +60,14 @@ class App extends React.Component {
               rank: team.divisionRank.rank
             });
           } else {
-            memo[team.divisionRank.divisionName] = [{ teamAbbrev: team.team.abbreviation, gamesBack: team.divisionRank.gamesBack, wins: team.stats.standings.wins, rank: team.divisionRank.rank }];
+            memo[team.divisionRank.divisionName] = [
+              {
+                teamAbbrev: team.team.abbreviation,
+                gamesBack: team.divisionRank.gamesBack,
+                wins: team.stats.standings.wins,
+                rank: team.divisionRank.rank
+              }
+            ];
           }
           return memo;
         }, {});
@@ -72,79 +85,115 @@ class App extends React.Component {
   }
 
   render() {
-    const { entries, teamWinMap, teamCityName, teamStandings, playoffWinMap } = this.state;
-    const { windowWidth } = this.props
-    const divisionLeaders = []
+    const {
+      entries,
+      teamWinMap,
+      teamCityName,
+      teamStandings,
+      playoffWinMap
+    } = this.state;
+    const { windowWidth } = this.props;
+    const divisionLeaders = [];
     for (let key in teamStandings) {
-      divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
+      divisionLeaders.push(teamStandings[key].find(team => team.rank === 1));
     }
-    if (!entries.length || !Object.keys(teamWinMap).length) return <Loading home={true}/>
+    if (!entries.length || !Object.keys(teamWinMap).length)
+      return <Loading home={true} />;
     return (
       <div className="container">
-        <h1>Hot Tub 2018</h1>
+        <h1>Hot Tub 2019</h1>
         <Router>
           <div>
-            <Route path='/' component={Nav} />
+            <Route path="/" component={Nav} />
             <Switch>
-              <Route exact path='/' render={() => <Redirect to='/standings/hot-tub' />} />
-              <Route exact path='/standings/hot-tub' render={() => (
-                <Standings
-                  entries={entries}
-                  teamWinMap={teamWinMap}
-                  playoffWinMap={playoffWinMap}
-                  teamCityName={teamCityName}
-                  divisionLeaders={divisionLeaders}
-                  width={windowWidth}
-                />
-              )} />
-              <Route exact path='/standings/nfl' render={() => (
-                <NFLStandings
-                  teamCityName={teamCityName}
-                  standings={teamStandings}
-                  width={ windowWidth }
-                />
-              )} />
-              <Route exact path='/standings/weekly' render={({ history }) => (
-                <WeeklyStandings
-                  history={history}
-                  entries={entries}
-                  width={ windowWidth }
-                />
-              )} />
-              <Route exact path='/entry/:id' render={({ match, history }) => (
-                <TeamEntry
-                  id={match.params.id}
-                  entries={entries}
-                  teamWinMap={teamWinMap}
-                  teamCityName={teamCityName}
-                  history={history}
-                  divisionLeaders={divisionLeaders}
-                  playoffWinMap={playoffWinMap}
-                  width={ windowWidth }
-                  entry={entries.find(entry => entry.id === match.params.id * 1)}
-                />
-              )} />
-              <Route exact path='/teams/:abbrev' render={({ match }) => (
-                <Team
-                  abbrev={match.params.abbrev}
-                  entries={entries}
-                  teamCityName={teamCityName}
-                  teamWinMap={teamWinMap}
-                />
-              )} />
-              <Route path='/charts' render={() => (
-                <ChartsMain
-                  entries={ entries }
-                  teamWinMap={ teamWinMap }
-                  divisionLeaders={ divisionLeaders }
-                />
-              )} />
+              <Route
+                exact
+                path="/"
+                render={() => <Redirect to="/standings/hot-tub" />}
+              />
+              <Route
+                exact
+                path="/standings/hot-tub"
+                render={() => (
+                  <Standings
+                    entries={entries}
+                    teamWinMap={teamWinMap}
+                    playoffWinMap={playoffWinMap}
+                    teamCityName={teamCityName}
+                    divisionLeaders={divisionLeaders}
+                    width={windowWidth}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/standings/nfl"
+                render={() => (
+                  <NFLStandings
+                    teamCityName={teamCityName}
+                    standings={teamStandings}
+                    width={windowWidth}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/standings/weekly"
+                render={({ history }) => (
+                  <WeeklyStandings
+                    history={history}
+                    entries={entries}
+                    width={windowWidth}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/entry/:id"
+                render={({ match, history }) => (
+                  <TeamEntry
+                    id={match.params.id}
+                    entries={entries}
+                    teamWinMap={teamWinMap}
+                    teamCityName={teamCityName}
+                    history={history}
+                    divisionLeaders={divisionLeaders}
+                    playoffWinMap={playoffWinMap}
+                    width={windowWidth}
+                    entry={entries.find(
+                      entry => entry.id === match.params.id * 1
+                    )}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/teams/:abbrev"
+                render={({ match }) => (
+                  <Team
+                    abbrev={match.params.abbrev}
+                    entries={entries}
+                    teamCityName={teamCityName}
+                    teamWinMap={teamWinMap}
+                  />
+                )}
+              />
+              <Route
+                path="/charts"
+                render={() => (
+                  <ChartsMain
+                    entries={entries}
+                    teamWinMap={teamWinMap}
+                    divisionLeaders={divisionLeaders}
+                  />
+                )}
+              />
               <Route component={FourOhFour} />
             </Switch>
           </div>
         </Router>
       </div>
-    )
+    );
   }
 }
 

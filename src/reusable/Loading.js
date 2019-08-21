@@ -5,7 +5,7 @@ const Loading = ({ home }) => {
     home ?
       (
         <div className="container container-margin">
-          <h1>Hot Tub 2018</h1>
+          <h1>Hot Tub 2019</h1>
           <h2>Loading...</h2>
         </div>
       ) : (
