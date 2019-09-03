@@ -3,37 +3,37 @@ export const makeSentenceCase = str => {
     .toLowerCase()
     .split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
+    .join(" ")
+}
 
 export const sortDivision = (a, b) => {
-  if (a.rank < b.rank) return -1;
-  if (a.rank > b.rank) return 1;
-  return 0;
-};
+  if (a.rank < b.rank) {return -1}
+  if (a.rank > b.rank) {return 1}
+  return 0
+}
 
 export const sortByScore = (a, b) => {
-  if (a.totalScore > b.totalScore) return -1;
-  if (a.totalScore < b.totalScore) return 1;
-  if (a.totalScore === b.totalScore) return sortByName(a, b);
-};
+  if (a.totalScore > b.totalScore) {return -1}
+  if (a.totalScore < b.totalScore) {return 1}
+  if (a.totalScore === b.totalScore) {return sortByName(a, b)}
+}
 
 export const sortByWeekScore = (a, b) => {
-  if (a.entryScore > b.entryScore) return -1;
-  if (a.entryScore < b.entryScore) return 1;
-  if (a.entryScore === b.entryScore) return sortByName(a, b);
-};
+  if (a.entryScore > b.entryScore) {return -1}
+  if (a.entryScore < b.entryScore) {return 1}
+  if (a.entryScore === b.entryScore) {return sortByName(a, b)}
+}
 
 export const sortByName = (a, b) => {
-  if (a.teamName < b.teamName) return -1;
-  if (a.teamName > b.teamName) return 1;
-  return 0;
-};
+  if (a.teamName < b.teamName) {return -1}
+  if (a.teamName > b.teamName) {return 1}
+  return 0
+}
 
 export const allGamesToWeeksObject = gamesArray => {
   return gamesArray.reduce((memo, game) => {
     if (!memo[game.schedule.week])
-      memo[game.schedule.week] = [
+      {memo[game.schedule.week] = [
         {
           week: game.schedule.week,
           awayTeam: game.schedule.awayTeam.abbreviation,
@@ -41,74 +41,74 @@ export const allGamesToWeeksObject = gamesArray => {
           awayScore: game.score.awayScoreTotal,
           homeScore: game.score.homeScoreTotal
         }
-      ];
+      ]}
     else
-      memo[game.schedule.week].push({
+      {memo[game.schedule.week].push({
         week: game.schedule.week,
         awayTeam: game.schedule.awayTeam.abbreviation,
         homeTeam: game.schedule.homeTeam.abbreviation,
         awayScore: game.score.awayScoreTotal,
         homeScore: game.score.homeScoreTotal
-      });
-    return memo;
-  }, {});
-};
+      })}
+    return memo
+  }, {})
+}
 
 export const totalWinsForWeek = (weeklyGamesObject, teams) => {
-  let gameWinner;
+  let gameWinner
   const weeksArray = Object.keys(weeklyGamesObject).map(
     key => weeklyGamesObject[key]
-  );
+  )
   return weeksArray.reduce((memo1, week) => {
     const singleWeek = week.reduce((memo2, game) => {
-      if (game.homeScore > game.awayScore) gameWinner = game.homeTeam;
-      else if (game.awayScore > game.homeScore) gameWinner = game.awayTeam;
-      if (teams.includes(gameWinner)) memo2++;
-      return memo2;
-    }, 0);
-    memo1[`Week ${week[0].week}`] = singleWeek;
-    return memo1;
-  }, {});
-};
+      if (game.homeScore > game.awayScore) {gameWinner = game.homeTeam}
+      else if (game.awayScore > game.homeScore) {gameWinner = game.awayTeam}
+      if (teams.includes(gameWinner)) {memo2++}
+      return memo2
+    }, 0)
+    memo1[`Week ${week[0].week}`] = singleWeek
+    return memo1
+  }, {})
+}
 
-export const parsePlayoffGames = playoffGames => {
-  const { games } = playoffGames;
-  return games.reduce(
+export const parsePlayoffGames = (playoffGames = {}) => {
+  const { games } = playoffGames
+  return games ? games.reduce(
     (memo, game) => {
-      let winner;
+      let winner
       if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
-        winner = game.schedule.awayTeam.abbreviation;
+        winner = game.schedule.awayTeam.abbreviation
       } else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
-        winner = game.schedule.homeTeam.abbreviation;
+        winner = game.schedule.homeTeam.abbreviation
       }
-      if (!memo[winner]) memo[winner] = 0;
-      memo[winner] += 3;
-      return memo;
+      if (!memo[winner]) {memo[winner] = 0}
+      memo[winner] += 3
+      return memo
     },
-    { KC: 3, LA: 8, NE: 13, NO: 3 }
-  );
-};
+    {}
+  ) : {}
+}
 
-export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
+export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap = {}) => {
   const divisionLeaderTeams = leaders.reduce(
     (memo, team) => memo.concat(team.teamAbbrev),
     []
-  );
+  )
   return entries.reduce((memoOne, entry) => {
-    const { selections, teamName, id } = entry;
+    const { selections, teamName, id } = entry
     const entryScore = selections.reduce(
       (memoTwo, team) => (memoTwo += teamWinMap[team]),
       0
-    );
+    )
     const divisonScore = selections.reduce(
       (memoTwo, team) =>
         (memoTwo += divisionLeaderTeams.includes(team) ? 5 : 0),
       0
-    );
+    )
     const playoffScore = selections.reduce(
       (memoTwo, team) => (memoTwo += playoffMap[team] ? playoffMap[team] : 0),
       0
-    );
+    )
     memoOne.push({
       id,
       teamName,
@@ -117,34 +117,34 @@ export const entriesWithScore = (entries, teamWinMap, leaders, playoffMap) => {
       divisonScore,
       playoffScore,
       totalScore: entryScore + divisonScore + playoffScore
-    });
-    return memoOne;
-  }, []);
-};
+    })
+    return memoOne
+  }, [])
+}
 
 export const weeks = [
-  { number: 1, text: "Week 1", firstGame: new Date("2018/09/06 08:00:00") },
-  { number: 2, text: "Week 2", firstGame: new Date("2018/09/13 08:00:00") },
-  { number: 3, text: "Week 3", firstGame: new Date("2018/09/20 08:00:00") },
-  { number: 4, text: "Week 4", firstGame: new Date("2018/09/27 08:00:00") },
-  { number: 5, text: "Week 5", firstGame: new Date("2018/10/05 08:00:00") },
-  { number: 6, text: "Week 6", firstGame: new Date("2018/10/12 08:00:00") },
-  { number: 7, text: "Week 7", firstGame: new Date("2018/10/19 08:00:00") },
-  { number: 8, text: "Week 8", firstGame: new Date("2018/10/26 08:00:00") },
-  { number: 9, text: "Week 9", firstGame: new Date("2018/11/02 08:00:00") },
-  { number: 10, text: "Week 10", firstGame: new Date("2018/11/09 08:00:00") },
-  { number: 11, text: "Week 11", firstGame: new Date("2018/11/16 08:00:00") },
-  { number: 12, text: "Week 12", firstGame: new Date("2018/11/23 08:00:00") },
-  { number: 13, text: "Week 13", firstGame: new Date("2018/11/30 08:00:00") },
-  { number: 14, text: "Week 14", firstGame: new Date("2018/12/07 08:00:00") },
-  { number: 15, text: "Week 15", firstGame: new Date("2018/12/14 08:00:00") },
-  { number: 16, text: "Week 16", firstGame: new Date("2018/12/21 08:00:00") },
-  { number: 17, text: "Week 17", firstGame: new Date("2018/12/28 08:00:00") }
+  { number: 1, text: "Week 1", firstGame: new Date("2018/09/05 08:20:00") },
+  { number: 2, text: "Week 2", firstGame: new Date("2018/09/12 08:20:00") },
+  { number: 3, text: "Week 3", firstGame: new Date("2018/09/19 08:20:00") },
+  { number: 4, text: "Week 4", firstGame: new Date("2018/09/26 08:20:00") },
+  { number: 5, text: "Week 5", firstGame: new Date("2018/10/03 08:20:00") },
+  { number: 6, text: "Week 6", firstGame: new Date("2018/10/10 08:20:00") },
+  { number: 7, text: "Week 7", firstGame: new Date("2018/10/17 08:20:00") },
+  { number: 8, text: "Week 8", firstGame: new Date("2018/10/24 08:20:00") },
+  { number: 9, text: "Week 9", firstGame: new Date("2018/10/31 08:20:00") },
+  { number: 10, text: "Week 10", firstGame: new Date("2018/11/07 08:20:00") },
+  { number: 11, text: "Week 11", firstGame: new Date("2018/11/14 08:20:00") },
+  { number: 12, text: "Week 12", firstGame: new Date("2018/11/21 08:20:00") },
+  { number: 13, text: "Week 13", firstGame: new Date("2018/11/28 12:30:00") },
+  { number: 14, text: "Week 14", firstGame: new Date("2018/12/05 08:20:00") },
+  { number: 15, text: "Week 15", firstGame: new Date("2018/12/12 08:20:00") },
+  { number: 16, text: "Week 16", firstGame: new Date("2018/12/22 01:00:00") },
+  { number: 17, text: "Week 17", firstGame: new Date("2018/12/29 01:00:00") }
   /*{ number: 18, text: 'Wild Card Round', firstGame: new Date('2019/01/05 08:00:00') },
   { number: 19, text: 'Divisional Round', firstGame: new Date('2019/01/12 08:00:00') },
   { number: 20, text: 'Conference Championship', firstGame: new Date('2019/01/20 08:00:00') },
   { number: 21, text: 'Super Bowl', firstGame: new Date('2019/02/03 08:00:00') }, */
-];
+]
 
 export const teamColors = {
   ARI: "#97233F",
@@ -179,4 +179,4 @@ export const teamColors = {
   TB: "#D50A0A",
   TEN: "#002A5C",
   WAS: "#773141"
-};
+}
