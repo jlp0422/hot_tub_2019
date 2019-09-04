@@ -7,7 +7,7 @@
     "axios": "^0.18.1",
     "bootstrap": "^4.3.1",
     "btoa": "^1.2.1",
-    "dotenv": "^6.2.0",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mysportsfeeds-node": "^2.0.1",
     "pg": "^7.12.1",
@@ -17,11 +17,11 @@
     "react-ga": "^2.6.0",
     "react-google-charts": "^3.0.15",
     "react-modal": "^3.10.1",
-    "react-responsive": "^5.0.0",
-    "react-router-dom": "^4.3.1",
+    "react-responsive": "^8.0.0",
+    "react-router-dom": "^5.0.1",
     "react-tooltip": "^3.11.0",
     "react-window-size": "^1.2.2",
-    "sequelize": "^5.18.0",
+    "sequelize": "^5.18.1",
     "webpack": "^3.11.0"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npm run webpack -- -w & nodemon server",
-    "seed": "node server/db/hottub.js server/team-selections-v2.csv",
+    "seed": "node server/db/hottub.js server/team_selections_2019.csv",
     "start": "node server"
   },
   "husky": {

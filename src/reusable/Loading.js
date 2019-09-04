@@ -1,17 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 const Loading = ({ home }) => {
-  return (
-    home ?
-      (
-        <div className="container container-margin">
-          <h1>Hot Tub 2019</h1>
-          <h2>Loading...</h2>
-        </div>
-      ) : (
-      <h4>Loading...</h4>
-      )
-  )
+	return home ? (
+		<div className="container container-margin">
+			<h1>Hot Tub 2019</h1>
+			<h2>Loading...</h2>
+		</div>
+	) : (
+		<h4>Loading...</h4>
+	)
 }
 
-export default Loading;
+export default Loading
