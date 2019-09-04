@@ -13,7 +13,7 @@ app.get('/', (req, res) =>
 	res.sendFile(path.join(__dirname, '../public/index.html'))
 )
 
-app.use((err, req, res) => res.status(err.status || 500).send(err))
+app.use((err, req, res) => res.sendStatus(err.status || 500).send(err))
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`port of call: ${port}`))

@@ -46,7 +46,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npm run webpack -- -w & nodemon server",
     "seed": "node server/db/hottub.js server/team_selections_2019.csv",
-    "start": "node server"
+    "start": "npm run seed && node server"
   },
   "husky": {
     "hooks": {
