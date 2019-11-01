@@ -2,9 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 import Entry from './Entry'
-import Loading from './reusable/Loading'
-import TableHeader from './reusable/TableHeader'
-import ButtonGroup from './reusable/ButtonGroup'
+import Loading from './shared/Loading'
+import TableHeader from './shared/TableHeader'
+import ButtonGroup from './shared/ButtonGroup'
 import { makeSentenceCase, sortByWeekScore, sortByName, weeks } from './utils'
 
 class WeeklyStandings extends React.Component {

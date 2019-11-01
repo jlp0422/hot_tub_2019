@@ -1,10 +1,10 @@
 import React from 'react'
 import Entry from './Entry'
 import ReactGA from 'react-ga'
-import CompareModealHOC from './reusable/CompareModalHOC'
-import TableHeader from './reusable/TableHeader'
-import ButtonGroup from './reusable/ButtonGroup'
-import TableKey from './reusable/TableKey'
+import CompareModealHOC from './shared/CompareModalHOC'
+import TableHeader from './shared/TableHeader'
+import ButtonGroup from './shared/ButtonGroup'
+import TableKey from './shared/TableKey'
 import {
 	makeSentenceCase,
 	sortByScore,
