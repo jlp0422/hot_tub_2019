@@ -6,7 +6,7 @@ app.get(
 	asyncMiddleware(async (req, res) => {
 		const regularSeason = await msfTwo.getData(
 			'nfl',
-			'2019-regular', // change to 2019
+			'2019-regular',
 			'seasonal_standings',
 			'json',
 			{ stats: 'W', force: true }
