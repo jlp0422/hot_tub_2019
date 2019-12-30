@@ -37,7 +37,7 @@ const EntryTeamsTab = ({
 							{fourSpaces}
 							{isDivisionLeader && (
 								<span className="badge badge-warning badge-pill team-badge">
-									&nbsp;{width < 450 ? 'DL' : 'Division Leader'}&nbsp;
+									&nbsp;{width < 450 ? 'DW' : 'Division Winner'}&nbsp;
 								</span>
 							)}
 						</h6>
