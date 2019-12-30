@@ -12,11 +12,11 @@ app.get(
 			{ stats: 'W', force: true }
 		)
 		// const playoffs = await msfTwo.getData(
-		//   "nfl",
-		//   "2020-playoff", // change to 2020
-		//   "seasonal_games",
-		//   "json",
-		//   { force: true }
+		// 	'nfl',
+		// 	'2020-playoff',
+		// 	'seasonal_games',
+		// 	'json',
+		// 	{ force: true }
 		// )
 		res.send({ regularSeason, playoffs: {} })
 	})

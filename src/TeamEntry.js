@@ -20,7 +20,7 @@ const TeamEntry = ({
 	const entriesAndScore = entriesWithScore(
 		entries,
 		teamWinMap,
-		[], //divisionLeaders,
+		divisionLeaders,
 		playoffWinMap
 	)
 	const entryWithScore = entriesAndScore.find(e => e.id === Number(id))

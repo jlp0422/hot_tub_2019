@@ -91,7 +91,7 @@ class Standings extends React.Component {
 		const entriesAndScore = entriesWithScore(
 			entries,
 			teamWinMap,
-			[], //divisionLeaders,
+			divisionLeaders,
 			playoffWinMap
 		)
 		if (!entries.length || !Object.keys(teamWinMap).length) {

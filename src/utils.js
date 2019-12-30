@@ -97,6 +97,8 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 	}, {})
 }
 
+const playoffByes = {} //{ BAL: 3, KC: 3, SF: 3, GB:  }
+
 export const parsePlayoffGames = (playoffGames = {}) => {
 	const { games } = playoffGames
 	return games
@@ -112,8 +114,8 @@ export const parsePlayoffGames = (playoffGames = {}) => {
 				}
 				memo[winner] += 3
 				return memo
-		  }, {})
-		: {}
+		  }, playoffByes)
+		: playoffByes
 }
 
 export const entriesWithScore = (
@@ -171,11 +173,23 @@ export const weeks = [
 	{ number: 14, text: 'Week 14', firstGame: new Date('2019/12/05 08:20:00') },
 	{ number: 15, text: 'Week 15', firstGame: new Date('2019/12/12 08:20:00') },
 	{ number: 16, text: 'Week 16', firstGame: new Date('2019/12/22 01:00:00') },
-	{ number: 17, text: 'Week 17', firstGame: new Date('2019/12/29 01:00:00') }
-	/*{ number: 18, text: 'Wild Card Round', firstGame: new Date('2019/01/05 08:00:00') },
-  { number: 19, text: 'Divisional Round', firstGame: new Date('2019/01/12 08:00:00') },
-  { number: 20, text: 'Conference Championship', firstGame: new Date('2019/01/20 08:00:00') },
-  { number: 21, text: 'Super Bowl', firstGame: new Date('2019/02/03 08:00:00') }, */
+	{ number: 17, text: 'Week 17', firstGame: new Date('2019/12/29 01:00:00') },
+	{
+		number: 18,
+		text: 'Wild Card Round',
+		firstGame: new Date('2020/01/04 08:00:00')
+	},
+	{
+		number: 19,
+		text: 'Divisional Round',
+		firstGame: new Date('2020/01/11 08:00:00')
+	},
+	{
+		number: 20,
+		text: 'Conference Championship',
+		firstGame: new Date('2020/01/19 08:00:00')
+	},
+	{ number: 21, text: 'Super Bowl', firstGame: new Date('2020/02/02 08:00:00') }
 ]
 
 export const teamColors = {
