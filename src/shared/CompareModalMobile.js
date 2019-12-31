@@ -34,7 +34,7 @@ const CompareModalWeb = ({
 			{width < 449 && (
 				<h6>
 					<span className="badge badge-warning badge-pill">&nbsp;DW&nbsp;</span>{' '}
-					indicates Division Leader
+					indicates Division Winner
 				</h6>
 			)}
 			<div>
@@ -81,7 +81,7 @@ const CompareModalWeb = ({
 										{twoSpaces}
 										{isDivisionLeader && (
 											<span className="badge badge-warning badge-pill">
-												&nbsp;Division Leader&nbsp;
+												&nbsp;Division Winner&nbsp;
 											</span>
 										)}
 									</React.Fragment>

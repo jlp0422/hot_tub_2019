@@ -78,7 +78,7 @@ const CompareModalWeb = ({
 										{fourSpaces}
 										{isDivisionLeader && (
 											<span className="badge badge-warning badge-pill">
-												&nbsp;Division Leader&nbsp;
+												&nbsp;Division Winner&nbsp;
 											</span>
 										)}
 									</React.Fragment>

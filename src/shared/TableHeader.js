@@ -41,7 +41,7 @@ const TableHeader = ({ overallStandings, width }) => {
 			{width > 510 && (
 				<React.Fragment>
 					<ReactTooltip effect="solid" id="division">
-						<span>Division Leader Points (5pts per winner)</span>
+						<span>Division Winner Points (5pts per winner)</span>
 					</ReactTooltip>
 					<ReactTooltip effect="solid" id="playoff">
 						<span>Playoff Points (3pts per win)</span>
