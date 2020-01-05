@@ -1,10 +1,9 @@
-export const makeSentenceCase = str => {
-	return str
+export const makeSentenceCase = str =>
+	str
 		.toLowerCase()
 		.split(' ')
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(' ')
-}
 
 export const sortDivision = (a, b) => {
 	if (a.rank < b.rank) {
@@ -97,7 +96,10 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 	}, {})
 }
 
-const playoffByes = {} //{ BAL: 3, KC: 3, SF: 3, GB:  }
+// initial 3 for byes
+// add 5 for conference title
+// add 5 for super bowl title
+const playoffByes = { BAL: 3, KC: 3, SF: 3, GB: 3 }
 
 export const parsePlayoffGames = (playoffGames = {}) => {
 	const { games } = playoffGames
