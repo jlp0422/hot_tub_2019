@@ -11,6 +11,7 @@ const CompareModalWeb = ({
 	teamCityName,
 	teamWinMap,
 	divisionLeaders,
+	entriesAndScore,
 	width
 }) => {
 	ReactGA.event({
@@ -39,11 +40,8 @@ const CompareModalWeb = ({
 					<div key={team.id}>
 						<h5>Team Name: {makeSentenceCase(team.teamName)}</h5>
 						<h6>
-							Wins:{' '}
-							{team.selections.reduce(
-								(memo, team) => (memo += teamWinMap[team]),
-								0
-							)}
+							Total Score:{' '}
+							{entriesAndScore.find(entry => entry.id === team.id).totalScore}
 						</h6>
 						<ul>
 							{team.selections.sort().map(selection => {

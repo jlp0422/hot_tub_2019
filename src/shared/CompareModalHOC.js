@@ -3,14 +3,14 @@ import ReactGA from 'react-ga'
 import CompareModalWeb from './CompareModalWeb'
 import CompareModalMobile from './CompareModalMobile'
 
-const CompareModalHOC = ({ width, ...rest }) => {
+const CompareModalHOC = ({ width, ...props }) => {
 	ReactGA.pageview('/compare-modal')
 	return (
 		<div>
 			{width < 755 ? (
-				<CompareModalMobile {...rest} />
+				<CompareModalMobile {...props} />
 			) : (
-				<CompareModalWeb {...rest} />
+				<CompareModalWeb {...props} />
 			)}
 		</div>
 	)
