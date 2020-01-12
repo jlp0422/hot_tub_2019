@@ -5,14 +5,25 @@ app.get(
 	'/weekly/regular/2019/:week',
 	asyncMiddleware(async (req, res) => {
 		const { week } = req.params
-		const response = await msfTwo.getData(
-			'nfl',
-			'2019-regular', // change to 2019
-			'weekly_games',
-			'json',
-			{ week, force: true }
-		)
-		res.send(response)
+		if (week < 18) {
+			const response = await msfTwo.getData(
+				'nfl',
+				'2019-regular',
+				'weekly_games',
+				'json',
+				{ week, force: true }
+			)
+			res.send(response)
+		} else if (week > 17) {
+			const response = await msfTwo.getData(
+				'nfl',
+				'2020-playoff',
+				'weekly_games',
+				'json',
+				{ week, force: true }
+			)
+			res.send(response)
+		}
 	})
 )
 

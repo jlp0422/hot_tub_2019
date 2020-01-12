@@ -49,20 +49,19 @@ class WeeklyStandings extends React.Component {
 						}
 						return memo
 					}, [])
-					const winsPerEntry = this.props.entries.reduce((memo, entry) => {
+					const winsPerEntry = this.props.entries.map(entry => {
 						const totalWins = entry.selections.reduce((winMemo, team) => {
 							if (weeklyWinners.includes(team)) {
 								winMemo++
 							}
 							return winMemo
 						}, 0)
-						memo.push({
+						return {
 							id: entry.id,
 							teamName: entry.teamName,
 							entryScore: totalWins
-						})
-						return memo
-					}, [])
+						}
+					})
 					const newWeeklyWins = this.state.weeklyWins
 					newWeeklyWins[gamesWeek] = winsPerEntry
 					this.setState({ weeklyWins: newWeeklyWins })

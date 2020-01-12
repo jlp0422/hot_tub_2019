@@ -111,6 +111,9 @@ export const parsePlayoffGames = (playoffGames = {}) => {
 				} else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
 					winner = game.schedule.homeTeam.abbreviation
 				}
+				if (!winner) {
+					return memo
+				}
 				if (!memo[winner]) {
 					memo[winner] = 0
 				}
@@ -126,12 +129,8 @@ export const entriesWithScore = (
 	leaders,
 	playoffMap = {}
 ) => {
-	const divisionLeaderTeams = leaders.reduce(
-		(memo, team) => memo.concat(team.teamAbbrev),
-		[]
-	)
-	return entries.reduce((memoOne, entry) => {
-		const { selections, teamName, id } = entry
+	const divisionLeaderTeams = leaders.map(({ teamAbbrev }) => teamAbbrev)
+	return entries.map(({ selections, teamName, id }) => {
 		const entryScore = selections.reduce(
 			(memoTwo, team) => (memoTwo += teamWinMap[team]),
 			0
@@ -145,7 +144,7 @@ export const entriesWithScore = (
 			(memoTwo, team) => (memoTwo += playoffMap[team] ? playoffMap[team] : 0),
 			0
 		)
-		memoOne.push({
+		return {
 			id,
 			teamName,
 			entryScore,
@@ -153,9 +152,8 @@ export const entriesWithScore = (
 			divisonScore,
 			playoffScore,
 			totalScore: entryScore + divisonScore + playoffScore
-		})
-		return memoOne
-	}, [])
+		}
+	})
 }
 
 export const weeks = [
