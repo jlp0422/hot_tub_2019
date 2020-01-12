@@ -41,14 +41,17 @@ class WeeklyStandings extends React.Component {
 				.then(resp => resp.data)
 				.then(schedule => schedule.games)
 				.then(games => {
-					const weeklyWinners = games.reduce((memo, game) => {
-						if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
-							memo.push(game.schedule.awayTeam.abbreviation)
-						} else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
-							memo.push(game.schedule.homeTeam.abbreviation)
+					const weeklyWinners = games.map(game => {
+						if (game.schedule.playedStatus === 'COMPLETED') {
+							if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
+								return game.schedule.awayTeam.abbreviation
+							} else if (
+								game.score.awayScoreTotal < game.score.homeScoreTotal
+							) {
+								return game.schedule.homeTeam.abbreviation
+							}
 						}
-						return memo
-					}, [])
+					})
 					const winsPerEntry = this.props.entries.map(entry => {
 						const totalWins = entry.selections.reduce((winMemo, team) => {
 							if (weeklyWinners.includes(team)) {

@@ -15,10 +15,7 @@ const options = {
 }
 
 const TeamTotalsBarChart = ({ entries, colors }) => {
-	const allSelections = entries.reduce(
-		(memo, entry) => memo.concat(entry.selections),
-		[]
-	)
+	const allSelections = entries.flatMap(({ selections }) => selections)
 	const allSelectionsMap = allSelections.reduce((memo, team) => {
 		if (!memo[team]) {
 			memo[team] = 1
@@ -29,10 +26,7 @@ const TeamTotalsBarChart = ({ entries, colors }) => {
 	}, {})
 	const teamData = Object.keys(allSelectionsMap)
 		.sort()
-		.reduce((memo, team) => {
-			memo.push([team, allSelectionsMap[team], `color: ${colors[team]}`])
-			return memo
-		}, [])
+		.map(team => [team, allSelectionsMap[team], `color: ${colors[team]}`])
 	const chartData = ['Team Abbreviation', 'Selections', { role: 'style' }]
 	const finalData = [chartData].concat(teamData)
 	return (

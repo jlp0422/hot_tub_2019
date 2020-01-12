@@ -19,10 +19,7 @@ const CompareModalWeb = ({
 		action: 'mobile compare'
 	})
 	const numberOfTeams = compareTeams.length
-	const teams = entries.reduce((memo, entry) => {
-		compareTeams.includes(entry.id) && memo.push(entry)
-		return memo
-	}, [])
+	const teams = entries.filter(entry => compareTeams.includes(entry.id))
 	const twoSpaces = <span>&nbsp;&nbsp;</span>
 	return (
 		<ReactModal

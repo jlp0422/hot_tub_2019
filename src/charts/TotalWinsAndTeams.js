@@ -4,14 +4,11 @@ import { entriesWithScore } from '../utils'
 
 const TotalWinsAndTeams = ({ entries, teamWinMap, divisionLeaders }) => {
 	const entriesAndScore = entriesWithScore(entries, teamWinMap, divisionLeaders)
-	const entryData = entriesAndScore.reduce((memo, entry) => {
-		memo.push([
-			entry.entryScore,
-			entry.totalTeams,
-			`Teams: ${entry.totalTeams}, Wins: ${entry.entryScore}`
-		])
-		return memo
-	}, [])
+	const entryData = entriesAndScore.map(entry => [
+		entry.entryScore,
+		entry.totalTeams,
+		`Teams: ${entry.totalTeams}, Wins: ${entry.entryScore}`
+	])
 	const chartData = ['Total Score', 'NFL Teams', { role: 'tooltip' }]
 	const finalData = [chartData].concat(entryData)
 	// const minWins = entriesAndScore.reduce((min, next) =>

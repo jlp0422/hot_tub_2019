@@ -11,12 +11,9 @@ const Team = ({ abbrev, entries, teamCityName, teamWinMap }) => {
 		}
 		return memo
 	}, 0)
-	const entriesWithTeam = entries.reduce((memo, entry) => {
-		if (entry.selections.includes(abbrev)) {
-			memo.push(entry)
-		}
-		return memo
-	}, [])
+	const entriesWithTeam = entries.filter(entry =>
+		entry.selections.includes(abbrev)
+	)
 	if (!entriesWithTeam.length || !entries.length) {
 		return null
 	}

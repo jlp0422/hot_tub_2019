@@ -103,24 +103,25 @@ const playoffByes = { BAL: 3, KC: 3, SF: 3, GB: 3 }
 
 export const parsePlayoffGames = (playoffGames = {}) => {
 	const { games } = playoffGames
-	return games
-		? games.reduce((memo, game) => {
-				let winner
-				if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
-					winner = game.schedule.awayTeam.abbreviation
-				} else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
-					winner = game.schedule.homeTeam.abbreviation
-				}
-				if (!winner) {
-					return memo
-				}
-				if (!memo[winner]) {
-					memo[winner] = 0
-				}
-				memo[winner] += 3
-				return memo
-		  }, playoffByes)
-		: playoffByes
+	if (!games) {
+		return playoffByes
+	}
+	return games.reduce((memo, game) => {
+		let winner
+		if (game.score.awayScoreTotal > game.score.homeScoreTotal) {
+			winner = game.schedule.awayTeam.abbreviation
+		} else if (game.score.awayScoreTotal < game.score.homeScoreTotal) {
+			winner = game.schedule.homeTeam.abbreviation
+		}
+		if (!winner || game.schedule.playedStatus === 'UNPLAYED') {
+			return memo
+		}
+		if (!memo[winner]) {
+			memo[winner] = 0
+		}
+		memo[winner] += 3
+		return memo
+	}, playoffByes)
 }
 
 export const entriesWithScore = (
