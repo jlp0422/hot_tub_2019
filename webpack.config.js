@@ -1,21 +1,21 @@
 const path = require('path')
 module.exports = {
-  devtool: 'source-maps',
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'dist')
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
-      },
-    ]
-  }
+	devtool: 'source-maps',
+	entry: './src/index.js',
+	output: {
+		filename: 'bundle.js',
+		path: path.join(__dirname, 'dist')
+	},
+	module: {
+		loaders: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader',
+				query: {
+					presets: ['@babel/preset-env', '@babel/preset-react']
+				}
+			}
+		]
+	}
 }
