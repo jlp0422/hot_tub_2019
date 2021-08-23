@@ -6,19 +6,19 @@ app.get(
 	asyncMiddleware(async (req, res) => {
 		const regularSeason = await msfTwo.getData(
 			'nfl',
-			'2019-regular',
+			'2021-regular',
 			'seasonal_standings',
 			'json',
 			{ stats: 'W', force: true }
 		)
-		const playoffs = await msfTwo.getData(
-			'nfl',
-			'2020-playoff',
-			'seasonal_games',
-			'json',
-			{ force: true }
-		)
-		res.send({ regularSeason, playoffs })
+		// const playoffs = await msfTwo.getData(
+		// 	'nfl',
+		// 	'2020-playoff',
+		// 	'seasonal_games',
+		// 	'json',
+		// 	{ force: true }
+		// )
+		res.send({ regularSeason })
 	})
 )
 

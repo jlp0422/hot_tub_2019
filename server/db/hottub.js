@@ -9,10 +9,11 @@ const rd = readline.createInterface({
 })
 
 rd.on('line', line => {
-	const teamObj = {}
 	const teamArr = line.split(',').filter(team => team)
-	teamObj.teamName = teamArr[0]
-	teamObj.selections = teamArr.slice(1)
+	const teamObj = {
+		teamName: teamArr[0],
+		selections: teamArr.slice(1)
+	}
 	Entry.create(teamObj)
 	// Entry.create({
 	//   teamName: teamArr[0],

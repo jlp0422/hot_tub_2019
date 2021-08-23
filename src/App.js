@@ -97,7 +97,7 @@ class App extends React.Component {
 		}
 		return (
 			<div className="container">
-				<h1>Hot Tub 2019</h1>
+				<h1>Hot Tub 2021</h1>
 				<Router>
 					<div>
 						<Route path="/" component={Nav} />

@@ -37,7 +37,7 @@ class WeeklyStandings extends React.Component {
 		this.setState({ error: '' })
 		if (!this.state.weeklyWins[gamesWeek]) {
 			axios
-				.get(`/api/games/weekly/regular/2019/${gamesWeek}`)
+				.get(`/api/games/weekly/regular/2021/${gamesWeek}`)
 				.then(resp => resp.data)
 				.then(schedule => schedule.games)
 				.then(games => {
