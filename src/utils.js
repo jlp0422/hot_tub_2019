@@ -136,7 +136,7 @@ export const entriesWithScore = (
 			(memoTwo, team) => (memoTwo += teamWinMap[team]),
 			0
 		)
-		const divisonScore = selections.reduce(
+		const divisionScore = selections.reduce(
 			(memoTwo, team) =>
 				(memoTwo += divisionLeaderTeams.includes(team) ? 5 : 0),
 			0
@@ -150,9 +150,9 @@ export const entriesWithScore = (
 			teamName,
 			entryScore,
 			totalTeams: selections.length,
-			divisonScore,
+			divisionScore,
 			playoffScore,
-			totalScore: entryScore + divisonScore + playoffScore
+			totalScore: entryScore + divisionScore + playoffScore
 		}
 	})
 }

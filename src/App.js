@@ -12,12 +12,13 @@ import WeeklyStandings from './WeeklyStandings'
 import FourOhFour from './shared/FourOhFour'
 import ChartsMain from './charts/ChartsMain'
 import { parsePlayoffGames } from './utils'
+import hotTubEntries from './entries'
 
 class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			entries: [],
+			entries: hotTubEntries,
 			teamWinMap: {},
 			teamCityName: {},
 			teamStandings: {},
@@ -26,10 +27,10 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		axios
-			.get('/api/entries')
-			.then(res => res.data)
-			.then(entries => this.setState({ entries }))
+		// axios
+		// 	.get('/api/entries')
+		// 	.then(res => res.data)
+		// 	.then(entries => this.setState({ entries }))
 		axios
 			.get('/api/standings')
 			.then(res => res.data)
