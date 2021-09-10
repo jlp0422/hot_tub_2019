@@ -1,184 +1,113 @@
 export default [
 	{
-		teamName: "AVERY'S COLLEGE FUND",
-		selections: ['NE', 'LA', 'HOU', 'BAL', 'WAS']
+		teamName: 'The Harris Boys',
+		selections: ['KC', 'LA', 'TEN', 'PIT', 'JAX']
 	},
-	{ teamName: 'BEAN', selections: ['LA', 'LAC', 'PIT', 'DAL', 'JAX'] },
+	{ teamName: "Mojo's Mommy", selections: ['TB', 'BUF', 'GB', 'PIT', 'JAX'] },
 	{
-		teamName: 'BEN GREENBERG ALL-STARS',
-		selections: ['CLE', 'PIT', 'DAL', 'MIN', 'NYJ', 'TEN']
+		teamName: 'Mojo Blues',
+		selections: ['CLE', 'IND', 'ATL', 'LV', 'NYG', 'NYJ', 'JAX', 'CIN']
 	},
-	{ teamName: 'BERNIE', selections: ['PHI', 'NO', 'LA', 'CLE'] },
+	{ teamName: 'Mooney', selections: ['KC', 'LA', 'GB', 'BAL'] },
+	{ teamName: 'Guido', selections: ['KC', 'LA', 'MIA', 'ARI', 'NYG'] },
+	{ teamName: 'COVID STUPID', selections: ['KC', 'TB', 'GB', 'TEN'] },
+	{ teamName: "GAWN FISH'N", selections: ['KC', 'SF', 'GB', 'CLE'] },
+	{ teamName: 'King and Queen', selections: ['KC', 'TB', 'GB', 'IND'] },
+	{ teamName: 'Empty Nesters', selections: ['KC', 'TB', 'GB', 'TEN'] },
+	{ teamName: 'Pickle Ricks', selections: ['KC', 'BUF', 'GB', 'WAS', 'JAX'] },
 	{
-		teamName: 'BERT',
-		selections: ['PIT', 'DAL', 'MIN', 'SF', 'JAX', 'CAR']
+		teamName: "Charlotte's Web",
+		selections: ['BUF', 'CLE', 'TEN', 'ARI', 'MIN']
 	},
+	{ teamName: 'Judes', selections: ['KC', 'TB', 'BAL', 'DAL'] },
+	{ teamName: 'The Hedge', selections: ['KC', 'BUF', 'GB', 'CLE'] },
+	{ teamName: '99 Problems', selections: ['TB', 'BUF', 'LA', 'TEN'] },
+	{ teamName: 'JLopresti', selections: ['KC', 'BUF', 'TEN', 'ARI', 'JAX'] },
+	{ teamName: 'P-Lite', selections: ['KC', 'PIT', 'ATL', 'CHI', 'WAS', 'CAR'] },
+	{ teamName: "Avery's College Fund", selections: ['KC', 'TB', 'GB', 'TEN'] },
+	{ teamName: 'Vermont MAYHEM', selections: ['KC', 'TB', 'BUF', 'ARI'] },
+	{ teamName: 'pack17', selections: ['LA', 'GB', 'TEN', 'DEN', 'LV', 'JAX'] },
+	{ teamName: "Murphy's Law", selections: ['TB', 'BUF', 'TEN', 'SEA', 'DET'] },
+	{ teamName: 'Green Team', selections: ['BUF', 'BAL', 'TEN', 'NO', 'WAS'] },
+	{ teamName: 'The PopPops', selections: ['KC', 'TB', 'GB', 'DAL'] },
+	{ teamName: 'Temple Owls', selections: ['TB', 'BUF', 'CLE', 'WAS', 'LV'] },
 	{
-		teamName: 'BIG G',
-		selections: ['KC', 'CHI', 'PIT', 'DEN', 'NYG', 'MIA']
-	},
-	{ teamName: 'BONEBEATER', selections: ['NE', 'PHI', 'NO', 'PIT'] },
-	{ teamName: 'BRENDONT', selections: ['KC', 'PHI', 'NO', 'HOU'] },
-	{
-		teamName: "CAN'T PICK CRAP",
-		selections: ['KC', 'PHI', 'DAL', 'LV', 'DEN']
-	},
-	{
-		teamName: "CHARLOTTE'S WEB",
-		selections: ['CLE', 'BAL', 'SEA', 'LV', 'NYJ', 'BUF', 'TB']
-	},
-	{ teamName: 'CPO4', selections: ['PHI', 'LAC', 'ATL', 'BAL', 'JAX'] },
-	{
-		teamName: 'DISCO STU',
-		selections: ['PHI', 'ATL', 'HOU', 'MIN', 'BAL']
-	},
-	{
-		teamName: 'DOLPHIN DOLL',
-		selections: ['MIN', 'BAL', 'SEA', 'TEN', 'BUF', 'NYG', 'TB', 'MIA']
-	},
-	{
-		teamName: 'EL CASTIGADOR NUMERO DEUX',
-		selections: ['NE', 'KC', 'LA', 'JAX']
+		teamName: 'Price Fighters',
+		selections: ['BUF', 'LAC', 'MIA', 'PIT', 'PHI', 'NYG']
 	},
 	{
-		teamName: 'EL CASTIGADOR NUMERO UNO',
-		selections: ['NO', 'CLE', 'SEA', 'LV', 'NYJ', 'DET']
+		teamName: 'Peanut Dad',
+		selections: ['TB', 'LAC', 'ARI', 'CAR', 'LV', 'JAX', 'CIN']
+	},
+	{ teamName: 'Rock Bottom', selections: ['TB', 'BUF', 'TEN', 'NE', 'JAX'] },
+	{ teamName: 'Mishandled Snap', selections: ['KC', 'TB', 'BUF', 'ARI'] },
+	{
+		teamName: 'Eskimo Bros',
+		selections: ['BUF', 'IND', 'NO', 'PIT', 'PHI', 'JAX']
+	},
+	{ teamName: 'Disco Stu', selections: ['BUF', 'GB', 'CLE', 'ARI', 'WAS'] },
+	{ teamName: 'R & T', selections: ['BUF', 'GB', 'CLE', 'TEN', 'NYG'] },
+	{
+		teamName: 'Losers',
+		selections: [
+			'IND',
+			'PHI',
+			'CAR',
+			'LV',
+			'NYG',
+			'NYJ',
+			'CIN',
+			'JAX',
+			'HOU',
+			'DET'
+		]
 	},
 	{
-		teamName: 'ESKIMO BROS',
-		selections: ['KC', 'PHI', 'SEA', 'JAX', 'CAR']
+		teamName: 'Bean',
+		selections: ['NE', 'ARI', 'PIT', 'ATL', 'PHI', 'LV', 'JAX', 'DET']
 	},
-	{ teamName: 'FAUDA', selections: ['NE', 'KC', 'LA', 'JAX'] },
+	{ teamName: 'Jerco', selections: ['TB', 'GB', 'PHI', 'CLE', 'PIT'] },
+	{ teamName: 'Bernie', selections: ['CLE', 'SEA', 'MIA', 'MIN', 'CHI', 'LV'] },
+	{ teamName: 'Kotite', selections: ['TB', 'BUF', 'TEN', 'ARI', 'NYG'] },
 	{
-		teamName: 'FOREVER AVERAGE',
-		selections: ['NE', 'PHI', 'LA', 'PIT']
-	},
-	{
-		teamName: 'GOLDEN THUNDER',
-		selections: ['LA', 'LAC', 'LV', 'TEN', 'NYG']
-	},
-	{ teamName: 'GONE FISHIN', selections: ['NE', 'NO', 'CHI', 'LAC'] },
-	{
-		teamName: 'GREEN GRUNTS',
-		selections: ['PHI', 'NO', 'HOU', 'IND', 'CIN']
+		teamName: "Latte Larry's",
+		selections: ['BUF', 'CLE', 'ATL', 'WAS', 'NYG', 'JAX', 'DET']
 	},
 	{
-		teamName: 'GREEN TEAM',
-		selections: ['KC', 'NO', 'MIN', 'JAX', 'NYJ']
+		teamName: 'Golden Thunder',
+		selections: ['BUF', 'SF', 'CHI', 'LV', 'NYG', 'NYJ', 'HOU']
 	},
 	{
-		teamName: 'HONEJOAN',
-		selections: ['KC', 'NO', 'BAL', 'SEA', 'CAR']
+		teamName: 'Unfinished Business',
+		selections: ['GB', 'BAL', 'LAC', 'MIA', 'PHI', 'JAX']
 	},
 	{
-		teamName: 'HOROWITZ',
-		selections: ['KC', 'PHI', 'GB', 'BAL', 'BUF']
+		teamName: 'Dolphin Doll',
+		selections: ['ATL', 'CHI', 'DEN', 'WAS', 'PHI', 'LV', 'JAX', 'CIN', 'DET']
 	},
 	{
-		teamName: 'I CHUG BEER FAST',
-		selections: ['PHI', 'LAC', 'CLE', 'MIN', 'NYJ']
-	},
-	{ teamName: 'IK', selections: ['NE', 'LA', 'CHI', 'LAC'] },
-	{
-		teamName: 'JAKYLEBEANCY',
-		selections: ['PHI', 'LAC', 'HOU', 'GB', 'TEN']
-	},
-	{ teamName: 'JERCO', selections: ['NE', 'KC', 'PHI', 'SEA'] },
-	{
-		teamName: 'JLOPRESTI',
-		selections: ['KC', 'CLE', 'ATL', 'DAL', 'NYJ']
+		teamName: 'Cool, We Rule',
+		selections: ['CLE', 'MIA', 'ARI', 'CHI', 'DEN', 'LV', 'DET']
 	},
 	{
-		teamName: 'JUDES',
-		selections: ['CLE', 'DAL', 'TEN', 'BUF', 'NYG', 'TB', 'DET', 'CIN']
+		teamName: 'S Cubed',
+		selections: ['BUF', 'BAL', 'SEA', 'CAR', 'LV', 'NYG']
 	},
-	{ teamName: 'KING AND QUEEN', selections: ['KC', 'NO', 'LA', 'HOU'] },
+	{ teamName: 'Le Champione', selections: ['KC', 'GB', 'TEN', 'NO', 'LV'] },
 	{
-		teamName: 'KOTITE',
-		selections: ['KC', 'LA', 'BAL', 'BUF', 'TB', 'DET']
-	},
-	{ teamName: "MATT G'S TEAM", selections: ['NE', 'NO', 'LA', 'DAL'] },
-	{
-		teamName: "MOJO'S MASTER",
-		selections: ['ATL', 'BAL', 'BUF', 'NYG', 'TB', 'DET', 'CIN', 'WAS', 'MIA']
+		teamName: 'Wirajasp',
+		selections: ['BUF', 'BAL', 'SEA', 'DEN', 'PHI', 'HOU']
 	},
 	{
-		teamName: 'MR. RODGERS NEIGHBORHOOD',
-		selections: ['HOU', 'GB', 'DAL', 'SEA', 'CAR', 'ARI']
+		teamName: 'On Second Thought',
+		selections: ['KC', 'BUF', 'BAL', 'MIN', 'HOU']
 	},
-	{
-		teamName: 'OCEAN',
-		selections: ['GB', 'DAL', 'CAR', 'NYJ', 'BUF', 'DET', 'CIN', 'WAS']
-	},
-	{ teamName: 'OUT OF LUCK', selections: ['KC', 'NO', 'LA', 'GB'] },
-	{
-		teamName: 'PICKLE RICKS',
-		selections: ['KC', 'PIT', 'MIN', 'SEA', 'BUF', 'NYG']
-	},
-	{ teamName: 'P-LITE', selections: ['NE', 'KC', 'CHI', 'ATL'] },
-	{
-		teamName: 'PRICE FIGHTERS',
-		selections: ['LAC', 'SF', 'BAL', 'CAR', 'NYJ', 'TEN', 'WAS']
-	},
-	{
-		teamName: 'RADBRAD',
-		selections: ['PHI', 'LA', 'PIT', 'MIN', 'NYJ']
-	},
-	{
-		teamName: 'ROCK BOTTOM',
-		selections: ['KC', 'PHI', 'GB', 'SEA', 'DET']
-	},
-	{
-		teamName: 'ROLLIN A JEFFREY',
-		selections: ['KC', 'PHI', 'MIN', 'JAX', 'NYJ']
-	},
-	{
-		teamName: 'S CUBED',
-		selections: ['GB', 'DAL', 'BAL', 'CAR', 'DEN', 'NYG', 'WAS']
-	},
-	{ teamName: 'SAM I AM', selections: ['KC', 'PHI', 'NO', 'HOU'] },
-	{
-		teamName: 'SON OF GERSHONI',
-		selections: ['PHI', 'HOU', 'GB', 'PIT', 'SEA']
-	},
-	{
-		teamName: 'STEVIE WONDERS',
-		selections: ['KC', 'PHI', 'CHI', 'BAL', 'WAS']
-	},
-	{ teamName: 'T-BONE', selections: ['NE', 'KC', 'NO', 'SEA'] },
-	{
-		teamName: 'TEMPLE OWLS',
-		selections: ['PHI', 'ATL', 'HOU', 'SEA', 'BUF', 'WAS']
-	},
-	{
-		teamName: 'THE GUIDOS',
-		selections: ['PHI', 'CLE', 'HOU', 'GB', 'NYJ']
-	},
-	{
-		teamName: 'THE HEDGE',
-		selections: ['PHI', 'MIN', 'BAL', 'SEA', 'CIN', 'WAS', 'MIA']
-	},
-	{
-		teamName: 'THE LOSERS',
-		selections: ['NYJ', 'TEN', 'ARI', 'BUF', 'NYG', 'TB', 'DET', 'CIN', 'WAS']
-	},
-	{
-		teamName: 'UNFINSIHED BUSINESS V2',
-		selections: ['PHI', 'CLE', 'GB', 'DAL', 'CAR']
-	},
-	{
-		teamName: 'WHY NOT',
-		selections: ['KC', 'CLE', 'ATL', 'JAX', 'DEN']
-	},
-	{
-		teamName: 'WILBER',
-		selections: ['PHI', 'NO', 'PIT', 'JAX', 'CAR']
-	},
-	{
-		teamName: '95BIRDS',
-		selections: ['PHI', 'NO', 'GB', 'BAL', 'TEN']
-	}
+	{ teamName: 'StevieWonders', selections: ['KC', 'BUF', 'GB', 'PHI', 'LV'] },
+	{ teamName: 'Braindead', selections: ['BUF', 'GB', 'BAL', 'LAC', 'PHI'] },
+	{ teamName: 'Go Birds', selections: ['KC', 'GB', 'BAL', 'SEA', 'DET'] },
+	{ teamName: 'Bert', selections: ['SF', 'BAL', 'TEN', 'LAC', 'WAS'] },
+	{ teamName: 'Birdwatchers', selections: ['SF', 'GB', 'BAL', 'TEN', 'LV'] }
 ].map((entry, index) => ({
 	...entry,
-	id: index
+	id: index + 1
 }))

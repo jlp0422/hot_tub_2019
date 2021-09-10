@@ -27,10 +27,6 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		// axios
-		// 	.get('/api/entries')
-		// 	.then(res => res.data)
-		// 	.then(entries => this.setState({ entries }))
 		axios
 			.get('/api/standings')
 			.then(res => res.data)
@@ -90,9 +86,9 @@ class App extends React.Component {
 		} = this.state
 		const { windowWidth } = this.props
 		const divisionLeaders = []
-		for (const key in teamStandings) {
-			divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
-		}
+		// for (const key in teamStandings) {
+		// 	divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
+		// }
 		if (!entries.length || !Object.keys(teamWinMap).length) {
 			return <Loading home={true} />
 		}

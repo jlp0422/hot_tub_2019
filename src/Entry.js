@@ -29,7 +29,6 @@ const Entry = ({
 			)}
 			<Link className="link" to={`/entry/${entry.id}`}>
 				<h4 className="tk font-weight-bold">
-					{/* scoreSorted ? `${rank+1})` : null */}{' '}
 					{makeSentenceCase(entry.teamName)}
 				</h4>
 			</Link>

@@ -219,7 +219,7 @@ export const teamColors = {
 	NO: '#D3BC8D',
 	NYG: '#0B2265',
 	NYJ: '#003F2D',
-	OAK: '#000000',
+	LV: '#000000',
 	PHI: '#004C54',
 	PIT: '#FFB612',
 	SF: '#AA0000',
