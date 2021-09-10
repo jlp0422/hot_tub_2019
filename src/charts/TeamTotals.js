@@ -9,7 +9,6 @@ const options = {
 	},
 	vAxis: {
 		title: 'Total Selections'
-		// maxValue: '30'
 	},
 	legend: { position: 'none' }
 }
