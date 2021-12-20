@@ -85,7 +85,12 @@ class App extends React.Component {
 			playoffWinMap
 		} = this.state
 		const { windowWidth } = this.props
-		const divisionLeaders = []
+		const divisionLeaders = [
+			{
+				rank: 1,
+				teamAbbrev: 'GB'
+			}
+		]
 		// for (const key in teamStandings) {
 		// 	divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
 		// }
