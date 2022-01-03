@@ -101,6 +101,14 @@ class App extends React.Component {
 			{
 				rank: 1,
 				teamAbbrev: 'DAL'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'CIN'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'TEN'
 			}
 		]
 		// for (const key in teamStandings) {
