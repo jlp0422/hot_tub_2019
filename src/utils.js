@@ -100,7 +100,8 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 // add 5 for conference title
 // add 5 for super bowl title
 const playoffByes = {
-	// GB: 3
+	// GB: 3,
+	// TEN: 3,
 }
 
 export const parsePlayoffGames = (playoffGames = {}) => {
@@ -177,16 +178,16 @@ export const weeks = [
 	{ number: 15, text: 'Week 15', firstGame: new Date('2021/12/16 08:00:00') },
 	{ number: 16, text: 'Week 16', firstGame: new Date('2021/12/23 08:00:00') },
 	{ number: 17, text: 'Week 17', firstGame: new Date('2022/01/02 08:00:00') },
-	{ number: 18, text: 'Week 18', firstGame: new Date('2022/01/08 08:00:00') }
-	// {
-	// 	number: 19,
-	// 	text: 'Wild Card Round',
-	// 	firstGame: new Date('2020/01/15 08:00:00')
-	// },
+	{ number: 18, text: 'Week 18', firstGame: new Date('2022/01/08 08:00:00') },
+	{
+		number: 19,
+		text: 'Wild Card Round',
+		firstGame: new Date('2022/01/15 04:00:00')
+	}
 	// {
 	// 	number: 20,
 	// 	text: 'Divisional Round',
-	// 	firstGame: new Date('2020/01/22 08:00:00')
+	// 	firstGame: new Date('2022/01/22 08:00:00')
 	// },
 	// {
 	// 	number: 21,

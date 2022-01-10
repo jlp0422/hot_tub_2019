@@ -5,7 +5,7 @@ app.get(
 	'/weekly/regular/2021/:week',
 	asyncMiddleware(async (req, res) => {
 		const { week } = req.params
-		const seasonType = week < 18 ? '2021-regular' : '2022-playoff'
+		const seasonType = week < 19 ? '2021-regular' : '2022-playoff'
 		const response = await msfTwo.getData(
 			'nfl',
 			seasonType,
