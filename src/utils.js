@@ -101,7 +101,9 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 // add 5 for super bowl title
 const playoffByes = {
 	GB: 3,
-	TEN: 3
+	TEN: 3,
+	CIN: 5,
+	LA: 5
 }
 
 export const parsePlayoffGames = (playoffGames = {}) => {
