@@ -103,7 +103,7 @@ const playoffByes = {
 	GB: 3,
 	TEN: 3,
 	CIN: 5,
-	LA: 5
+	LA: 10
 }
 
 export const parsePlayoffGames = (playoffGames = {}) => {
