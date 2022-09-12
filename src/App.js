@@ -90,34 +90,6 @@ class App extends React.Component {
 			// 	rank: 1,
 			// 	teamAbbrev: 'GB'
 			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'TB'
-			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'KC'
-			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'DAL'
-			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'CIN'
-			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'TEN'
-			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'LA'
-			// },
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'BUF'
-			// }
 		]
 		// for (const key in teamStandings) {
 		// 	divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
