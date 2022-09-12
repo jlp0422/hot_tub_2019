@@ -3,7 +3,7 @@ import React from 'react'
 const Loading = ({ home }) => {
 	return home ? (
 		<div className="container container-margin">
-			<h1>Hot Tub 2021</h1>
+			<h1>Hot Tub 2022</h1>
 			<h2>Loading...</h2>
 		</div>
 	) : (
