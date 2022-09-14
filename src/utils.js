@@ -99,12 +99,7 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 // initial 3 for byes
 // add 5 for conference title
 // add 5 for super bowl title
-const playoffByes = {
-	GB: 3,
-	TEN: 3,
-	CIN: 5,
-	LA: 10
-}
+const playoffByes = {}
 
 export const parsePlayoffGames = (playoffGames = {}) => {
 	const { games } = playoffGames
@@ -163,40 +158,40 @@ export const entriesWithScore = (
 }
 
 export const weeks = [
-	{ number: 1, text: 'Week 1', firstGame: new Date('2021/09/08 08:00:00') },
-	{ number: 2, text: 'Week 2', firstGame: new Date('2021/09/16 08:00:00') },
-	{ number: 3, text: 'Week 3', firstGame: new Date('2021/09/23 08:00:00') },
-	{ number: 4, text: 'Week 4', firstGame: new Date('2021/09/30 08:00:00') },
-	{ number: 5, text: 'Week 5', firstGame: new Date('2021/10/07 08:00:00') },
-	{ number: 6, text: 'Week 6', firstGame: new Date('2021/10/14 08:00:00') },
-	{ number: 7, text: 'Week 7', firstGame: new Date('2021/10/21 08:00:00') },
-	{ number: 8, text: 'Week 8', firstGame: new Date('2021/10/28 08:00:00') },
-	{ number: 9, text: 'Week 9', firstGame: new Date('2021/11/04 08:00:00') },
-	{ number: 10, text: 'Week 10', firstGame: new Date('2021/11/11 08:00:00') },
-	{ number: 11, text: 'Week 11', firstGame: new Date('2021/11/18 08:00:00') },
-	{ number: 12, text: 'Week 12', firstGame: new Date('2021/11/25 08:00:00') },
-	{ number: 13, text: 'Week 13', firstGame: new Date('2021/12/02 08:00:00') },
-	{ number: 14, text: 'Week 14', firstGame: new Date('2021/12/09 08:00:00') },
-	{ number: 15, text: 'Week 15', firstGame: new Date('2021/12/16 08:00:00') },
-	{ number: 16, text: 'Week 16', firstGame: new Date('2021/12/23 08:00:00') },
-	{ number: 17, text: 'Week 17', firstGame: new Date('2022/01/02 08:00:00') },
-	{ number: 18, text: 'Week 18', firstGame: new Date('2022/01/08 08:00:00') },
-	{
-		number: 19,
-		text: 'Wild Card',
-		firstGame: new Date('2022/01/15 04:00:00')
-	},
-	{
-		number: 20,
-		text: 'Divisional',
-		firstGame: new Date('2022/01/22 08:00:00')
-	},
-	{
-		number: 21,
-		text: 'Conference Championship',
-		firstGame: new Date('2022/01/30 08:00:00')
-	},
-	{ number: 22, text: 'Super Bowl', firstGame: new Date('2022/02/13 08:00:00') }
+	{ number: 1, text: 'Week 1', firstGame: new Date('2022/09/08 08:00:00') },
+	{ number: 2, text: 'Week 2', firstGame: new Date('2022/09/15 08:00:00') },
+	{ number: 3, text: 'Week 3', firstGame: new Date('2022/09/22 08:00:00') },
+	{ number: 4, text: 'Week 4', firstGame: new Date('2022/09/29 08:00:00') },
+	{ number: 5, text: 'Week 5', firstGame: new Date('2022/10/06 08:00:00') },
+	{ number: 6, text: 'Week 6', firstGame: new Date('2022/10/13 08:00:00') },
+	{ number: 7, text: 'Week 7', firstGame: new Date('2022/10/20 08:00:00') },
+	{ number: 8, text: 'Week 8', firstGame: new Date('2022/10/27 08:00:00') },
+	{ number: 9, text: 'Week 9', firstGame: new Date('2022/11/03 08:00:00') },
+	{ number: 10, text: 'Week 10', firstGame: new Date('2022/11/10 08:00:00') },
+	{ number: 11, text: 'Week 11', firstGame: new Date('2022/11/17 08:00:00') },
+	{ number: 12, text: 'Week 12', firstGame: new Date('2022/11/24 08:00:00') },
+	{ number: 13, text: 'Week 13', firstGame: new Date('2022/12/01 08:00:00') },
+	{ number: 14, text: 'Week 14', firstGame: new Date('2022/12/08 08:00:00') },
+	{ number: 15, text: 'Week 15', firstGame: new Date('2022/12/15 08:00:00') },
+	{ number: 16, text: 'Week 16', firstGame: new Date('2022/12/22 08:00:00') },
+	{ number: 17, text: 'Week 17', firstGame: new Date('2022/12/29 08:00:00') },
+	{ number: 18, text: 'Week 18', firstGame: new Date('2023/01/05 08:00:00') }
+	// {
+	// 	number: 19,
+	// 	text: 'Wild Card',
+	// 	firstGame: new Date('2023/01/14 08:00:00')
+	// },
+	// {
+	// 	number: 20,
+	// 	text: 'Divisional',
+	// 	firstGame: new Date('2023/01/21 08:00:00')
+	// },
+	// {
+	// 	number: 21,
+	// 	text: 'Conference Championship',
+	// 	firstGame: new Date('2022/01/30 08:00:00')
+	// },
+	// { number: 22, text: 'Super Bowl', firstGame: new Date('2022/02/12 08:00:00') }
 ]
 
 export const teamColors = {

@@ -10,7 +10,7 @@ import Team from './Team'
 import NFLStandings from './NFLStandings'
 import WeeklyStandings from './WeeklyStandings'
 import FourOhFour from './shared/FourOhFour'
-import ChartsMain from './charts/ChartsMain'
+// import ChartsMain from './charts/ChartsMain'
 import { parsePlayoffGames } from './utils'
 import hotTubEntries from './entries'
 
@@ -86,38 +86,10 @@ class App extends React.Component {
 		} = this.state
 		const { windowWidth } = this.props
 		const divisionLeaders = [
-			{
-				rank: 1,
-				teamAbbrev: 'GB'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'TB'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'KC'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'DAL'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'CIN'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'TEN'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'LA'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'BUF'
-			}
+			// {
+			// 	rank: 1,
+			// 	teamAbbrev: 'GB'
+			// },
 		]
 		// for (const key in teamStandings) {
 		// 	divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
@@ -127,7 +99,7 @@ class App extends React.Component {
 		}
 		return (
 			<div className="container">
-				<h1>Hot Tub 2021</h1>
+				<h1>Hot Tub 2022</h1>
 				<Router>
 					<div>
 						<Route path="/" component={Nav} />
@@ -204,7 +176,7 @@ class App extends React.Component {
 									/>
 								)}
 							/>
-							<Route
+							{/* <Route
 								path="/charts"
 								render={() => (
 									<ChartsMain
@@ -213,7 +185,7 @@ class App extends React.Component {
 										divisionLeaders={divisionLeaders}
 									/>
 								)}
-							/>
+							/> */}
 							<Route component={FourOhFour} />
 						</Switch>
 					</div>

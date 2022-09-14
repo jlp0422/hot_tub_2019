@@ -34,7 +34,7 @@ const Nav = ({ history }) => {
 						</Link>
 					)}
 				</li>
-				<li className="nav-item">
+				{/* <li className="nav-item">
 					{pathname === '/charts' ? (
 						<span className="nav-link active">Charts</span>
 					) : (
@@ -42,7 +42,7 @@ const Nav = ({ history }) => {
 							Charts
 						</Link>
 					)}
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	)
