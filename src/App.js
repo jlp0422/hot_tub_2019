@@ -10,7 +10,7 @@ import Team from './Team'
 import NFLStandings from './NFLStandings'
 import WeeklyStandings from './WeeklyStandings'
 import FourOhFour from './shared/FourOhFour'
-import ChartsMain from './charts/ChartsMain'
+// import ChartsMain from './charts/ChartsMain'
 import { parsePlayoffGames } from './utils'
 import hotTubEntries from './entries'
 
@@ -176,7 +176,7 @@ class App extends React.Component {
 									/>
 								)}
 							/>
-							<Route
+							{/* <Route
 								path="/charts"
 								render={() => (
 									<ChartsMain
@@ -185,7 +185,7 @@ class App extends React.Component {
 										divisionLeaders={divisionLeaders}
 									/>
 								)}
-							/>
+							/> */}
 							<Route component={FourOhFour} />
 						</Switch>
 					</div>
