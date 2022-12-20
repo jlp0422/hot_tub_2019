@@ -86,14 +86,19 @@ class App extends React.Component {
 		} = this.state
 		const { windowWidth } = this.props
 		const divisionLeaders = [
-			// {
-			// 	rank: 1,
-			// 	teamAbbrev: 'GB'
-			// },
+			{
+				rank: 1,
+				teamAbbrev: 'KC'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'MIN'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'SF'
+			}
 		]
-		// for (const key in teamStandings) {
-		// 	divisionLeaders.push(teamStandings[key].find(team => team.rank === 1))
-		// }
 		if (!entries.length || !Object.keys(teamWinMap).length) {
 			return <Loading home={true} />
 		}
