@@ -97,8 +97,13 @@ class App extends React.Component {
 			{
 				rank: 1,
 				teamAbbrev: 'SF'
-			}
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'BUF'
+			},
 		]
+
 		if (!entries.length || !Object.keys(teamWinMap).length) {
 			return <Loading home={true} />
 		}
