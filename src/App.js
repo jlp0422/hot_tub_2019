@@ -102,6 +102,10 @@ class App extends React.Component {
 				rank: 1,
 				teamAbbrev: 'BUF'
 			},
+			{
+				rank: 1,
+				teamAbbrev: 'TB'
+			},
 		]
 
 		if (!entries.length || !Object.keys(teamWinMap).length) {
