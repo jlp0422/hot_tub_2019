@@ -97,6 +97,26 @@ class App extends React.Component {
 			{
 				rank: 1,
 				teamAbbrev: 'SF'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'BUF'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'CIN'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'JAX'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'PHI'
+			},
+			{
+				rank: 1,
+				teamAbbrev: 'TB'
 			}
 		]
 		if (!entries.length || !Object.keys(teamWinMap).length) {
