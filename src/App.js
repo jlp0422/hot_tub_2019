@@ -119,6 +119,7 @@ class App extends React.Component {
 				teamAbbrev: 'TB'
 			}
 		]
+
 		if (!entries.length || !Object.keys(teamWinMap).length) {
 			return <Loading home={true} />
 		}
