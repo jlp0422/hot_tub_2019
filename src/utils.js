@@ -96,12 +96,12 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 	}, {})
 }
 
-// initial 3 for byes
-// add 5 for conference title
-// add 5 for super bowl title
+// initial 3 for 1st round byes
+// add 5 pts for conference title
+// add 5 pts for super bowl title
 const playoffByes = {
-	// KC: 3,
-	// PHI: 3
+	KC: 3,
+	PHI: 3
 }
 
 export const parsePlayoffGames = (playoffGames = {}) => {
@@ -133,6 +133,7 @@ export const entriesWithScore = (
 	leaders,
 	playoffMap = {}
 ) => {
+	console.log({ playoffMap })
 	const divisionLeaderTeams = leaders.map(({ teamAbbrev }) => teamAbbrev)
 	return entries.map(({ selections, teamName, id }) => {
 		const entryScore = selections.reduce(

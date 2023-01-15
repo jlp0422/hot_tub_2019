@@ -11,15 +11,14 @@ app.get(
 			'json',
 			{ stats: 'W', force: true }
 		)
-		// const playoffs = await msfTwo.getData(
-		// 	'nfl',
-		// 	'2023-playoff',
-		// 	'seasonal_games',
-		// 	'json',
-		// 	{ force: true }
-		// )
-		// res.send({ regularSeason, playoffs })
-		res.send({ regularSeason })
+		const playoffs = await msfTwo.getData(
+			'nfl',
+			'2023-playoff',
+			'seasonal_games',
+			'json',
+			{ force: true }
+		)
+		res.send({ regularSeason, playoffs })
 	})
 )
 
