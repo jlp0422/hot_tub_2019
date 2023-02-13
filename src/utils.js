@@ -100,7 +100,7 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 // add 5 pts for conference title
 // add 5 pts for super bowl title
 const playoffByes = {
-	KC: 8,
+	KC: 13,
 	PHI: 8
 }
 
