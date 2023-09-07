@@ -11,6 +11,7 @@ app.get(
 			'json',
 			{ stats: 'W', force: true }
 		)
+		// TODO: uncomment once playoffs start, this will error out before there is any playoff data
 		// const playoffs = await msfTwo.getData(
 		// 	'nfl',
 		// 	'2024-playoff',
