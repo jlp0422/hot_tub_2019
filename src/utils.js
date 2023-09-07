@@ -96,13 +96,12 @@ export const totalWinsForWeek = (weeklyGamesObject, teams) => {
 	}, {})
 }
 
+// TODO: playoffs
 // initial 3 for 1st round byes
 // add 5 pts for conference title
 // add 5 pts for super bowl title
-const playoffByes = {
-	KC: 13,
-	PHI: 8
-}
+// ex: KC: 8
+const playoffByes = {}
 
 export const parsePlayoffGames = (playoffGames = {}) => {
 	const { games } = playoffGames
@@ -161,6 +160,9 @@ export const entriesWithScore = (
 	})
 }
 
+// TODO: update with start of each week
+// Thursday for regular season
+// First playoff game for playoffs
 export const weeks = [
 	{ number: 1, text: 'Week 1', firstGame: new Date('2022/09/08 08:00:00') },
 	{ number: 2, text: 'Week 2', firstGame: new Date('2022/09/15 08:00:00') },

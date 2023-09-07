@@ -1,3 +1,6 @@
+// TODO: update with new teams
+// team abbreviations can be found at: https://github.com/jlp0422/hot_tub_2019/blob/c68e3af38efaa3c0fdbf2470673ff7412060da74/src/utils.js#L201
+
 export default [
 	{
 		teamName: 'The Harris Boys',
