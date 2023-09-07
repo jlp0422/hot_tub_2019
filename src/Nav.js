@@ -34,15 +34,6 @@ const Nav = ({ history }) => {
 						</Link>
 					)}
 				</li>
-				{/* <li className="nav-item">
-					{pathname === '/charts' ? (
-						<span className="nav-link active">Charts</span>
-					) : (
-						<Link className="nav-link" to="/charts">
-							Charts
-						</Link>
-					)}
-				</li> */}
 			</ul>
 		</div>
 	)

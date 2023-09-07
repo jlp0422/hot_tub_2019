@@ -85,47 +85,21 @@ class App extends React.Component {
 			playoffWinMap
 		} = this.state
 		const { windowWidth } = this.props
-		const divisionLeaders = [
+		// TODO: add division winners as they are clinched
+		/**
 			{
 				rank: 1,
 				teamAbbrev: 'KC'
 			},
-			{
-				rank: 1,
-				teamAbbrev: 'MIN'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'SF'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'BUF'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'CIN'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'JAX'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'PHI'
-			},
-			{
-				rank: 1,
-				teamAbbrev: 'TB'
-			}
-		]
+		 */
+		const divisionLeaders = []
 
 		if (!entries.length || !Object.keys(teamWinMap).length) {
 			return <Loading home={true} />
 		}
 		return (
 			<div className="container">
-				<h1>Hot Tub 2022</h1>
+				<h1>Hot Tub 2023</h1>
 				<Router>
 					<div>
 						<Route path="/" component={Nav} />
@@ -202,16 +176,6 @@ class App extends React.Component {
 									/>
 								)}
 							/>
-							{/* <Route
-								path="/charts"
-								render={() => (
-									<ChartsMain
-										entries={entries}
-										teamWinMap={teamWinMap}
-										divisionLeaders={divisionLeaders}
-									/>
-								)}
-							/> */}
 							<Route component={FourOhFour} />
 						</Switch>
 					</div>
