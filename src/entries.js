@@ -98,7 +98,7 @@ export default [
 	},
 	{
 		teamName: 'Dolphin Doll',
-		selections: ['PHI', 'LV', 'TEN', 'MIA', 'WAS', 'JAX', 'DET']
+		selections: ['KC', 'CIN', 'NO', 'SEA']
 	},
 	{
 		teamName: 'The Hedge',
