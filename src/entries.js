@@ -86,7 +86,7 @@ export default [
 	},
 	{
 		teamName: 'Rock Bottom',
-		selections: ['JAX', 'MIN', 'NO', 'ATL']
+		selections: ['JAX', 'MIN', 'NO', 'ATL', 'SEA']
 	},
 	{
 		teamName: 'PREZ SQUARED',
