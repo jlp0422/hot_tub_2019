@@ -136,10 +136,10 @@ export default [
 		teamName: 'Who Knows?',
 		selections: ['KC', 'BAL', 'MIA', 'NO']
 	},
-	}
+	{
 		teamName: 'Pack 17',
 		selections: ['BUF', 'LAC', 'GB', 'LV', 'NE']
-},
+	},
 	{
 		teamName: 'Charlottes Web',
 		selections: ['BAL', 'JAX', 'DET', 'ATL', 'IND']}
