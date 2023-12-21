@@ -142,7 +142,7 @@ export default [
 	},
 	{
 		teamName: 'Charlottes Web',
-		selections: ['BAL', 'JAX', 'DET', 'ATL', 'IND'
+		selections: ['BAL', 'JAX', 'DET', 'ATL', 'IND']}
 ].map((entry, index) => ({
 	...entry,
 	id: index + 1
