@@ -101,10 +101,6 @@ export default [
 		selections: ['KC', 'CIN', 'NO', 'SEA']
 	},
 	{
-		teamName: 'The Hedge',
-		selections: ['BUF', 'GB', 'NE', 'WAS', 'HOU', 'SEA', 'ATL']
-	},
-	{
 		teamName: 'Eskimo Bros',
 		selections: ['CIN', 'SF', 'TEN', 'NE', 'LA']
 	},
