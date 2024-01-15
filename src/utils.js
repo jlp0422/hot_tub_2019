@@ -198,7 +198,7 @@ export const weeks = [
 	{
 		number: 21,
 		text: 'Conference Championship',
-		firstGame: new Date('2023/01/28 08:00:00')
+		firstGame: new Date('2024/01/28 08:00:00')
 	},
 	{ number: 22, text: 'Super Bowl', firstGame: new Date('2024/02/11 08:00:00') }
 
