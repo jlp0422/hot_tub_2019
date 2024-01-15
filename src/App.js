@@ -92,6 +92,39 @@ class App extends React.Component {
 				teamAbbrev: 'KC'
 			},
 		 */
+		{
+				rank: 1,
+				teamAbbrev: 'SF'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'DAL'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'TB'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'DET'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'BAL'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'HOU'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'KC'
+			},
+		{
+				rank: 1,
+				teamAbbrev: 'BUF'
+			},
+		]
 		const divisionLeaders = []
 
 		if (!entries.length || !Object.keys(teamWinMap).length) {
