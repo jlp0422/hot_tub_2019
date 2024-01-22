@@ -201,9 +201,8 @@ export const weeks = [
 		firstGame: new Date('2024/01/28 08:00:00')
 	},
 	{ number: 22, text: 'Super Bowl', firstGame: new Date('2024/02/11 08:00:00') }
-
+]
 	
-
 export const teamColors = {
 	ARI: '#97233F',
 	ATL: '#A71930',
